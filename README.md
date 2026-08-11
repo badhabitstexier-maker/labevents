@@ -1,0 +1,139 @@
+# labevents.nc
+
+Site officiel de **LabEvents**, activité basée en Nouvelle-Calédonie.
+
+Le site présente deux activités distinctes : l'**événementiel** et la
+**création de sites internet**. Il doit expliquer simplement, orienter
+rapidement, montrer des preuves réelles et faciliter la prise de contact.
+
+> **État du projet : Lot −1 — initialisation.**
+> Les fondations techniques et documentaires sont en place. Les pages du site
+> ne sont pas encore construites : `src/pages/index.astro` est une page de
+> vérification technique temporaire, pas l'accueil.
+
+---
+
+## Stack
+
+| Élément      | Choix                                                          |
+| ------------ | -------------------------------------------------------------- |
+| Framework    | [Astro](https://astro.build) — génération statique par défaut   |
+| Langage      | TypeScript, mode strict                                        |
+| Styles       | Tailwind CSS 4, via le plugin Vite `@tailwindcss/vite`         |
+| Typographies | Space Grotesk + Inter, auto-hébergées (`@fontsource-variable`)  |
+| Sitemap      | `@astrojs/sitemap`                                             |
+
+Aucun framework front (React, Vue, Svelte), aucun CMS, aucune librairie UI :
+le site est statique et embarque très peu de JavaScript.
+
+## Installation
+
+Node.js 20 ou plus est requis.
+
+```bash
+npm install
+```
+
+## Commandes
+
+| Commande          | Effet                                                   |
+| ----------------- | ------------------------------------------------------- |
+| `npm run dev`     | Serveur de développement sur `http://localhost:4321`     |
+| `npm run build`   | Build statique dans `dist/`                              |
+| `npm run preview` | Prévisualise le build de production                      |
+| `npm run check`   | Diagnostics Astro + vérification TypeScript              |
+
+Avant de pousser : `npm run check && npm run build` doivent tous deux passer
+sans erreur.
+
+## Architecture
+
+```
+src/
+  components/   Composants présentationnels
+  layouts/      BaseLayout.astro — squelette HTML et métadonnées
+  pages/        Routes (un fichier = une page)
+  styles/       global.css — polices, design tokens, styles de base
+  data/         Source unique des données du site
+public/
+  brand/        Logo, favicon, icônes
+  images/       Photographies de réalisations
+  captures/     Captures des sites réalisés
+docs/
+  design/       Planche graphique V1 et notes de direction graphique
+```
+
+### Pages prévues en V1
+
+| Route             | Rôle                                                        |
+| ----------------- | ----------------------------------------------------------- |
+| `/`               | Comprendre les deux activités, s'orienter, voir des preuves  |
+| `/evenementiel`   | L'activité événementielle et ses réalisations                |
+| `/sites-internet` | L'offre de création de sites internet                        |
+| `/realisations`   | Page de preuve : les projets réels                           |
+| `/contact`        | Contact humain d'abord, formulaire simple ensuite            |
+
+Aucune autre page (À propos, Tarifs, Blog…) n'est prévue en V1.
+
+### Design tokens
+
+Toutes les valeurs de design — couleurs, typographies, échelle typographique,
+espacements, rayons, largeurs maximales, ombres, transitions, points de
+rupture — sont centralisées dans le bloc `@theme` de `src/styles/global.css`.
+
+Les palettes et échelles par défaut de Tailwind y sont volontairement remises
+à zéro : **seules les valeurs LabEvents existent**. Une classe comme
+`bg-sky-500` ou `shadow-2xl` ne produit donc rien. Un besoin non couvert par
+un token est une décision de design, à ajouter au thème plutôt qu'à écrire en
+dur dans un composant.
+
+### Données
+
+Les composants restent présentationnels et consomment `src/data/` :
+
+- `site.ts` — identité du site et les deux activités ;
+- `navigation.ts` — navigation et appels à l'action ;
+- `contact.ts` — **source unique** des coordonnées ;
+- `messages.ts` — formulations éditoriales validées ;
+- `realisations.ts` — réalisations et trame d'étude de cas ;
+- `seo.ts` — métadonnées par défaut.
+
+Un numéro de téléphone ou une adresse e-mail ne doit jamais être écrit
+ailleurs que dans `contact.ts`.
+
+## Assets
+
+`public/brand/`, `public/images/` et `public/captures/` sont **vides** : ils
+n'accueillent que de vrais assets LabEvents (vrai logo, vraies photos de
+réalisations, vraies captures des sites réalisés).
+
+Rien n'y est généré, et aucune image ne doit être extraite de la planche
+graphique pour servir de preuve : les visuels de la planche sont des éléments
+de démonstration.
+
+La planche graphique vit dans `docs/design/` — c'est une référence de design,
+pas un asset de production. Voir `docs/design/README.md`, qui signale
+également que le fichier PNG **reste à déposer manuellement**.
+
+## Le fichier `CLAUDE.md`
+
+`CLAUDE.md`, à la racine, est la **mémoire opérationnelle** du projet. Il
+consigne les décisions déjà figées — architecture, positionnement, doctrine
+factuelle, direction graphique, méthode de travail — pour qu'elles ne soient
+pas rediscutées à chaque session de développement.
+
+Deux règles en découlent :
+
+1. **À lire avant toute contribution.** Il contient notamment la règle
+   fondamentale du projet : *aucun fait inventé* — jamais de client, de
+   témoignage, de fonctionnalité, de résultat, de chiffre, de prix, de photo
+   ni de capture inventés. Une donnée manquante reste absente de l'interface,
+   ou devient un `TODO` explicite dans les sources.
+2. **Il ne se modifie pas silencieusement.** Toute évolution d'une décision
+   existante doit être explicite dans la pull request.
+
+## Contribution
+
+Le projet avance par **lots courts, validés séparément** : une branche dédiée,
+des commits propres, une pull request, puis un arrêt en attente de validation.
+Aucune fusion automatique, aucun enchaînement automatique sur le lot suivant.

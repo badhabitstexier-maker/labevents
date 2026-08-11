@@ -1,27 +1,17 @@
 # Direction graphique — références visuelles
 
-## Fichier attendu
+## La planche V1
 
 ```
 docs/design/labevents-direction-graphique-v1.png
 ```
 
-> **⚠️ CE FICHIER EST ACTUELLEMENT MANQUANT DANS LE DÉPÔT.**
->
-> La planche graphique V1 a bien été validée et transmise dans la
-> conversation de cadrage du Lot −1, mais l'image n'était pas accessible
-> comme fichier depuis l'environnement d'exécution : seul son rendu visuel
-> l'était.
->
-> Conformément à la doctrine du projet (aucune donnée inventée, aucun asset
-> fabriqué), **aucune image de substitution n'a été générée**. Une planche
-> reconstituée de mémoire ne serait pas la référence validée et deviendrait
-> une source d'erreurs pour tous les lots suivants.
->
-> **Action manuelle requise :** déposer le fichier PNG original à ce chemin
-> exact, puis le commiter. Aucun autre changement n'est nécessaire : le nom
-> du fichier est déjà référencé dans `CLAUDE.md`, dans `README.md` et dans
-> l'en-tête de `src/styles/global.css`.
+Le fichier est **présent dans le dépôt** : PNG, 1086 × 1448, RGB.
+
+C'est la planche validée, transmise en pièce jointe. Elle n'a été ni
+redessinée, ni recadrée, ni redimensionnée. La pièce jointe d'origine étant
+au format WebP, elle a été décodée puis réencodée en PNG sans perte : les
+pixels du fichier versionné sont identiques à ceux de la pièce jointe.
 
 ## Statut de la planche
 
@@ -64,10 +54,11 @@ faits, et ils vivent désormais dans les design tokens
 | Élément                | Valeur retenue                                  |
 | ---------------------- | ----------------------------------------------- |
 | Bleu nuit              | `#0F1B2D` (`--color-navy-900`)                   |
-| Or                     | `#D4A23A` (`--color-gold-500`) — **à recaler**   |
-| Blanc cassé            | `#F6F4F1` (`--color-paper-warm`)                 |
+| Or                     | `#D4A23A` (`--color-gold-500`)                   |
+| Fond chaud             | `#F6F4F1` (`--color-paper-warm`)                 |
 | Filets / bordures      | `#E6E8EB` (`--color-line`)                       |
 | Texte foncé            | `#2B2F33` (`--color-ink`)                        |
+| Blanc                  | `#FFFFFF` (`--color-paper`)                      |
 | Titres                 | Space Grotesk SemiBold (600)                     |
 | Textes / UI            | Inter                                            |
 | Titre de section       | 40 px (`--text-2xl`)                             |
@@ -75,9 +66,11 @@ faits, et ils vivent désormais dans les design tokens
 | Texte d'intro / corps  | 16 px (`--text-sm`)                              |
 | Texte secondaire       | 14 px (`--text-xs`)                              |
 
-L'or est une **valeur de travail** : elle devra être recalée sur le logo
-LabEvents définitif lorsque l'asset réel sera fourni. Un seul token est à
-modifier.
+**Cette palette est figée pour la V1.** L'or `#D4A23A` est une valeur
+définitive : aucun recalage sur un futur logo n'est attendu. Aucun logo
+LabEvents actualisé n'est un prérequis du Lot 1 — la proposition graphique
+de la planche fait référence. Toute évolution de la palette relève d'une
+décision explicite.
 
 ## Autres assets
 

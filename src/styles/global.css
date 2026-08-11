@@ -101,9 +101,11 @@
      Palette V1 : bleu nuit + or + blanc + neutres très clairs.
      Le blanc / très clair doit rester largement majoritaire à l'écran.
 
-     ⚠ L'or (--color-gold-500) est une valeur de TRAVAIL. Elle devra être
-     recalée sur le logo LabEvents définitif quand l'asset réel sera fourni.
-     Un seul token à modifier, aucune propagation manuelle à faire. */
+     PALETTE FIGÉE. Les six valeurs de référence de la V1 sont celles de la
+     planche graphique validée : #0F1B2D, #D4A23A, #F6F4F1, #E6E8EB, #2B2F33
+     et #FFFFFF. L'or #D4A23A est une valeur définitive, pas une valeur de
+     travail : il n'y a plus de recalage à attendre. Toute évolution de la
+     palette relève d'une décision explicite. */
 
   /* Bleu nuit — couleur de marque principale (titres, aplats, boutons) */
   --color-navy-950: #070d16;

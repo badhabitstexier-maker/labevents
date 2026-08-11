@@ -255,11 +255,21 @@ répétitives · études de cas généreuses · interfaces simples.
 **Typographies** — Titres : Space Grotesk SemiBold (600). Textes, navigation,
 UI : Inter.
 
-**Palette** — bleu nuit `#0F1B2D` · or `#D4A23A` · blanc · neutres très
-clairs · texte foncé `#2B2F33`.
-⚠️ **L'or est une valeur de travail** : à recaler sur le vrai logo LabEvents
-quand l'asset définitif sera fourni. Un seul token à modifier
-(`--color-gold-500`).
+**Palette V1 — FIGÉE.** Six valeurs de référence, reprises de la planche
+graphique validée :
+
+| Rôle                   | Valeur    | Token                 |
+| ---------------------- | --------- | --------------------- |
+| Bleu nuit              | `#0F1B2D` | `--color-navy-900`    |
+| Or                     | `#D4A23A` | `--color-gold-500`    |
+| Fond chaud             | `#F6F4F1` | `--color-paper-warm`  |
+| Bordure / gris clair   | `#E6E8EB` | `--color-line`        |
+| Texte                  | `#2B2F33` | `--color-ink`         |
+| Blanc                  | `#FFFFFF` | `--color-paper`       |
+
+L'or `#D4A23A` est une **valeur définitive**, pas une valeur de travail : il
+n'y a plus de recalage à attendre sur un futur logo. La palette ne doit pas
+être modifiée autrement que par une décision explicite.
 
 **À proscrire** : gradients violet/bleu façon produit IA · glassmorphism ·
 grosses formes 3D · ordinateurs flottants · robots · symbolique IA ·
@@ -313,13 +323,11 @@ responsive.
 - les fonctionnalités que suggèrent ses captures ne valent pas description du
   site réel.
 
-> **⚠️ ÉTAT AU LOT −1 : le fichier PNG est absent du dépôt.** La planche a été
-> validée et transmise dans la conversation de cadrage, mais elle n'était pas
-> accessible comme fichier depuis l'environnement d'exécution. Aucune image de
-> substitution n'a été générée (une planche reconstituée ne serait pas la
-> référence validée). **Dépôt manuel requis** à ce chemin exact.
-> Voir `docs/design/README.md`, qui consigne aussi les valeurs déjà extraites
-> de la planche vers les tokens.
+**Le fichier est présent dans le dépôt** (1086 × 1448, PNG). Il constitue la
+référence artistique durable de la V1.
+
+Voir `docs/design/README.md`, qui consigne aussi les valeurs extraites de la
+planche vers les design tokens.
 
 ---
 
@@ -449,11 +457,14 @@ pas l'accueil : elle sera intégralement remplacée au Lot 1.
 Ces points sont **volontairement laissés ouverts**. Ne pas les trancher seul,
 ne pas les combler par une invention.
 
-1. **Planche graphique** — le PNG doit être déposé manuellement dans
-   `docs/design/` (voir section I).
-2. **Logo LabEvents** — asset réel absent. En conséquence : pas de favicon,
-   pas d'icônes, pas d'image Open Graph, et l'**or de la palette n'est pas
-   encore recalé**.
+1. ~~**Planche graphique**~~ — **CLOS.** Le fichier est dans le dépôt à
+   `docs/design/labevents-direction-graphique-v1.png` (voir section I).
+2. **Logo LabEvents** — **partiellement clos.** Décision : aucun logo
+   actualisé n'est attendu, la proposition graphique de la planche fait
+   référence pour la V1. En conséquence, **la palette est figée** (section H)
+   et le Lot 1 n'est plus bloqué par cette attente. Reste ouvert : le
+   traitement concret du bloc-marque dans le header, et l'absence de fichiers
+   dérivés (favicon, icônes, image Open Graph) — à traiter au Lot 1.
 3. **Coordonnées** — numéro de téléphone, e-mail, adresse, horaires : aucun
    n'est fourni. Tous valent `null` dans `src/data/contact.ts`.
 4. **Photos événementiel** et **captures des sites** — aucun asset réel

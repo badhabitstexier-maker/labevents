@@ -81,6 +81,10 @@ Toutes les valeurs de design — couleurs, typographies, échelle typographique,
 espacements, rayons, largeurs maximales, ombres, transitions, points de
 rupture — sont centralisées dans le bloc `@theme` de `src/styles/global.css`.
 
+La **palette V1 est figée** : bleu nuit `#0F1B2D`, or `#D4A23A`, fond chaud
+`#F6F4F1`, bordure `#E6E8EB`, texte `#2B2F33`, blanc `#FFFFFF`. Elle ne
+change pas sans décision explicite.
+
 Les palettes et échelles par défaut de Tailwind y sont volontairement remises
 à zéro : **seules les valeurs LabEvents existent**. Une classe comme
 `bg-sky-500` ou `shadow-2xl` ne produit donc rien. Un besoin non couvert par
@@ -111,9 +115,13 @@ Rien n'y est généré, et aucune image ne doit être extraite de la planche
 graphique pour servir de preuve : les visuels de la planche sont des éléments
 de démonstration.
 
-La planche graphique vit dans `docs/design/` — c'est une référence de design,
-pas un asset de production. Voir `docs/design/README.md`, qui signale
-également que le fichier PNG **reste à déposer manuellement**.
+La planche graphique validée est versionnée à
+`docs/design/labevents-direction-graphique-v1.png`. C'est la référence
+artistique de la V1 — composition, hiérarchie, typographies, palette,
+espacements, boutons, header, traitement des réalisations. Ce n'est **pas**
+une source d'assets ni de faits : ses photos et captures sont des éléments de
+démonstration, jamais de vraies réalisations LabEvents. Voir
+`docs/design/README.md`.
 
 ## Le fichier `CLAUDE.md`
 

@@ -23,6 +23,7 @@ const palette = [
   { nom: 'paper-warm', classe: 'bg-paper-warm', valeur: '#F6F4F1' },
   { nom: 'line', classe: 'bg-line', valeur: '#E6E8EB' },
   { nom: 'ink', classe: 'bg-ink', valeur: '#2B2F33' },
+  { nom: 'paper', classe: 'bg-paper', valeur: '#FFFFFF' },
 ];
 
 const echelle = [
@@ -80,10 +81,9 @@ const echelle = [
     <section class="mt-section border-t border-line pt-bloc" aria-labelledby="t-palette">
       <h2 id="t-palette" class="text-xl">Palette</h2>
       <p class="mt-4 max-w-prose text-xs text-ink-muted">
-        L’or est une valeur de travail : elle sera recalée sur le logo
-        LabEvents définitif lorsque l’asset réel sera fourni.
+        Palette figée pour la V1, reprise de la planche graphique validée.
       </p>
-      <ul class="mt-bloc grid grid-cols-2 gap-6 sm:grid-cols-5">
+      <ul class="mt-bloc grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
         {
           palette.map((couleur) => (
             <li>

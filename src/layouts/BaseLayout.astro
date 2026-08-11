@@ -2,23 +2,26 @@
 /**
  * Layout global du site.
  *
- * Lot -1 : fournit le squelette HTML, les métadonnées et les styles.
- * Le header et le footer définitifs seront construits au Lot 1 (design
- * system final + Accueil). Ils ne sont volontairement pas ébauchés ici pour
- * ne pas figer prématurément des choix de composition.
+ * Fournit le squelette HTML, les métadonnées, l'en-tête et le pied de page
+ * définitifs (Lot 1). Toutes les pages de la V1 passent par ici : l'en-tête
+ * et le pied de page ne doivent pas être redéclarés page par page.
  */
 import '@styles/global.css';
 import BaseHead from '@components/BaseHead.astro';
+import EnTeteSite from '@components/EnTeteSite.astro';
+import PiedDePage from '@components/PiedDePage.astro';
 import { site } from '@data/site';
 
 interface Props {
   titre?: string;
+  /** Titre `<title>` complet, utilisé tel quel (voir BaseHead). */
+  titreComplet?: string;
   description?: string;
   image?: string | null;
   noindex?: boolean;
 }
 
-const { titre, description, image, noindex } = Astro.props;
+const { titre, titreComplet, description, image, noindex } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,19 +29,27 @@ const { titre, description, image, noindex } = Astro.props;
   <head>
     <BaseHead
       titre={titre}
+      titreComplet={titreComplet}
       description={description}
       image={image}
       noindex={noindex}
     />
     <slot name="head" />
   </head>
-  <body class="min-h-dvh bg-paper text-ink antialiased">
-    <a href="#contenu" class="skip-link rounded-md bg-navy-900 px-4 py-3 text-sm font-medium text-ink-inverse">
+  <body class="flex min-h-dvh flex-col bg-paper text-ink antialiased">
+    <a
+      href="#contenu"
+      class="skip-link rounded-md bg-navy-900 px-4 py-3 text-sm font-medium text-ink-inverse"
+    >
       Aller au contenu principal
     </a>
 
-    <main id="contenu">
+    <EnTeteSite />
+
+    <main id="contenu" class="flex-1">
       <slot />
     </main>
+
+    <PiedDePage />
   </body>
 </html>

@@ -66,6 +66,32 @@ faits, et ils vivent désormais dans les design tokens
 | Texte d'intro / corps  | 16 px (`--text-sm`)                              |
 | Texte secondaire       | 14 px (`--text-xs`)                              |
 
+### Échelle typographique — arbitrage du Lot 1
+
+Les tailles ci-dessus sont celles **lues sur la planche**, qui est une
+composition desktop. Le Lot 1 a tranché le point resté ouvert :
+
+- les **tailles de texte restent fixes** — un texte de lecture qui rétrécit
+  sur petit écran perd en lisibilité ;
+- les **quatre plus grands titres** (`--text-xl` à `--text-4xl`) deviennent
+  **fluides** en `clamp()`.
+
+Les valeurs de la planche sont donc désormais les **maxima desktop** : un
+titre de section atteint bien 40 px, le hero 72 px, mais ils descendent
+respectivement à 30 px et 40 px en petit mobile. Chaque borne mêle `rem` et
+`vw` pour que le zoom navigateur continue de fonctionner.
+
+Conséquence pratique : un composant écrit `text-4xl` **une seule fois**, sans
+empiler `text-2xl md:text-3xl lg:text-4xl`, et sans valeur arbitraire.
+
+### Un nom de token à ne pas réutiliser
+
+La longueur de ligne confortable (640 px) s'appelle `--container-texte`
+(utilitaire `max-w-texte`), et **non** `--container-prose`. Tailwind livre
+`.max-w-prose { max-width: 65ch }` comme utilitaire **en dur**, sans lire le
+thème : le token homonyme était silencieusement ignoré et toutes les colonnes
+de texte mesuraient ~738 px au lieu de 640 px. Corrigé au Lot 1.
+
 **Cette palette est figée pour la V1.** L'or `#D4A23A` est une valeur
 définitive : aucun recalage sur un futur logo n'est attendu. Aucun logo
 LabEvents actualisé n'est un prérequis du Lot 1 — la proposition graphique

@@ -1,0 +1,152 @@
+---
+/**
+ * PAGE TEMPORAIRE — LOT -1.
+ *
+ * Ceci n'est PAS l'accueil de labevents.nc. C'est une page de vérification
+ * technique : elle prouve que la chaîne Astro + Tailwind 4 + polices
+ * auto-hébergées + design tokens fonctionne, et sert de référence visuelle
+ * aux tokens pendant le développement.
+ *
+ * Elle sera intégralement remplacée par le véritable accueil au Lot 1.
+ * Elle ne contient volontairement aucun contenu commercial, aucune preuve,
+ * aucune coordonnée : les données réelles ne sont pas encore fournies.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import BarreReassurance from '@components/BarreReassurance.astro';
+import { site } from '@data/site';
+import { navigationPrincipale } from '@data/navigation';
+import { telephoneDisponible } from '@data/contact';
+
+const palette = [
+  { nom: 'navy-900', classe: 'bg-navy-900', valeur: '#0F1B2D' },
+  { nom: 'gold-500', classe: 'bg-gold-500', valeur: '#D4A23A' },
+  { nom: 'paper-warm', classe: 'bg-paper-warm', valeur: '#F6F4F1' },
+  { nom: 'line', classe: 'bg-line', valeur: '#E6E8EB' },
+  { nom: 'ink', classe: 'bg-ink', valeur: '#2B2F33' },
+];
+
+const echelle = [
+  { classe: 'text-2xl', libelle: 'Titre de section', taille: '40 px' },
+  { classe: 'text-lg', libelle: 'Sous-titre ou accent', taille: '24 px' },
+  { classe: 'text-sm', libelle: 'Texte d’introduction ou de corps', taille: '16 px' },
+  { classe: 'text-xs', libelle: 'Texte secondaire ou légende', taille: '14 px' },
+];
+---
+
+<BaseLayout
+  titre="Page de vérification technique"
+  description="Page temporaire de vérification technique du chantier labevents.nc."
+  noindex={true}
+>
+  <div class="mx-auto max-w-page px-gutter py-section lg:px-10">
+    <p
+      class="inline-block rounded-full border border-gold-500/40 bg-gold-100 px-4 py-1.5 text-2xs font-semibold tracking-widest text-gold-600 uppercase"
+    >
+      Lot −1 · page temporaire
+    </p>
+
+    <h1 class="mt-8 max-w-prose text-2xl md:text-3xl">
+      {site.name} — fondations techniques
+    </h1>
+
+    <p class="mt-6 max-w-prose text-base text-ink-muted">
+      Cette page vérifie la chaîne de build (Astro, Tailwind CSS 4, polices
+      auto-hébergées, design tokens). Elle ne préfigure pas l’accueil du site :
+      le véritable accueil sera construit au Lot 1.
+    </p>
+
+    <!-- Polices ------------------------------------------------------- -->
+    <section class="mt-section border-t border-line pt-bloc" aria-labelledby="t-typo">
+      <h2 id="t-typo" class="text-xl">Typographies</h2>
+      <div class="mt-bloc grid gap-bloc md:grid-cols-2">
+        <div>
+          <p class="text-2xs font-semibold tracking-widest text-ink-muted uppercase">
+            Titres
+          </p>
+          <p class="mt-3 font-display text-3xl font-semibold">Aa</p>
+          <p class="mt-2 text-xs text-ink-muted">Space Grotesk SemiBold (600)</p>
+        </div>
+        <div>
+          <p class="text-2xs font-semibold tracking-widest text-ink-muted uppercase">
+            Textes
+          </p>
+          <p class="mt-3 font-sans text-3xl">Aa</p>
+          <p class="mt-2 text-xs text-ink-muted">Inter Regular (400)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Palette ------------------------------------------------------- -->
+    <section class="mt-section border-t border-line pt-bloc" aria-labelledby="t-palette">
+      <h2 id="t-palette" class="text-xl">Palette</h2>
+      <p class="mt-4 max-w-prose text-xs text-ink-muted">
+        L’or est une valeur de travail : elle sera recalée sur le logo
+        LabEvents définitif lorsque l’asset réel sera fourni.
+      </p>
+      <ul class="mt-bloc grid grid-cols-2 gap-6 sm:grid-cols-5">
+        {
+          palette.map((couleur) => (
+            <li>
+              <div
+                class:list={[
+                  'h-20 rounded-md border border-line',
+                  couleur.classe,
+                ]}
+              />
+              <p class="mt-3 text-xs font-medium text-ink-strong">{couleur.nom}</p>
+              <p class="text-xs text-ink-muted">{couleur.valeur}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- Échelle typographique ----------------------------------------- -->
+    <section class="mt-section border-t border-line pt-bloc" aria-labelledby="t-echelle">
+      <h2 id="t-echelle" class="text-xl">Espacements &amp; rythme</h2>
+      <dl class="mt-bloc divide-y divide-line border-y border-line">
+        {
+          echelle.map((niveau) => (
+            <div class="flex flex-wrap items-baseline justify-between gap-4 py-5">
+              <dt class:list={[niveau.classe, 'text-ink-strong']}>
+                {niveau.libelle}
+              </dt>
+              <dd class="text-xs text-ink-muted tabular-nums">{niveau.taille}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <!-- Barre de réassurance ------------------------------------------ -->
+    <section class="mt-section border-t border-line pt-bloc" aria-labelledby="t-reassurance">
+      <h2 id="t-reassurance" class="text-xl">Barre de réassurance</h2>
+      <p class="mt-4 max-w-prose text-xs text-ink-muted">
+        {
+          telephoneDisponible
+            ? 'Un numéro est renseigné : le bloc téléphone est affiché.'
+            : 'Aucun numéro n’est renseigné à ce jour : le bloc téléphone n’est pas rendu. Aucune valeur de remplissage n’est affichée.'
+        }
+      </p>
+      <BarreReassurance class="mt-6 max-w-content" />
+    </section>
+
+    <!-- Architecture -------------------------------------------------- -->
+    <section class="mt-section border-t border-line pt-bloc" aria-labelledby="t-pages">
+      <h2 id="t-pages" class="text-xl">Architecture V1 prévue</h2>
+      <p class="mt-4 max-w-prose text-xs text-ink-muted">
+        Ces routes ne sont pas encore construites : elles le seront lot par lot.
+      </p>
+      <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+        {
+          navigationPrincipale.map((lien) => (
+            <li class="text-sm text-ink-muted">
+              <span class="font-medium text-ink-strong">{lien.label}</span>
+              <span class="ml-2 font-mono text-xs">{lien.href}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</BaseLayout>

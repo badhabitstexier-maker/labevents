@@ -1,0 +1,37 @@
+/**
+ * Navigation et appels à l'action — source unique.
+ *
+ * Architecture V1 figée : cinq pages, pas de « À propos », pas de « Tarifs »,
+ * pas de « Blog ». Toute page supplémentaire nécessite une décision explicite.
+ */
+
+export interface LienNavigation {
+  label: string;
+  href: string;
+}
+
+export const navigationPrincipale: readonly LienNavigation[] = [
+  { label: 'Accueil', href: '/' },
+  { label: 'Événementiel', href: '/evenementiel' },
+  { label: 'Sites internet', href: '/sites-internet' },
+  { label: 'Réalisations', href: '/realisations' },
+  { label: 'Contact', href: '/contact' },
+] as const;
+
+/**
+ * CTA principal : contact humain. Il reste prioritaire partout sur le site.
+ * Le téléphone et la rencontre passent avant le formulaire.
+ */
+export const ctaPrincipal = {
+  label: 'Parlons de votre projet',
+  href: '/contact',
+} as const;
+
+/**
+ * CTA secondaire. En V1 il mène vers le formulaire de contact simple.
+ * Ce n'est PAS un configurateur ni un cahier des charges automatisé.
+ */
+export const ctaSecondaire = {
+  label: 'Commencer en ligne',
+  href: '/contact',
+} as const;

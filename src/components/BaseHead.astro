@@ -1,0 +1,51 @@
+---
+/**
+ * Métadonnées de <head> : SEO de base, Open Graph, canonique.
+ * Toute page peut surcharger le titre, la description et l'image.
+ */
+import { site } from '@data/site';
+import { seoDefauts, construireTitre } from '@data/seo';
+
+interface Props {
+  titre?: string;
+  description?: string;
+  /** Chemin absolu depuis la racine du site (ex. /images/og.jpg). */
+  image?: string | null;
+  /** Exclut la page de l'indexation (pages techniques, temporaires). */
+  noindex?: boolean;
+}
+
+const {
+  titre,
+  description = seoDefauts.descriptionParDefaut,
+  image = seoDefauts.imageParDefaut,
+  noindex = false,
+} = Astro.props;
+
+const titreComplet = construireTitre(titre);
+const canonique = new URL(Astro.url.pathname, Astro.site ?? site.url);
+const imageAbsolue = image ? new URL(image, Astro.site ?? site.url).href : null;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{titreComplet}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonique.href} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content={site.locale} />
+<meta property="og:title" content={titreComplet} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonique.href} />
+{imageAbsolue && <meta property="og:image" content={imageAbsolue} />}
+
+<meta name="twitter:card" content={imageAbsolue ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:title" content={titreComplet} />
+<meta name="twitter:description" content={description} />
+
+<meta name="generator" content={Astro.generator} />
+
+{/* TODO(assets): favicon et icônes à produire depuis le vrai logo LabEvents. */}

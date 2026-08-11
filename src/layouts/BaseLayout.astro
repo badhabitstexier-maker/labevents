@@ -1,0 +1,44 @@
+---
+/**
+ * Layout global du site.
+ *
+ * Lot -1 : fournit le squelette HTML, les métadonnées et les styles.
+ * Le header et le footer définitifs seront construits au Lot 1 (design
+ * system final + Accueil). Ils ne sont volontairement pas ébauchés ici pour
+ * ne pas figer prématurément des choix de composition.
+ */
+import '@styles/global.css';
+import BaseHead from '@components/BaseHead.astro';
+import { site } from '@data/site';
+
+interface Props {
+  titre?: string;
+  description?: string;
+  image?: string | null;
+  noindex?: boolean;
+}
+
+const { titre, description, image, noindex } = Astro.props;
+---
+
+<!doctype html>
+<html lang={site.lang}>
+  <head>
+    <BaseHead
+      titre={titre}
+      description={description}
+      image={image}
+      noindex={noindex}
+    />
+    <slot name="head" />
+  </head>
+  <body class="min-h-dvh bg-paper text-ink antialiased">
+    <a href="#contenu" class="skip-link rounded-md bg-navy-900 px-4 py-3 text-sm font-medium text-ink-inverse">
+      Aller au contenu principal
+    </a>
+
+    <main id="contenu">
+      <slot />
+    </main>
+  </body>
+</html>

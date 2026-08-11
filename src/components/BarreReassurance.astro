@@ -1,0 +1,95 @@
+---
+/**
+ * Barre de réassurance.
+ *
+ * Affiche « Appelez-nous — <numéro> » et « Un interlocuteur local ».
+ *
+ * ⚠️ Le numéro réel n'est pas encore fourni. Le composant NE DOIT JAMAIS
+ * afficher de valeur de remplissage (« XX XX XX » figure sur la planche
+ * graphique à titre de démonstration uniquement).
+ *
+ * Comportement :
+ *   - téléphone renseigné → bloc téléphone + bloc interlocuteur local ;
+ *   - téléphone absent    → bloc téléphone masqué ;
+ *   - rien à afficher     → le composant ne rend rien du tout.
+ *
+ * La donnée provient exclusivement de `src/data/contact.ts`.
+ */
+import {
+  coordonnees,
+  telephoneDisponible,
+  reassurance,
+} from '@data/contact';
+
+interface Props {
+  /** Masque l'élément « Un interlocuteur local » si nécessaire. */
+  avecInterlocuteurLocal?: boolean;
+  class?: string;
+}
+
+const { avecInterlocuteurLocal = true, class: classeSupplementaire = '' } =
+  Astro.props;
+
+const afficherTelephone = telephoneDisponible;
+const afficherInterlocuteur = avecInterlocuteurLocal;
+const afficherBarre = afficherTelephone || afficherInterlocuteur;
+
+// La grille ne passe à deux colonnes que si les deux blocs sont réellement
+// rendus : tant que le numéro manque, la barre reste une seule cellule pleine
+// largeur (pas de case vide).
+const deuxColonnes = afficherTelephone && afficherInterlocuteur;
+---
+
+{
+  afficherBarre && (
+    <div
+      class:list={[
+        'grid gap-px overflow-hidden rounded-lg border border-line bg-line',
+        deuxColonnes && 'sm:grid-cols-2',
+        classeSupplementaire,
+      ]}
+    >
+      {afficherTelephone && (
+        <a
+          href={`tel:${coordonnees.telephoneLien}`}
+          class="flex min-h-14 items-center justify-center gap-3 bg-paper px-6 py-4 text-ink-strong transition-colors hover:bg-paper-warm"
+        >
+          <svg
+            class="size-5 shrink-0 text-gold-500"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          <span class="font-medium">
+            {reassurance.appelezNousPrefixe} — {coordonnees.telephoneAffiche}
+          </span>
+        </a>
+      )}
+
+      {afficherInterlocuteur && (
+        <p class="flex min-h-14 items-center justify-center gap-3 bg-paper px-6 py-4 text-ink-strong">
+          <svg
+            class="size-5 shrink-0 text-gold-500"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span class="font-medium">{reassurance.interlocuteurLocal}</span>
+        </p>
+      )}
+    </div>
+  )
+}

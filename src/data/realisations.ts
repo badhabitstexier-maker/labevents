@@ -129,3 +129,36 @@ export const realisations: readonly Realisation[] = [
 
 /** Réalisations réellement affichables aujourd'hui. */
 export const realisationsPubliables = realisations.filter((r) => r.publiable);
+
+/**
+ * PRÉCISION APPORTÉE AU LOT 1 — portée exacte du drapeau `publiable`.
+ *
+ * Deux niveaux d'information coexistent pour une même réalisation :
+ *
+ *  1. LA MENTION FACTUELLE — `titre`, `url`, `nature`. Ces champs ne
+ *     contiennent que des faits déjà validés dans `CLAUDE.md` § F
+ *     (salonemploi.nc est le site du Salon de l'Emploi & de la Formation 2026
+ *     organisé par LabEvents ; nounou.nc est un écosystème de cinq sites
+ *     conçu, mis en ligne et exploité par LabEvents). Rien n'y est à
+ *     vérifier : ils sont affichables.
+ *
+ *  2. L'ÉTUDE DE CAS — `besoin`, `realise`, `resultat`. Ces blocs relèvent
+ *     d'une rédaction à contrôler sur le site réellement en ligne. C'est
+ *     précisément ce que `publiable` protège.
+ *
+ * `publiable` gouverne donc le niveau 2, pas le niveau 1. Il reste `false`
+ * pour les deux réalisations : aucune étude de cas n'est rendue aujourd'hui.
+ *
+ * Cette lecture n'assouplit pas la doctrine — elle empêche l'inverse : citer
+ * un projet ne doit jamais autoriser à en décrire les fonctionnalités.
+ */
+export function etudeDeCasAffichable(realisation: Realisation): boolean {
+  if (!realisation.publiable) return false;
+  const { besoin, realise, resultat } = realisation.etudeDeCas;
+  return besoin !== null || realise !== null || resultat !== null;
+}
+
+/** Retrouve une réalisation par son identifiant. */
+export function realisationParId(id: string): Realisation | undefined {
+  return realisations.find((realisation) => realisation.id === id);
+}

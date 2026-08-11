@@ -22,6 +22,19 @@ export const seoDefauts = {
   imageParDefaut: null as string | null, // TODO(assets): visuel OG réel
 } as const;
 
+/**
+ * Métadonnées de la page d'accueil — arrêtées mot pour mot (Lot 1).
+ *
+ * Le titre est utilisé tel quel, sans suffixe : il nomme déjà la marque, les
+ * deux activités et le territoire. Aucune promesse de positionnement, aucun
+ * superlatif, aucun chiffre.
+ */
+export const seoAccueil = {
+  titre: 'LabEvents — Événementiel & sites internet en Nouvelle-Calédonie',
+  description:
+    'LabEvents conçoit et organise vos événements professionnels et crée votre site internet en Nouvelle-Calédonie.',
+} as const;
+
 export function construireTitre(titrePage?: string): string {
   if (!titrePage) return seoDefauts.titreParDefaut;
   return `${titrePage} — ${site.name}`;

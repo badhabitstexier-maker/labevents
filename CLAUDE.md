@@ -1,0 +1,481 @@
+# CLAUDE.md — mémoire opérationnelle du projet LabEvents
+
+Ce fichier est la **mémoire pérenne** du chantier `labevents.nc`. Il consigne
+les décisions produit, éditoriales, graphiques et techniques **déjà figées**,
+afin qu'elles ne soient pas rediscutées à chaque session.
+
+Ce n'est pas un duplicata du `README.md` : le README s'adresse aux humains qui
+installent et font tourner le projet, ce fichier s'adresse aux sessions de
+travail (humaines ou assistées) qui doivent produire du code conforme.
+
+> **Règle de mise à jour.** Ce document est vivant mais contrôlé.
+> Il évolue quand une nouvelle décision durable est validée. Mais :
+> ne jamais modifier silencieusement une décision existante ; ne jamais
+> remplacer une règle du projet par une préférence du modèle ; ne jamais
+> inscrire une hypothèse comme décision. Toute modification substantielle
+> doit apparaître explicitement dans la PR et dans le compte rendu de lot.
+
+---
+
+## A. Projet
+
+- **LabEvents**, activité basée en **Nouvelle-Calédonie**.
+- Site officiel à venir : **`labevents.nc`**.
+- **Deux activités, et deux seulement :**
+  1. **Événementiel** — activité historique ;
+  2. **Création de sites internet** — nouvelle activité à lancer.
+
+**LabEvents n'est pas une agence de communication généraliste.** Ne jamais
+présenter le périmètre comme incluant indistinctement réseaux sociaux, print,
+communication, marketing, branding, etc. Le site doit rester lisible et
+concentré sur deux savoir-faire clairement identifiés.
+
+**Logique générale du site :**
+expliquer simplement → orienter rapidement → montrer des preuves réelles →
+faciliter la prise de contact.
+
+Le site doit donner l'impression d'un **studio qui montre son travail**, pas
+d'une agence qui passe de longues pages à expliquer qu'elle est créative.
+
+**Objectifs de la V1 :** présenter LabEvents et ses deux activités,
+crédibiliser par des réalisations réelles, soutenir l'événementiel, lancer
+commercialement l'offre Web et contribuer à générer les premiers prospects.
+L'offre Web n'attend pas d'être industrialisée pour être présentée : la V1
+doit produire les premiers clients qui permettront d'affiner le produit.
+
+---
+
+## B. Architecture V1 (figée)
+
+| Route             | Rôle                                                                                       |
+| ----------------- | ------------------------------------------------------------------------------------------ |
+| `/`               | Faire comprendre immédiatement les deux activités, orienter, afficher très tôt des preuves. |
+| `/evenementiel`   | Présenter l'activité historique, ce que LabEvents organise, des réalisations, générer des contacts. |
+| `/sites-internet` | Page commerciale de l'offre Web : expliquer simplement, rassurer, générer le premier prospect. |
+| `/realisations`   | Page centrale de preuve : projets réels, pas de promesse non étayée.                        |
+| `/contact`        | Contact humain d'abord (téléphone, rencontre), formulaire simple en second.                 |
+
+Navigation : Accueil · Événementiel · Sites internet · Réalisations · Contact.
+
+**Ne PAS ajouter en V1** (sans décision explicite ultérieure) : À propos,
+Tarifs, Maintenance, SEO, Modules, Blog.
+
+**Pas de `web.labevents.nc` en V1.** L'activité Sites internet est intégrée au
+site principal à `labevents.nc/sites-internet`. Un futur passage vers un
+sous-domaine ou une marque autonome reste possible, mais ce n'est pas le sujet
+de la V1.
+
+---
+
+## C. Éditorial et positionnement
+
+### Accueil — hero retenu
+
+- Titre : **« Que pouvons-nous faire pour vous ? »**
+- Sous-titre : **« LabEvents conçoit et organise vos événements professionnels
+  et crée votre site internet, en Nouvelle-Calédonie. »**
+
+Les deux portes qui suivent :
+
+- **Événementiel** → « Organiser un événement »
+- **Sites internet** → « Créer votre site internet »
+
+Ne pas chercher à inventer une grande promesse abstraite commune aux deux
+métiers.
+
+### Offre Sites internet
+
+- Promesse : **« Votre site internet. On s'occupe de tout. »**
+- Accompagnement : **« Vous connaissez votre métier. Nous nous occupons du web. »**
+- Engagement : **« Votre site professionnel, prêt en une semaine. »**
+
+⚠️ Le délai d'une semaine vaut pour **un projet standard disposant des
+informations nécessaires**. Ne jamais le transformer en engagement absolu sur
+un dossier incomplet ou un projet sur mesure.
+
+**Cible :** artisans, TPE, petits commerces, indépendants, petites structures
+calédoniennes. Le problème client typique n'est pas « quel framework
+choisir ? » mais « je sais qu'il me faudrait un site, mais je n'ai ni le
+temps, ni les compétences, ni forcément les textes et les photos ».
+
+**Principes produit :** le client n'a pas à choisir un CMS, un nombre de
+pages, une technologie, un hébergement, une architecture technique, des
+paramètres SEO, un design system ni une liste de modules. LabEvents prend en
+charge la conception. Si le client a des contenus, LabEvents les améliore ;
+sinon, LabEvents l'accompagne dans leur création **à partir d'informations
+réelles fournies par le client** — jamais inventées.
+
+### CTA
+
+- **CTA principal : contact humain.** « Parlons de votre projet » /
+  « Appelez-nous ». Téléphone et rencontre restent prioritaires partout.
+- **CTA secondaire : « Commencer en ligne »**, qui mène vers un formulaire de
+  contact simple. Pas de configurateur, pas de cahier des charges automatisé.
+
+### Interdits d'affichage en V1
+
+Le modèle économique est encore en validation commerciale. **Ne rien afficher**
+de ce qui suit : prix, « à partir de », montant d'abonnement, formules
+Bronze/Silver/Gold, catalogue tarifé de modules, nombre de pages vendu comme
+produit, promesse de position Google, témoignages, chiffres commerciaux non
+vérifiés.
+
+Les formulations éditoriales validées sont centralisées dans
+`src/data/messages.ts`.
+
+---
+
+## D. Doctrine factuelle — règle fondamentale
+
+**Aucun fait inventé. Jamais.**
+
+Ne jamais inventer : un client · un témoignage · une citation · une
+réalisation · une fonctionnalité · un résultat · un chiffre · une
+certification · une qualification · une assurance · une garantie · une
+ancienneté · un prix · une adresse · un numéro de téléphone · un horaire ·
+une zone d'intervention · un service · une photographie · une capture de site.
+
+Ne jamais transformer une information plausible en information présentée comme
+réelle.
+
+**Si une donnée manque, deux options seulement :**
+
+1. elle reste **absente de l'interface publique** ; ou
+2. elle est matérialisée **dans les sources** par un `TODO` ou un placeholder
+   technique explicite.
+
+**Ne jamais publier** un placeholder du type `XX XX XX`, `Lorem ipsum`,
+`Client LabEvents`, `150 clients` comme s'il s'agissait d'une vraie
+information.
+
+### Doctrine IA
+
+L'IA est un outil de production légitime : code, organisation, rédaction
+générique, propositions, reformulations. Mais elle ne doit **jamais** inventer
+une donnée spécifique à LabEvents ou à un client — expérience, certifications,
+qualifications, assurances, garanties, prix, prestations, résultats,
+témoignages.
+
+### Comment la doctrine est appliquée dans le code
+
+- `src/data/contact.ts` — **source unique** des coordonnées. Chaque champ non
+  fourni vaut `null`. Aucun numéro, e-mail ou adresse ne doit être écrit
+  ailleurs. Les composants doivent gérer l'absence en **ne rendant rien**.
+- `src/data/realisations.ts` — les blocs d'étude de cas valent `null` tant
+  qu'ils n'ont pas été vérifiés ; le drapeau `publiable` empêche l'affichage
+  d'une réalisation non validée.
+- `src/components/BarreReassurance.astro` — ne rend le bloc téléphone que si
+  le numéro existe réellement.
+
+---
+
+## E. Doctrine visuelle des preuves
+
+**Preuves réelles uniquement : vraies photos, vraies captures, vrais assets.**
+
+Pour l'événementiel : de **vraies photos** de réalisations LabEvents. Éviter
+les banques d'images, les réunions corporate fictives, et l'imagerie de carte
+postale (lagons, cocotiers, plages, paysages touristiques utilisés seulement
+pour dire « Nouvelle-Calédonie »). L'identité locale vient des projets, des
+lieux et des personnes réels.
+
+Pour le Web : de **vraies captures** des sites réalisés. Elles peuvent être
+présentées proprement (desktop, mobile, recadrages, compositions, légère
+profondeur graphique), mais **ne jamais recréer une fausse interface** pour
+remplir une maquette.
+
+Ne jamais extraire une photo ou une capture de la planche graphique pour
+l'utiliser comme preuve. Si le fichier original réel correspondant n'existe
+pas, l'image est **non autorisée en production**.
+
+---
+
+## F. Réalisations digitales connues
+
+### salonemploi.nc
+
+Site du **Salon de l'Emploi & de la Formation 2026**, événement **organisé par
+LabEvents**. LabEvents réalise également le site associé.
+
+⚠️ **Règle de description :** lors de la présentation publique, ne décrire que
+les fonctionnalités **réellement publiées ET réellement vérifiées** au moment
+de la mise en ligne de `labevents.nc`. Ne jamais reprendre une fonction depuis
+une roadmap, une ancienne maquette, un document commercial, une préproduction
+obsolète ou la planche graphique. La formulation doit être contrôlée à partir
+du vrai site.
+
+### Écosystème nounou.nc
+
+LabEvents a conçu, mis en ligne et exploite un écosystème constitué de **cinq
+sites** :
+
+| Site                     | Activité         |
+| ------------------------ | ---------------- |
+| `nounou.nc`              | Garde d'enfants  |
+| `devoirs.nounou.nc`      | Aide aux devoirs |
+| `pet.nounou.nc`          | Garde d'animaux  |
+| `gardiennage.nounou.nc`  | Gardiennage      |
+| `services.nounou.nc`     | Services         |
+
+- Formulation **autorisée** : « un écosystème de cinq sites ».
+- Formulation **interdite** : « cinq domaines » — les quatre verticales
+  complémentaires sont des **sous-domaines** de `nounou.nc`.
+- **Ne pas préciser davantage la nature de `services.nounou.nc`** sans
+  validation factuelle.
+
+---
+
+## G. Trame des études de cas
+
+Toute réalisation importante suit cette trame :
+
+1. **Le besoin**
+2. **Ce que LabEvents a réalisé**
+3. **Le résultat**
+4. **Voir le projet**
+
+⚠️ Le bloc **Résultat** ne contient **qu'un fait vérifiable**.
+« Un site moderne, clair et évolutif » est une **appréciation**, pas un
+résultat — formulation interdite. Si aucun résultat objectif n'est disponible,
+**ne rien inventer** : laisser le bloc vide.
+
+---
+
+## H. Direction graphique (figée)
+
+**Sobre · contemporaine · locale · concrète · premium.**
+
+Le blanc / très clair reste **largement majoritaire**. Le site doit respirer.
+
+Principes : beaucoup d'espace blanc · grille claire · grandes respirations
+verticales · forte hiérarchie typographique · grands visuels réels · peu
+d'éléments décoratifs · composition éditoriale · peu de petites cartes
+répétitives · études de cas généreuses · interfaces simples.
+
+**Typographies** — Titres : Space Grotesk SemiBold (600). Textes, navigation,
+UI : Inter.
+
+**Palette V1 — FIGÉE.** Six valeurs de référence, reprises de la planche
+graphique validée :
+
+| Rôle                   | Valeur    | Token                 |
+| ---------------------- | --------- | --------------------- |
+| Bleu nuit              | `#0F1B2D` | `--color-navy-900`    |
+| Or                     | `#D4A23A` | `--color-gold-500`    |
+| Fond chaud             | `#F6F4F1` | `--color-paper-warm`  |
+| Bordure / gris clair   | `#E6E8EB` | `--color-line`        |
+| Texte                  | `#2B2F33` | `--color-ink`         |
+| Blanc                  | `#FFFFFF` | `--color-paper`       |
+
+L'or `#D4A23A` est une **valeur définitive**, pas une valeur de travail : il
+n'y a plus de recalage à attendre sur un futur logo. La palette ne doit pas
+être modifiée autrement que par une décision explicite.
+
+**À proscrire** : gradients violet/bleu façon produit IA · glassmorphism ·
+grosses formes 3D · ordinateurs flottants · robots · symbolique IA ·
+animations décoratives constantes · multiplication d'icônes · grosses ombres ·
+cartes très arrondies partout · surcharge visuelle · esthétique générique de
+startup ou d'agence digitale.
+
+**Les deux portes** (Événementiel / Sites internet) doivent rester très
+lisibles : préférer un grand panneau visuel + un libellé séparé ou très
+lisible, plutôt qu'un long texte blanc superposé à une photo chargée. Sur
+mobile, les deux portes s'empilent proprement.
+
+**Header final prévu** : logo LabEvents + navigation (Accueil, Événementiel,
+Sites internet, Réalisations, Contact) + CTA « Parlons de votre projet ».
+Pas de « À propos ». Desktop : navigation horizontale sobre. Mobile :
+navigation compacte, accessible et réellement utilisable.
+
+**Barre de réassurance** : composant capable d'afficher « Appelez-nous —
+[vrai numéro] » et « Un interlocuteur local ». Le numéro réel n'est pas encore
+fourni ; le composant ne doit rien afficher tant qu'il manque, et jamais
+`XX XX XX`.
+
+**Design tokens** : toutes les valeurs sont centralisées dans le bloc `@theme`
+de `src/styles/global.css`. **Ne pas disperser de couleurs, tailles ou
+espacements arbitraires dans les composants.** Les espaces de noms Tailwind
+par défaut (`--color-*`, `--text-*`, `--font-*`, `--radius-*`, `--shadow-*`,
+`--breakpoint-*`) sont volontairement remis à zéro : seules les valeurs
+LabEvents existent, `bg-sky-500` ou `shadow-2xl` n'existent pas.
+
+---
+
+## I. Référence graphique
+
+```
+docs/design/labevents-direction-graphique-v1.png
+```
+
+Cette planche est **la référence visuelle de la V1** pour la composition, la
+hiérarchie, la palette, la typographie, le rythme, les boutons, le header, le
+principe des deux portes, la présentation des réalisations et de l'écosystème
+nounou.nc, le traitement des captures, la barre de réassurance et le
+responsive.
+
+**Mais elle n'est PAS une source d'assets ni de faits :**
+
+- ne pas la reproduire pixel par pixel — la traduire en interface réelle,
+  responsive, accessible, performante, plus respirante si nécessaire ;
+- ses photos et captures sont des **éléments de démonstration**, pas de vrais
+  assets LabEvents ;
+- ses valeurs de remplissage (`XX XX XX`) ne doivent jamais être publiées ;
+- les fonctionnalités que suggèrent ses captures ne valent pas description du
+  site réel.
+
+**Le fichier est présent dans le dépôt** (1086 × 1448, PNG). Il constitue la
+référence artistique durable de la V1.
+
+Voir `docs/design/README.md`, qui consigne aussi les valeurs extraites de la
+planche vers les design tokens.
+
+---
+
+## J. Stack technique
+
+- **Astro** (statique par défaut, `output: 'static'`)
+- **TypeScript strict**
+- **Tailwind CSS 4** via le plugin Vite `@tailwindcss/vite` (l'intégration
+  `@astrojs/tailwind` n'existe plus pour Tailwind 4)
+- **Polices auto-hébergées** via `@fontsource-variable/*` : aucun appel à
+  Google Fonts ou à un CDN externe, ni au build ni au runtime. Les
+  déclarations `@font-face` sont écrites à la main dans
+  `src/styles/global.css` pour ne livrer que les sous-ensembles latin et
+  latin-ext.
+- **`@astrojs/sitemap`** pour le sitemap.
+
+**Ne pas installer** React, Vue, Svelte, un CMS ou une librairie UI lourde
+sans nécessité technique démontrée. Toute dépendance structurante
+supplémentaire doit être justifiée **avant** installation.
+
+**Priorités :** simplicité · performance · maintenabilité · peu de JavaScript ·
+architecture claire · composants réutilisables · données centralisées.
+
+**Performance :** génération statique, JavaScript minimal, images optimisées,
+lazy-loading hors contenu critique, pas de dépendances lourdes, CLS limité,
+pas de vidéo autoplay lourde, privilégier les fonctions natives d'Astro.
+
+**Accessibilité :** HTML sémantique · navigation clavier · focus visibles
+(jamais supprimer l'`outline` défini dans `global.css`) · contrastes
+suffisants · structure de titres correcte · `aria` uniquement lorsque
+nécessaire · `prefers-reduced-motion` respecté.
+
+**SEO technique :** `<title>`, meta description, viewport, Open Graph et
+canonique sont gérés par `src/components/BaseHead.astro`, surchargeables page
+par page. Pas de stratégie SEO rédigée à ce stade. **Ne jamais promettre un
+classement Google.**
+
+---
+
+## K. Structure du projet
+
+```
+src/
+  components/   composants présentationnels (BaseHead, BarreReassurance…)
+  layouts/      BaseLayout.astro — squelette HTML + métadonnées
+  pages/        routes Astro (une page = un fichier)
+  styles/       global.css — polices, design tokens (@theme), styles de base
+  data/         source unique des données (voir ci-dessous)
+public/
+  brand/        logo, favicon, icônes — vrais assets uniquement
+  images/       photos réelles de réalisations
+  captures/     captures réelles des sites réalisés
+docs/
+  design/       planche graphique V1 + notes de direction graphique
+```
+
+**Couche données (`src/data/`)** — les composants restent autant que possible
+**présentationnels** ; ils consomment ces modules et n'inventent rien :
+
+| Fichier            | Contenu                                                        |
+| ------------------ | -------------------------------------------------------------- |
+| `site.ts`          | Identité du site, les deux activités et leurs libellés de porte |
+| `navigation.ts`    | Navigation principale, CTA principal et secondaire              |
+| `contact.ts`       | **Source unique** des coordonnées (`null` si non fournies)      |
+| `messages.ts`      | Formulations éditoriales validées                               |
+| `realisations.ts`  | Réalisations, trame d'étude de cas, drapeau `publiable`         |
+| `seo.ts`           | Métadonnées SEO par défaut                                      |
+
+Alias TypeScript disponibles : `@/*`, `@components/*`, `@layouts/*`,
+`@data/*`, `@styles/*`.
+
+---
+
+## L. UX et responsive
+
+Le site est **réellement pensé pour mobile**, pas seulement empilé depuis une
+maquette desktop.
+
+- header compact ; grandes zones tactiles ; CTA contact accessible ;
+- texte lisible ; pas de texte important sur image complexe ;
+- **aucun débordement horizontal** ; visuels correctement recadrés ;
+- rythme vertical adapté.
+
+Recette responsive minimale : **petit mobile · mobile standard · tablette ·
+desktop · grand desktop**. Points de rupture définis dans les tokens :
+`xs` 375 · `sm` 640 · `md` 768 · `lg` 1024 · `xl` 1280 · `2xl` 1536.
+
+---
+
+## M. Git et méthode de travail
+
+- **Travail par lots courts, validés séparément.**
+- Une **branche dédiée** par lot, des **commits propres**, une **PR**.
+- **Ne jamais pousser une évolution fonctionnelle directement sur la branche
+  principale.**
+- **Ne fusionner aucune PR** de sa propre initiative.
+- **Ne jamais enchaîner automatiquement sur le lot suivant** : s'arrêter à la
+  fin de chaque lot et rendre un compte rendu.
+- Ne pas créer d'autre dépôt ; ne travailler que dans `labevents`.
+- Ne pas remettre en cause les décisions produit figées dans ce document,
+  sauf contradiction technique réelle et importante — auquel cas l'exposer
+  explicitement plutôt que de trancher seul.
+
+---
+
+## N. Découpage en lots
+
+| Lot        | Contenu                                    | État        |
+| ---------- | ------------------------------------------ | ----------- |
+| **Lot −1** | Initialisation technique et documentaire   | ✅ fait     |
+| **Lot 1**  | Design system final + Accueil              | à venir     |
+| **Lot 2**  | `/sites-internet`                          | à venir     |
+| **Lot 3**  | `/realisations`                            | à venir     |
+| **Lot 4**  | `/evenementiel` + `/contact`               | à venir     |
+| **Lot 5**  | Recette globale                            | à venir     |
+
+**Lot −1 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
+design tokens, polices auto-hébergées, couche données, SEO technique,
+accessibilité de base, arborescence d'assets, documentation.
+`src/pages/index.astro` est une **page de vérification technique temporaire**,
+pas l'accueil : elle sera intégralement remplacée au Lot 1.
+
+---
+
+## O. Points ouverts (à ce jour non tranchés)
+
+Ces points sont **volontairement laissés ouverts**. Ne pas les trancher seul,
+ne pas les combler par une invention.
+
+1. ~~**Planche graphique**~~ — **CLOS.** Le fichier est dans le dépôt à
+   `docs/design/labevents-direction-graphique-v1.png` (voir section I).
+2. **Logo LabEvents** — **partiellement clos.** Décision : aucun logo
+   actualisé n'est attendu, la proposition graphique de la planche fait
+   référence pour la V1. En conséquence, **la palette est figée** (section H)
+   et le Lot 1 n'est plus bloqué par cette attente. Reste ouvert : le
+   traitement concret du bloc-marque dans le header, et l'absence de fichiers
+   dérivés (favicon, icônes, image Open Graph) — à traiter au Lot 1.
+3. **Coordonnées** — numéro de téléphone, e-mail, adresse, horaires : aucun
+   n'est fourni. Tous valent `null` dans `src/data/contact.ts`.
+4. **Photos événementiel** et **captures des sites** — aucun asset réel
+   fourni. `public/images/` et `public/captures/` sont vides.
+5. **Contenu des études de cas** `salonemploi.nc` et `nounou.nc` — à rédiger
+   après vérification sur les sites réels ; `publiable: false` en attendant.
+6. **Formulaire de contact** — la V1 prévoit un formulaire simple ; la
+   mécanique d'envoi (service, destinataire) n'est pas décidée. Elle
+   nécessitera peut-être de sortir du 100 % statique sur cette seule route.
+7. **Hébergement et déploiement** — non décidés. Aucune configuration de
+   plateforme n'a été ajoutée.
+8. **Échelle typographique fluide** — l'échelle actuelle est fixe, avec
+   adaptation par points de rupture. Une échelle fluide (`clamp()`) est à
+   arbitrer au Lot 1.

@@ -1,0 +1,336 @@
+/* ============================================================================
+   LabEvents — Feuille de style globale
+   ----------------------------------------------------------------------------
+   Point d'entrée unique des styles. Contient :
+     1. les polices auto-hébergées ;
+     2. les design tokens (@theme Tailwind 4) ;
+     3. les styles de base (reset applicatif, accessibilité).
+
+   RÈGLE : aucune valeur de couleur, de typographie ou d'espacement ne doit
+   être écrite « en dur » dans un composant. Tout passe par un token défini
+   ici et consommé via les classes utilitaires Tailwind générées.
+   ========================================================================= */
+
+@import 'tailwindcss';
+
+/* --- 1. Polices auto-hébergées ------------------------------------------- */
+/* Fichiers WOFF2 fournis par les paquets @fontsource-variable et servis
+   depuis notre propre build : aucun appel à Google Fonts ou à un CDN externe,
+   ni au build ni au runtime. Les fichiers sont hachés et mis en cache par
+   Vite comme n'importe quel asset.
+
+   Seuls les sous-ensembles latin et latin-ext sont déclarés : le site est en
+   français. Les déclarations complètes des paquets embarquent aussi le
+   cyrillique, le grec et le vietnamien, jamais téléchargés par le navigateur
+   mais inutilement déployés. On les écrit donc à la main pour ne livrer que
+   le nécessaire.
+
+   Polices variables : un seul fichier couvre toute la plage de graisses. */
+
+@font-face {
+  font-family: 'Space Grotesk Variable';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Space Grotesk Variable';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('@fontsource-variable/space-grotesk/files/space-grotesk-latin-ext-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('@fontsource-variable/inter/files/inter-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+/* ============================================================================
+   2. DESIGN TOKENS
+   ----------------------------------------------------------------------------
+   Source de vérité de la direction graphique V1.
+   Référence visuelle : docs/design/labevents-direction-graphique-v1.png
+   ========================================================================= */
+@theme {
+  /* --- Remise à zéro des espaces de noms Tailwind ------------------------
+     On neutralise les palettes et échelles par défaut de Tailwind pour que
+     SEULES les valeurs LabEvents soient disponibles. Conséquence voulue :
+     `bg-sky-500`, `text-9xl` ou `shadow-2xl` n'existent tout simplement pas.
+     Un besoin non couvert par un token est donc une décision de design, pas
+     une classe attrapée au hasard. */
+  --color-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --breakpoint-*: initial;
+
+  /* --- Couleurs ---------------------------------------------------------
+     Palette V1 : bleu nuit + or + blanc + neutres très clairs.
+     Le blanc / très clair doit rester largement majoritaire à l'écran.
+
+     PALETTE FIGÉE. Les six valeurs de référence de la V1 sont celles de la
+     planche graphique validée : #0F1B2D, #D4A23A, #F6F4F1, #E6E8EB, #2B2F33
+     et #FFFFFF. L'or #D4A23A est une valeur définitive, pas une valeur de
+     travail : il n'y a plus de recalage à attendre. Toute évolution de la
+     palette relève d'une décision explicite. */
+
+  /* Bleu nuit — couleur de marque principale (titres, aplats, boutons) */
+  --color-navy-950: #070d16;
+  --color-navy-900: #0f1b2d;
+  --color-navy-800: #16263d;
+  --color-navy-700: #1f334f;
+  --color-navy-600: #2c4368;
+
+  /* Or — accent, à doser avec parcimonie */
+  --color-gold-600: #b8871f;
+  --color-gold-500: #d4a23a;
+  --color-gold-400: #e0b761;
+  --color-gold-100: #f7ecd6;
+
+  /* Neutres — le fond du site */
+  --color-paper: #ffffff;
+  --color-paper-warm: #f6f4f1;
+  --color-paper-cool: #f7f8f9;
+  --color-line: #e6e8eb;
+  --color-line-strong: #d3d8de;
+
+  /* Textes */
+  --color-ink: #2b2f33;
+  --color-ink-strong: #0f1b2d;
+  --color-ink-muted: #5c646d;
+  --color-ink-inverse: #ffffff;
+  --color-ink-inverse-muted: #c3ccd8;
+
+  /* États */
+  --color-focus: #d4a23a;
+
+  /* Absolus conservés (les mots-clés `transparent`, `current` et `inherit`
+     restent fournis par Tailwind indépendamment du thème). */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* --- Typographies -----------------------------------------------------
+     Titres  : Space Grotesk (utilisée en SemiBold / 600)
+     Textes  : Inter (400, 500, 600 selon les besoins d'UI) */
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', ui-sans-serif,
+    system-ui, sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui,
+    -apple-system, 'Segoe UI', sans-serif;
+  /* Usage technique uniquement (URL, extraits de code en documentation). */
+  --font-mono: ui-monospace, 'SFMono-Regular', 'Menlo', monospace;
+
+  /* --- Échelle typographique -------------------------------------------
+     Dérivée du bloc « ESPACEMENTS & RYTHME » de la planche V1 :
+       titre de section    40 px
+       sous-titre / accent 24 px
+       texte d'intro/corps 16 px
+       texte secondaire    14 px
+     Complétée vers le haut (hero) et vers le bas (mentions). */
+  --text-2xs: 0.75rem; /* 12 px — mentions, sur-titres */
+  --text-2xs--line-height: 1.4;
+  --text-2xs--letter-spacing: 0.08em;
+
+  --text-xs: 0.875rem; /* 14 px — texte secondaire, légendes */
+  --text-xs--line-height: 1.55;
+
+  --text-sm: 1rem; /* 16 px — corps de texte, intro */
+  --text-sm--line-height: 1.7;
+
+  --text-base: 1.125rem; /* 18 px — corps généreux */
+  --text-base--line-height: 1.7;
+
+  --text-lg: 1.5rem; /* 24 px — sous-titre, accent */
+  --text-lg--line-height: 1.45;
+
+  --text-xl: 2rem; /* 32 px — titre de bloc */
+  --text-xl--line-height: 1.25;
+  --text-xl--letter-spacing: -0.01em;
+
+  --text-2xl: 2.5rem; /* 40 px — titre de section */
+  --text-2xl--line-height: 1.15;
+  --text-2xl--letter-spacing: -0.02em;
+
+  --text-3xl: 3.5rem; /* 56 px — titre de page */
+  --text-3xl--line-height: 1.08;
+  --text-3xl--letter-spacing: -0.025em;
+
+  --text-4xl: 4.5rem; /* 72 px — hero desktop */
+  --text-4xl--line-height: 1.02;
+  --text-4xl--letter-spacing: -0.03em;
+
+  /* --- Rythme vertical / espacements ------------------------------------
+     Base de 4 px. Les « respirations » de section sont nommées pour éviter
+     que chaque page réinvente sa propre valeur. */
+  --spacing: 0.25rem;
+
+  --spacing-section: 5rem; /* 80 px — respiration verticale mobile */
+  --spacing-section-lg: 8rem; /* 128 px — respiration verticale desktop */
+  --spacing-bloc: 3rem; /* 48 px — entre deux blocs d'une section */
+  --spacing-gutter: 1.5rem; /* 24 px — marge latérale mobile */
+
+  /* --- Largeurs maximales ----------------------------------------------- */
+  --container-page: 80rem; /* 1280 px — largeur maximale du site */
+  --container-content: 64rem; /* 1024 px — blocs éditoriaux larges */
+  --container-prose: 40rem; /* 640 px — longueur de ligne confortable */
+
+  /* --- Rayons -----------------------------------------------------------
+     Sobres et constants. Pas de « tout arrondi ». */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* --- Bordures ---------------------------------------------------------- */
+  --border-width-hairline: 1px;
+
+  /* --- Ombres -----------------------------------------------------------
+     Très légères uniquement. Aucune ombre portée marquée. */
+  --shadow-subtle: 0 1px 2px rgb(15 27 45 / 0.04);
+  --shadow-card: 0 1px 3px rgb(15 27 45 / 0.06), 0 8px 24px rgb(15 27 45 / 0.04);
+  --shadow-media: 0 12px 40px rgb(15 27 45 / 0.1);
+
+  /* --- Transitions -------------------------------------------------------
+     `--ease-*` est un espace de noms Tailwind : il génère `ease-out-soft`.
+     Les durées n'en ont pas ; on définit donc les valeurs par défaut des
+     utilitaires `transition-*` pour que le rythme du site soit homogène sans
+     avoir à répéter `duration-…` partout. Pour un cas particulier, utiliser
+     la syntaxe variable de Tailwind 4 : `duration-(--duration-slow)`. */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+
+  --default-transition-duration: var(--duration-base);
+  --default-transition-timing-function: var(--ease-out-soft);
+
+  /* --- Points de rupture -------------------------------------------------
+     Alignés sur les cibles de recette : petit mobile, mobile standard,
+     tablette, desktop, grand desktop. */
+  --breakpoint-xs: 23.4375rem; /* 375 px */
+  --breakpoint-sm: 40rem; /* 640 px */
+  --breakpoint-md: 48rem; /* 768 px  — tablette */
+  --breakpoint-lg: 64rem; /* 1024 px — desktop */
+  --breakpoint-xl: 80rem; /* 1280 px */
+  --breakpoint-2xl: 96rem; /* 1536 px — grand desktop */
+}
+
+/* ============================================================================
+   3. STYLES DE BASE
+   ========================================================================= */
+@layer base {
+  html {
+    /* Ancrages : compense un futur header collant. */
+    scroll-padding-top: --spacing(24);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600; /* Space Grotesk SemiBold */
+    color: var(--color-ink-strong);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Focus clavier visible sur l'ensemble du site. Ne jamais supprimer. */
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+
+  /* Aucun débordement horizontal, quelle que soit la largeur d'écran. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  /* Médias fluides par défaut. */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* --- Accessibilité : utilitaires -------------------------------------- */
+@utility skip-link {
+  position: absolute;
+  left: --spacing(4);
+  top: --spacing(4);
+  z-index: 100;
+  transform: translateY(-200%);
+  transition: transform var(--duration-base) var(--ease-out-soft);
+
+  &:focus-visible {
+    transform: translateY(0);
+  }
+}
+
+/* --- Mouvement réduit --------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

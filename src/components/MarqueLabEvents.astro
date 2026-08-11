@@ -1,0 +1,51 @@
+---
+/**
+ * Bloc-marque LabEvents.
+ *
+ * Traitement V1 : wordmark PUREMENT TYPOGRAPHIQUE, en HTML/CSS.
+ *
+ * Aucun fichier de logo LabEvents actualisé n'existe (voir CLAUDE.md § O.2).
+ * On ne génère donc ni image, ni symbole graphique inventé : la marque est
+ * composée avec la typographie de titres du projet, exactement comme sur la
+ * planche graphique validée — « LAB » en bleu nuit, « EVENTS » en or.
+ *
+ * Le mot est rendu en un seul bloc de texte : les technologies d'assistance
+ * lisent « LabEvents », pas deux fragments séparés.
+ */
+import { site } from '@data/site';
+
+interface Props {
+  /** `sm` : header et pied de page. `md` : usages plus affirmés. */
+  taille?: 'sm' | 'md';
+  /** Rend la marque sur fond bleu nuit : « LAB » passe en blanc. */
+  inverse?: boolean;
+  class?: string;
+}
+
+const {
+  taille = 'sm',
+  inverse = false,
+  class: classeSupplementaire = '',
+} = Astro.props;
+
+const tailles = {
+  sm: 'text-lg',
+  md: 'text-xl',
+} as const;
+---
+
+<span
+  class:list={[
+    'font-display font-semibold tracking-tight uppercase',
+    tailles[taille],
+    inverse ? 'text-ink-inverse' : 'text-navy-900',
+    classeSupplementaire,
+  ]}
+>
+  {/* `aria-label` sur l'élément parent : les deux <span> ne sont que des
+      variations de couleur, ils ne doivent pas fragmenter la lecture. */}
+  <span aria-hidden="true">Lab</span><span aria-hidden="true" class="text-gold-500"
+    >Events</span
+  >
+  <span class="sr-only">{site.name}</span>
+</span>

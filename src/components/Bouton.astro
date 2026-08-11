@@ -1,0 +1,75 @@
+---
+/**
+ * Bouton / lien d'action.
+ *
+ * Rend un `<a>` si `href` est fourni, un `<button>` sinon : un lien navigue,
+ * un bouton agit. Les deux ne doivent pas être confondus.
+ *
+ * Toutes les valeurs (couleurs, rayons, espacements, durées) viennent des
+ * design tokens. Aucune valeur arbitraire n'est écrite ici.
+ *
+ * Hauteur minimale de 48 px (`min-h-12`) : zone tactile confortable sur
+ * mobile, y compris pour la variante compacte du header.
+ */
+interface Props {
+  href?: string;
+  variante?: 'primaire' | 'secondaire' | 'inverse';
+  taille?: 'sm' | 'md';
+  /** Lien sortant : ouvre dans un nouvel onglet, avec la mention associée. */
+  externe?: boolean;
+  type?: 'button' | 'submit';
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  href,
+  variante = 'primaire',
+  taille = 'md',
+  externe = false,
+  type = 'button',
+  class: classeSupplementaire = '',
+  ...reste
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-md text-xs font-medium transition-colors';
+
+const variantes = {
+  /** Action principale. Aplat bleu nuit, comme sur la planche. */
+  primaire: 'bg-navy-900 text-ink-inverse hover:bg-navy-800',
+  /** Action secondaire. Contour fin sur fond clair. */
+  secondaire:
+    'border border-line-strong bg-paper text-ink-strong hover:border-navy-900 hover:bg-paper-warm',
+  /** Action posée sur un aplat bleu nuit. */
+  inverse: 'bg-paper text-ink-strong hover:bg-paper-warm',
+} as const;
+
+const tailles = {
+  sm: 'min-h-12 px-5 py-2.5',
+  md: 'min-h-12 px-6 py-3',
+} as const;
+
+const classes = [
+  base,
+  variantes[variante],
+  tailles[taille],
+  classeSupplementaire,
+];
+
+const attributsExternes = externe
+  ? { target: '_blank', rel: 'noopener noreferrer' }
+  : {};
+---
+
+{
+  href ? (
+    <a href={href} class:list={classes} {...attributsExternes} {...reste}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class:list={classes} {...reste}>
+      <slot />
+    </button>
+  )
+}

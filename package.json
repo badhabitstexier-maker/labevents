@@ -4,6 +4,9 @@
   "version": "0.0.1",
   "private": true,
   "description": "Site officiel LabEvents — labevents.nc",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

@@ -28,7 +28,9 @@ le site est statique et embarque très peu de JavaScript.
 
 ## Installation
 
-Node.js 20 ou plus est requis.
+Node.js >= 22.12.0 est requis (exigence d'Astro 7). La version cible est
+épinglée dans `.nvmrc` et déclarée dans le champ `engines` de
+`package.json`.
 
 ```bash
 npm install

@@ -473,16 +473,18 @@ desktop · grand desktop**. Points de rupture définis dans les tokens :
 
 ## N. Découpage en lots
 
-| Lot        | Contenu                                    | État        |
-| ---------- | ------------------------------------------ | ----------- |
-| **Lot −1** | Initialisation technique et documentaire   | ✅ fait     |
-| **Lot 1**  | Design system final + Accueil              | ✅ fait     |
-| **Lot 2**  | `/sites-internet`                          | ✅ fait     |
-| **Lot 3**  | `/realisations`                            | ✅ fait     |
-| **Lot 4**  | `/evenementiel` + `/contact`               | ✅ fait     |
-| **Lot 5**  | Recette globale                            | à venir     |
+| Étape                         | Contenu                                            | État       |
+| ----------------------------- | -------------------------------------------------- | ---------- |
+| **Lot 0**                     | Initialisation technique et documentaire           | ✅ fait    |
+| **Lot 1**                     | Design system final + Accueil                      | ✅ fait    |
+| **Lot 2**                     | `/sites-internet`                                  | ✅ fait    |
+| **Lot 3**                     | `/realisations`                                    | ✅ fait    |
+| **Lot 4**                     | `/evenementiel` + `/contact`                       | ✅ fait    |
+| **Audit technique préalable** | Validation du socle avant les assets visuels       | ✅ fait    |
+| **Lot 5**                     | Production et intégration des assets visuels réels | à venir    |
+| **Lot 6**                     | Recette finale et préparation de la mise en ligne  | à venir    |
 
-**Lot −1 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
+**Lot 0 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
 design tokens, polices auto-hébergées, couche données, SEO technique,
 accessibilité de base, arborescence d'assets, documentation.
 
@@ -524,6 +526,15 @@ pour leurs futures photos réelles ; page `/contact` donnant la priorité au
 téléphone et à l’e-mail validés, puis formulaire statique Web3Forms avec
 validation native, états accessibles, honeypot et gestion d’erreur. La clé
 publique est fournie uniquement par `PUBLIC_WEB3FORMS_ACCESS_KEY`.
+
+**Audit technique préalable validé :** recette technique et de cohérence des cinq routes V1,
+contrôle du build statique, du sitemap, de `robots.txt`, des métadonnées, des
+liens internes, des formulaires et des garde-fous factuels. La documentation
+de production précise désormais que `PUBLIC_WEB3FORMS_ACCESS_KEY` doit être
+configurée dans l'environnement d'hébergement avant le build, sans jamais être
+versionnée. Les réserves relatives aux vrais assets et aux études de cas
+restent ouvertes jusqu'aux Lots 5 et 6. Le verdict de cette étape est :
+**socle V1 techniquement validé avant intégration des assets visuels**.
 
 ---
 

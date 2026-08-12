@@ -21,7 +21,6 @@ const salonEmploi = realisationParId('salonemploi-nc');
 ---
 
 <BaseLayout titreComplet={seoRealisations.titre} description={seoRealisations.description}>
-  {/* --- Hero ----------------------------------------------------------- */}
   <Section aria-labelledby="titre-realisations">
     <div class="grid gap-8 lg:grid-cols-12 lg:gap-16">
       <div class="lg:col-span-9">
@@ -38,29 +37,23 @@ const salonEmploi = realisationParId('salonemploi-nc');
     </div>
   </Section>
 
-  {/* --- salonemploi.nc ------------------------------------------------- */}
   {
     salonEmploi && (
       <Section fond="warm" aria-labelledby="titre-salonemploi">
-        <div id="titre-salonemploi">
-          <MiseEnAvantRealisation
-            realisation={salonEmploi}
-            surTitre="Réalisation digitale"
-            niveauTitre="h2"
-          />
-        </div>
+        <MiseEnAvantRealisation
+          realisation={salonEmploi}
+          surTitre="Réalisation digitale"
+          niveauTitre="h2"
+          idTitre="titre-salonemploi"
+        />
       </Section>
     )
   }
 
-  {/* --- Écosystème nounou.nc ------------------------------------------ */}
   <Section aria-labelledby="titre-nounou">
-    <div id="titre-nounou">
-      <EcosystemeNounou niveauTitre="h2" />
-    </div>
+    <EcosystemeNounou niveauTitre="h2" idTitre="titre-nounou" />
   </Section>
 
-  {/* --- Contact -------------------------------------------------------- */}
   <Section fond="navy" aria-labelledby="titre-contact-realisations">
     <div class="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
       <div class="lg:col-span-8">

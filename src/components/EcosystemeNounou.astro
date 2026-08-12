@@ -4,29 +4,23 @@
  *
  * ⚠️ RÈGLES DE FORMULATION (CLAUDE.md § F) ⚠️
  *   - formulation AUTORISÉE : « un écosystème de cinq sites » ;
- *   - formulation INTERDITE : « cinq domaines » — les quatre verticales
- *     complémentaires sont des SOUS-DOMAINES de nounou.nc ;
+ *   - formulation INTERDITE : « cinq domaines » ;
  *   - ne PAS préciser davantage la nature de `services.nounou.nc`.
- *
- * Le libellé d'activité de chaque site vient exclusivement de
- * `src/data/realisations.ts`. Aucun n'est reformulé, enrichi ni déduit ici.
- *
- * Aucun chiffre, aucun résultat commercial, aucune capture. Les cinq sites
- * sont listés tels quels : le nom réel du site et son activité, rien d'autre.
  */
 import { ecosystemeNounou, realisationParId } from '@data/realisations';
 import { etudeDeCas as trame } from '@data/messages';
 
 interface Props {
-  /** Niveau du titre selon la hiérarchie de la page hôte. */
   niveauTitre?: 'h2' | 'h3';
-  /** Sur-titre de repérage, sans enrichissement factuel. */
   surTitre?: string;
+  /** Identifiant optionnel du titre pour `aria-labelledby` sur la page hôte. */
+  idTitre?: string;
 }
 
 const {
   niveauTitre: Titre = 'h3',
   surTitre = 'Réalisation digitale',
+  idTitre,
 }: Props = Astro.props;
 
 const realisation = realisationParId(ecosystemeNounou.id);
@@ -34,20 +28,13 @@ const realisation = realisationParId(ecosystemeNounou.id);
 
 <article class="grid gap-8 lg:grid-cols-12 lg:gap-16">
   <div class="lg:col-span-4">
-    <p class="text-2xs font-semibold text-ink-muted uppercase">
-      {surTitre}
-    </p>
-    <Titre class="mt-4 text-2xl break-words">{ecosystemeNounou.titre}</Titre>
+    <p class="text-2xs font-semibold text-ink-muted uppercase">{surTitre}</p>
+    <Titre id={idTitre} class="mt-4 text-2xl break-words">{ecosystemeNounou.titre}</Titre>
   </div>
 
   <div class="lg:col-span-8">
     <p class="max-w-texte text-base text-ink">{realisation?.nature}</p>
 
-    {/* Les cinq sites, listés sans capture ni commentaire ajouté.
-        Liste en UNE colonne : à cinq éléments, toute grille laisse une
-        cellule vide en dernière ligne, qui se lit comme un visuel manquant.
-        `justify-center` centre verticalement en colonne ; `sm:justify-start`
-        le neutralise en ligne, où il centrerait horizontalement. */}
     <ul class="mt-bloc divide-y divide-line border-y border-line">
       {
         ecosystemeNounou.sites.map((siteVertical) => (

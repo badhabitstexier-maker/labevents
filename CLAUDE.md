@@ -478,7 +478,7 @@ desktop · grand desktop**. Points de rupture définis dans les tokens :
 | **Lot −1** | Initialisation technique et documentaire   | ✅ fait     |
 | **Lot 1**  | Design system final + Accueil              | ✅ fait     |
 | **Lot 2**  | `/sites-internet`                          | ✅ fait     |
-| **Lot 3**  | `/realisations`                            | à venir     |
+| **Lot 3**  | `/realisations`                            | ✅ fait     |
 | **Lot 4**  | `/evenementiel` + `/contact`               | à venir     |
 | **Lot 5**  | Recette globale                            | à venir     |
 
@@ -508,6 +508,15 @@ des cibles retenues, du traitement séparé du sur-mesure et des CTA vers le
 contact. Les textes vivent dans `src/data/messages.ts` et les métadonnées dans
 `src/data/seo.ts`. Aucun prix, configurateur, volume de pages, promesse SEO,
 fonctionnalité métier inventée, photo ou capture n'est ajouté.
+
+**Lot 3 livré :** page centrale de preuve `/realisations`, avec son hero,
+la présentation factuelle de `salonemploi.nc`, l'écosystème de cinq sites
+`nounou.nc` et le CTA final vers `/contact`. La page consomme exclusivement
+`src/data/realisations.ts` et applique les garde-fous `publiable` et
+`capturesValidees`. Les contenus besoin / réalisé / résultat et les captures
+restent donc absents de l'interface tant qu'ils ne sont pas validés. Le détail
+du périmètre est consigné dans
+`docs/decisions/2026-08-12-lot3-realisations.md`.
 
 ---
 

@@ -125,3 +125,20 @@ export const etudeDeCas = {
   resultat: 'Le résultat',
   lien: 'Voir le projet',
 } as const;
+
+/** Formulations validées de la page centrale de preuve — Lot 3. */
+export const pageRealisations = {
+  surtitre: 'Réalisations',
+  titre: 'Nos réalisations parlent pour nous.',
+  introduction:
+    'Nous ne montrons pas des maquettes, mais des réalisations réelles, conçues en Nouvelle-Calédonie.',
+  projets: {
+    surtitre: 'Projets réels',
+    titre: 'Deux réalisations digitales',
+  },
+  contact: {
+    titre: 'Parlons de votre projet.',
+    texte:
+      'Un événement à organiser, un site à créer ? Le plus simple, c’est d’en parler.',
+  },
+} as const;

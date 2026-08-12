@@ -6,10 +6,11 @@ Le site présente deux activités distinctes : l'**événementiel** et la
 **création de sites internet**. Il doit expliquer simplement, orienter
 rapidement, montrer des preuves réelles et faciliter la prise de contact.
 
-> **État du projet : Lot 2 — page Sites internet.**
+> **État du projet : Lot 3 — page Réalisations.**
 > Les fondations techniques, le design system, l'en-tête, le pied de page,
-> l'accueil `/` et la page commerciale `/sites-internet` sont en place. Les
-> trois autres routes (`/evenementiel`, `/realisations`, `/contact`) sont
+> l'accueil `/`, la page commerciale `/sites-internet` et la page centrale de
+> preuve `/realisations` sont en place. Les deux autres routes
+> (`/evenementiel`, `/contact`) sont
 > présentes dans la navigation mais **pas encore construites** : elles font
 > l'objet des lots suivants.
 
@@ -77,7 +78,7 @@ docs/
 | `/`               | Comprendre les deux activités, s'orienter, voir des preuves  |
 | `/evenementiel`   | L'activité événementielle et ses réalisations                |
 | `/sites-internet` | L'offre de création de sites internet                        |
-| `/realisations`   | Page de preuve : les projets réels                           |
+| `/realisations`   | Page de preuve construite : les projets réels                |
 | `/contact`        | Contact humain d'abord, formulaire simple ensuite            |
 
 Aucune autre page (À propos, Tarifs, Blog…) n'est prévue en V1.

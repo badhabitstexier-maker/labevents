@@ -14,6 +14,8 @@ For factual review of the Lot 1 homepage, also read `docs/decisions/2026-08-12-v
 
 For review of Lot 2 `/sites-internet`, also read `docs/decisions/2026-08-12-lot2-sites-internet.md`, which records the validated editorial scope applied to the commercial Web page. It supplements `CLAUDE.md` and never overrides it.
 
+For review of Lot 3 `/realisations`, also read `docs/decisions/2026-08-12-lot3-realisations.md`, which records the factual and visual safeguards applied to the central proof page. It supplements `CLAUDE.md` and never overrides it.
+
 ## 2. Preserve the factual doctrine
 
 Never invent or publish LabEvents- or client-specific facts, including clients, testimonials, results, figures, qualifications, guarantees, prices, contact details, services, photos, screenshots, or features.

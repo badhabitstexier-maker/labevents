@@ -1,0 +1,92 @@
+---
+/**
+ * RÉALISATIONS — page centrale de preuve V1 (Lot 3).
+ *
+ * Les mentions affichées proviennent exclusivement des données validées.
+ * Les composants de réalisation appliquent les garde-fous `publiable` et
+ * `capturesValidees` : aucun contenu d’étude de cas ni aucune capture ne sont
+ * rendus tant qu’ils ne sont pas explicitement validés.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Section from '@components/Section.astro';
+import Bouton from '@components/Bouton.astro';
+import MiseEnAvantRealisation from '@components/MiseEnAvantRealisation.astro';
+import EcosystemeNounou from '@components/EcosystemeNounou.astro';
+import { pageRealisations } from '@data/messages';
+import { ctaPrincipal } from '@data/navigation';
+import { realisationParId } from '@data/realisations';
+import { seoRealisations } from '@data/seo';
+
+const salonEmploi = realisationParId('salonemploi-nc');
+
+if (!salonEmploi) {
+  throw new Error('La réalisation salonemploi.nc est absente de la source de données.');
+}
+---
+
+<BaseLayout
+  titreComplet={seoRealisations.titre}
+  description={seoRealisations.description}
+>
+  <Section aria-labelledby="titre-realisations">
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <div class="lg:col-span-9">
+        <p class="text-2xs font-semibold tracking-widest text-ink-muted uppercase">
+          {pageRealisations.surtitre}
+        </p>
+        <h1 id="titre-realisations" class="mt-5 max-w-content text-4xl">
+          {pageRealisations.titre}
+        </h1>
+      </div>
+      <p class="max-w-texte border-l border-gold-500 pl-6 text-base text-ink-muted lg:col-span-3 lg:pl-8">
+        {pageRealisations.introduction}
+      </p>
+    </div>
+  </Section>
+
+  <Section rythme="compact" fond="warm" aria-labelledby="titre-projets-reels">
+    <div class="grid gap-6 lg:grid-cols-12 lg:gap-16">
+      <p class="text-2xs font-semibold tracking-widest text-ink-muted uppercase lg:col-span-4">
+        {pageRealisations.projets.surtitre}
+      </p>
+      <h2 id="titre-projets-reels" class="max-w-content text-2xl lg:col-span-8">
+        {pageRealisations.projets.titre}
+      </h2>
+    </div>
+  </Section>
+
+  <Section aria-labelledby="titre-salonemploi">
+    <MiseEnAvantRealisation
+      realisation={salonEmploi}
+      surTitre="Réalisation digitale"
+      niveauTitre="h2"
+      idTitre="titre-salonemploi"
+    />
+  </Section>
+
+  <Section
+    rythme="compact"
+    aria-labelledby="titre-nounou"
+    class="border-t border-line"
+  >
+    <EcosystemeNounou niveauTitre="h2" idTitre="titre-nounou" />
+  </Section>
+
+  <Section fond="navy" aria-labelledby="titre-contact-realisations">
+    <div class="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <div class="lg:col-span-8">
+        <h2 id="titre-contact-realisations" class="text-2xl text-ink-inverse">
+          {pageRealisations.contact.titre}
+        </h2>
+        <p class="mt-6 max-w-texte text-base text-ink-inverse-muted">
+          {pageRealisations.contact.texte}
+        </p>
+      </div>
+      <div class="lg:col-span-4 lg:text-right">
+        <Bouton href={ctaPrincipal.href} variante="inverse">
+          {ctaPrincipal.label}
+        </Bouton>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

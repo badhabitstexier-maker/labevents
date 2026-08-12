@@ -42,6 +42,13 @@ export const seoSitesInternet = {
     'LabEvents conçoit votre site internet en Nouvelle-Calédonie. Pour un projet standard, délai d’une semaine dès réception des informations nécessaires.',
 } as const;
 
+/** Métadonnées de la page Réalisations — Lot 3. */
+export const seoRealisations = {
+  titre: 'Réalisations — LabEvents Nouvelle-Calédonie',
+  description:
+    'Découvrez des réalisations réelles de LabEvents en Nouvelle-Calédonie, dont salonemploi.nc et l’écosystème de cinq sites nounou.nc.',
+} as const;
+
 export function construireTitre(titrePage?: string): string {
   if (!titrePage) return seoDefauts.titreParDefaut;
   return `${titrePage} — ${site.name}`;

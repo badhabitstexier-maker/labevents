@@ -10,6 +10,12 @@ export interface RealisationEvenementielle {
   modeAffichage: 'cover' | 'contain';
 }
 
+export const etapesEvenementielles = [
+  'Conception',
+  'Préparation',
+  'Mise en œuvre',
+] as const;
+
 export const pageEvenementiel = {
   hero: {
     surtitre: 'Événementiel',
@@ -38,8 +44,8 @@ export const pageEvenementiel = {
     },
   ],
   realisations: {
-    surtitre: 'Sélection de réalisations',
-    titre: 'Quelques événements conçus et réalisés par LabEvents',
+    surtitre: 'Réalisations',
+    titre: 'Quelques événements conçus et réalisés par LabEvents.',
   },
   contact: {
     titre: 'Vous préparez un événement ?',
@@ -53,7 +59,7 @@ export const realisationsEvenementielles: readonly RealisationEvenementielle[] =
   {
     id: 'forum-emploi',
     titre: 'Forum de l’Emploi et de la Formation',
-    image: '/images/evenementiel/forum-emploi.jpg',
+    image: '/images/evenementiel/acdet.jpg',
     alt: 'Espace d’exposition du Forum de l’Emploi et de la Formation',
     modeAffichage: 'cover',
   },
@@ -72,10 +78,10 @@ export const realisationsEvenementielles: readonly RealisationEvenementielle[] =
     modeAffichage: 'cover',
   },
   {
-    id: 'reseaux-eau-panorama',
+    id: 'reseaux-eau',
     titre: 'Salon des Réseaux d’Eau',
-    image: '/images/evenementiel/reseaux-eau-panorama.jpg',
-    alt: 'Vue panoramique du Salon des Réseaux d’Eau',
+    image: '/images/evenementiel/reseaux-eau.jpg',
+    alt: 'Équipements exposés au Salon des Réseaux d’Eau',
     modeAffichage: 'cover',
   },
   {
@@ -88,7 +94,7 @@ export const realisationsEvenementielles: readonly RealisationEvenementielle[] =
   {
     id: 'acdet',
     titre: 'Salon ACDET « Découverte des métiers et des formations »',
-    image: '/images/evenementiel/acdet.jpg',
+    image: '/images/evenementiel/forum-emploi.jpg',
     alt: 'Espace de présentation du salon ACDET',
     modeAffichage: 'cover',
   },

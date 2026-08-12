@@ -6,13 +6,11 @@ Le site présente deux activités distinctes : l'**événementiel** et la
 **création de sites internet**. Il doit expliquer simplement, orienter
 rapidement, montrer des preuves réelles et faciliter la prise de contact.
 
-> **État du projet : Lot 3 — page Réalisations.**
+> **État du projet : Lot 4 — pages Événementiel et Contact.**
 > Les fondations techniques, le design system, l'en-tête, le pied de page,
-> l'accueil `/`, la page commerciale `/sites-internet` et la page centrale de
-> preuve `/realisations` sont en place. Les deux autres routes
-> (`/evenementiel`, `/contact`) sont
-> présentes dans la navigation mais **pas encore construites** : elles font
-> l'objet des lots suivants.
+> l'accueil `/`, les pages `/sites-internet`, `/realisations`,
+> `/evenementiel` et `/contact` sont en place. Le formulaire de contact
+> statique utilise Web3Forms et requiert une clé publique d'environnement.
 
 ---
 
@@ -50,6 +48,21 @@ npm install
 
 Avant de pousser : `npm run check && npm run build` doivent tous deux passer
 sans erreur.
+
+### Tester le formulaire de contact
+
+Le formulaire `/contact` utilise Web3Forms côté client. Copiez
+`.env.example` vers `.env`, puis renseignez une clé Web3Forms valide :
+
+```bash
+cp .env.example .env
+# Dans .env : PUBLIC_WEB3FORMS_ACCESS_KEY=votre_cle
+npm run dev
+```
+
+Le fichier `.env` reste ignoré par Git. Sans cette variable, la page reste
+consultable et le formulaire affiche proprement son message d'échec lors
+d'une tentative d'envoi ; aucune clé de remplacement n'est embarquée.
 
 ## Architecture
 
@@ -122,8 +135,8 @@ Les composants restent présentationnels et consomment `src/data/` :
 - `realisations.ts` — réalisations et trame d'étude de cas ;
 - `seo.ts` — métadonnées par défaut.
 
-Un numéro de téléphone ou une adresse e-mail ne doit jamais être écrit
-ailleurs que dans `contact.ts`.
+Le numéro de téléphone et l'adresse e-mail validés ne doivent jamais être
+écrits ailleurs que dans `contact.ts`.
 
 ## Assets
 

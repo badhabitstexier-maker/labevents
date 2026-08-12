@@ -49,6 +49,20 @@ export const seoRealisations = {
     'Découvrez les réalisations digitales de LabEvents en Nouvelle-Calédonie : salonemploi.nc et l’écosystème de cinq sites nounou.nc.',
 } as const;
 
+/** Métadonnées de la page Événementiel — Lot 4. */
+export const seoEvenementiel = {
+  titre: 'Événementiel — LabEvents',
+  description:
+    'LabEvents conçoit et organise des événements BtoB et BtoC en Nouvelle-Calédonie, de la préparation à la mise en œuvre.',
+} as const;
+
+/** Métadonnées de la page Contact — Lot 4. */
+export const seoContact = {
+  titre: 'Contact — LabEvents',
+  description:
+    'Contactez LabEvents pour échanger sur votre projet événementiel ou votre site internet.',
+} as const;
+
 export function construireTitre(titrePage?: string): string {
   if (!titrePage) return seoDefauts.titreParDefaut;
   return `${titrePage} — ${site.name}`;

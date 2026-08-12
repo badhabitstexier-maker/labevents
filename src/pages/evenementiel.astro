@@ -1,0 +1,126 @@
+---
+/** Page Événementiel — Lot 4. Contenus et réalisations centralisés. */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Section from '@components/Section.astro';
+import Bouton from '@components/Bouton.astro';
+import {
+  pageEvenementiel,
+  realisationsEvenementielles,
+} from '@data/evenementiel';
+import { coordonnees, telephoneDisponible } from '@data/contact';
+import { seoEvenementiel } from '@data/seo';
+---
+
+<BaseLayout
+  titreComplet={seoEvenementiel.titre}
+  description={seoEvenementiel.description}
+>
+  <Section aria-labelledby="titre-evenementiel">
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <div class="lg:col-span-8">
+        <p class="text-2xs font-semibold tracking-widest text-ink-muted uppercase">
+          {pageEvenementiel.hero.surtitre}
+        </p>
+        <h1 id="titre-evenementiel" class="mt-5 max-w-content text-4xl">
+          {pageEvenementiel.hero.titre}
+        </h1>
+      </div>
+      <div class="lg:col-span-4">
+        <p class="max-w-texte border-l border-gold-500 pl-6 text-base text-ink-muted lg:pl-8">
+          {pageEvenementiel.hero.texte}
+        </p>
+        <div class="mt-8 pl-6 lg:pl-8">
+          <Bouton href="/contact">{pageEvenementiel.hero.cta}</Bouton>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section fond="warm" aria-labelledby="titre-positionnement-evenementiel">
+    <div class="grid gap-8 lg:grid-cols-12 lg:gap-16">
+      <h2 id="titre-positionnement-evenementiel" class="max-w-content text-2xl lg:col-span-5">
+        {pageEvenementiel.positionnement.titre}
+      </h2>
+      <div class="space-y-5 lg:col-span-7 lg:pt-2">
+        {pageEvenementiel.positionnement.paragraphes.map((paragraphe) => (
+          <p class="max-w-texte text-base text-ink-muted">{paragraphe}</p>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <Section rythme="compact" aria-labelledby="titre-publics-evenementiel">
+    <h2 id="titre-publics-evenementiel" class="sr-only">Événements BtoB et BtoC</h2>
+    <div class="grid gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-2">
+      {pageEvenementiel.publics.map((publicCible, index) => (
+        <article class="bg-paper px-6 py-bloc lg:px-10">
+          <span class="block h-1 w-10 rounded-full bg-gold-500" aria-hidden="true"></span>
+          <h3 class="mt-8 text-xl">{publicCible.titre}</h3>
+          <p class="mt-5 max-w-texte text-sm text-ink-muted">{publicCible.texte}</p>
+          <span class="mt-10 block text-2xs font-semibold tracking-widest text-ink-muted" aria-hidden="true">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <Section fond="warm" aria-labelledby="titre-realisations-evenementielles">
+    <div class="grid gap-6 lg:grid-cols-12 lg:gap-16">
+      <p class="text-2xs font-semibold tracking-widest text-ink-muted uppercase lg:col-span-4">
+        {pageEvenementiel.realisations.surtitre}
+      </p>
+      <h2 id="titre-realisations-evenementielles" class="max-w-content text-2xl lg:col-span-8">
+        {pageEvenementiel.realisations.titre}
+      </h2>
+    </div>
+
+    <div class="mt-section grid gap-10 md:grid-cols-2 lg:grid-cols-12">
+      {realisationsEvenementielles.map((realisation, index) => (
+        <article class:list={[
+          'flex flex-col',
+          index % 4 === 0 || index % 4 === 3 ? 'lg:col-span-7' : 'lg:col-span-5',
+        ]}>
+          {realisation.image && realisation.alt ? (
+            <img
+              src={realisation.image}
+              alt={realisation.alt}
+              loading="lazy"
+              decoding="async"
+              class="aspect-panneau w-full rounded-lg border border-line object-cover lg:aspect-panneau-large"
+            />
+          ) : (
+            <div class="flex aspect-panneau items-center justify-center rounded-lg border border-line bg-paper lg:aspect-panneau-large">
+              <p class="flex items-center gap-3 text-xs font-medium text-ink-muted">
+                <span class="size-2 rounded-full bg-gold-500" aria-hidden="true"></span>
+                {pageEvenementiel.realisations.placeholder}
+              </p>
+            </div>
+          )}
+          <h3 class="mt-6 max-w-texte text-lg">{realisation.titre}</h3>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <Section fond="navy" aria-labelledby="titre-contact-evenementiel">
+    <div class="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <div class="lg:col-span-8">
+        <h2 id="titre-contact-evenementiel" class="text-2xl text-ink-inverse">
+          {pageEvenementiel.contact.titre}
+        </h2>
+        <p class="mt-6 max-w-texte text-base text-ink-inverse-muted">
+          {pageEvenementiel.contact.texte}
+        </p>
+      </div>
+      <div class="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center lg:col-span-4 lg:justify-end">
+        {telephoneDisponible && (
+          <a href={`tel:${coordonnees.telephoneLien}`} class="inline-flex min-h-12 items-center justify-center text-sm font-semibold text-ink-inverse underline decoration-gold-500 decoration-2 underline-offset-4">
+            {coordonnees.telephoneAffiche}
+          </a>
+        )}
+        <Bouton href="/contact" variante="inverse">{pageEvenementiel.contact.cta}</Bouton>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

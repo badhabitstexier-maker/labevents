@@ -142,3 +142,29 @@ export const pageRealisations = {
       'Un événement à organiser, un site à créer ? Le plus simple, c’est d’en parler.',
   },
 } as const;
+
+/** Formulations validées de la page de contact — Lot 4. */
+export const pageContact = {
+  titre: 'Parlons de votre projet.',
+  introduction:
+    'Un événement à organiser, un site à créer ? Le plus simple, c’est d’en parler.',
+  coordonnees: {
+    titre: 'Contactez LabEvents',
+    texte: 'Un interlocuteur local pour échanger directement sur votre projet.',
+  },
+  formulaire: {
+    titre: 'Ou écrivez-nous',
+    consentement:
+      'J’accepte que les informations transmises soient utilisées par LabEvents pour répondre à ma demande.',
+    bouton: 'Envoyer ma demande',
+    boutonEnvoi: 'Envoi en cours…',
+    succes: {
+      titre: 'Votre message a bien été envoyé.',
+      texte: 'Nous avons reçu votre demande et reviendrons vers vous.',
+    },
+    erreur: {
+      titre: 'Votre message n’a pas pu être envoyé.',
+      texte: 'Vous pouvez réessayer ou nous contacter directement au',
+    },
+  },
+} as const;

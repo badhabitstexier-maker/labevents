@@ -15,11 +15,11 @@
  */
 
 export interface Coordonnees {
-  /** Numéro tel qu'affiché à l'écran. TODO : fourni par LabEvents. */
+  /** Numéro tel qu'affiché à l'écran. */
   telephoneAffiche: string | null;
-  /** Numéro au format international pour `tel:`. TODO : fourni par LabEvents. */
+  /** Numéro au format utilisable dans `tel:`. */
   telephoneLien: string | null;
-  /** Adresse e-mail de contact. TODO : fournie par LabEvents. */
+  /** Adresse e-mail de contact. */
   email: string | null;
   /** Adresse postale / lieu de rencontre. TODO : fournie par LabEvents. */
   adresse: string | null;
@@ -28,9 +28,9 @@ export interface Coordonnees {
 }
 
 export const coordonnees: Coordonnees = {
-  telephoneAffiche: null, // TODO(labevents): vrai numéro à fournir
-  telephoneLien: null, // TODO(labevents): vrai numéro à fournir
-  email: null, // TODO(labevents): vraie adresse e-mail à fournir
+  telephoneAffiche: '77 36 47',
+  telephoneLien: '773647',
+  email: 'contact@labevents.nc',
   adresse: null, // TODO(labevents): à fournir, ou à laisser absente
   horaires: null, // TODO(labevents): à fournir, ou à laisser absente
 };

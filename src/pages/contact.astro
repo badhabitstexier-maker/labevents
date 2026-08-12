@@ -1,0 +1,189 @@
+---
+/** Page Contact — Lot 4. Contact humain prioritaire, formulaire Web3Forms. */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Section from '@components/Section.astro';
+import Bouton from '@components/Bouton.astro';
+import {
+  coordonnees,
+  emailDisponible,
+  telephoneDisponible,
+} from '@data/contact';
+import { pageContact } from '@data/messages';
+import { seoContact } from '@data/seo';
+
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
+---
+
+<BaseLayout titreComplet={seoContact.titre} description={seoContact.description}>
+  <Section aria-labelledby="titre-contact-page">
+    <div class="max-w-content">
+      <h1 id="titre-contact-page" class="text-4xl">{pageContact.titre}</h1>
+      <p class="mt-8 max-w-texte text-base text-ink-muted">
+        {pageContact.introduction}
+      </p>
+    </div>
+  </Section>
+
+  <Section fond="navy" aria-labelledby="titre-coordonnees">
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <div class="lg:col-span-6">
+        <h2 id="titre-coordonnees" class="text-2xl text-ink-inverse">
+          {pageContact.coordonnees.titre}
+        </h2>
+        <p class="mt-6 max-w-texte text-base text-ink-inverse-muted">
+          {pageContact.coordonnees.texte}
+        </p>
+      </div>
+      <address class="flex flex-col gap-4 not-italic lg:col-span-6 lg:items-end">
+        {telephoneDisponible && (
+          <a href={`tel:${coordonnees.telephoneLien}`} class="text-2xl font-display font-semibold text-ink-inverse underline decoration-gold-500 decoration-2 underline-offset-8">
+            <span class="sr-only">Téléphone : </span>{coordonnees.telephoneAffiche}
+          </a>
+        )}
+        {emailDisponible && (
+          <a href={`mailto:${coordonnees.email}`} class="text-sm font-medium text-ink-inverse underline decoration-gold-500 decoration-2 underline-offset-4">
+            <span class="sr-only">E-mail : </span>{coordonnees.email}
+          </a>
+        )}
+      </address>
+    </div>
+  </Section>
+
+  <Section aria-labelledby="titre-formulaire-contact">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-4">
+        <h2 id="titre-formulaire-contact" class="text-2xl">
+          {pageContact.formulaire.titre}
+        </h2>
+      </div>
+
+      <form
+        class="grid gap-6 lg:col-span-8"
+        data-contact-form
+        data-access-key={accessKey}
+        action="https://api.web3forms.com/submit"
+        method="post"
+      >
+        <input type="hidden" name="access_key" value={accessKey} />
+        <input type="hidden" name="subject" value="Nouveau contact — Site LabEvents" />
+
+        <div class="hidden" aria-hidden="true">
+          <label for="botcheck">Ne pas remplir ce champ</label>
+          <input id="botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div>
+            <label for="nom" class="text-xs font-medium text-ink-strong">Nom et prénom <span aria-hidden="true">*</span></label>
+            <input id="nom" name="name" type="text" required autocomplete="name" class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink" />
+          </div>
+          <div>
+            <label for="entreprise" class="text-xs font-medium text-ink-strong">Entreprise / organisation <span class="font-normal text-ink-muted">(facultatif)</span></label>
+            <input id="entreprise" name="entreprise" type="text" autocomplete="organization" class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink" />
+          </div>
+          <div>
+            <label for="email" class="text-xs font-medium text-ink-strong">E-mail <span aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" required autocomplete="email" class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink" />
+          </div>
+          <div>
+            <label for="telephone" class="text-xs font-medium text-ink-strong">Téléphone <span class="font-normal text-ink-muted">(facultatif)</span></label>
+            <input id="telephone" name="telephone" type="tel" autocomplete="tel" class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink" />
+          </div>
+        </div>
+
+        <div>
+          <label for="projet" class="text-xs font-medium text-ink-strong">Votre projet <span aria-hidden="true">*</span></label>
+          <select id="projet" name="projet" required class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink">
+            <option value="" selected disabled>Sélectionnez une option</option>
+            <option>Organiser un événement</option>
+            <option>Créer un site internet</option>
+            <option>Autre demande</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="message" class="text-xs font-medium text-ink-strong">Parlez-nous de votre projet <span aria-hidden="true">*</span></label>
+          <textarea id="message" name="message" required rows="7" class="mt-2 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink"></textarea>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <input id="consentement" name="consentement" type="checkbox" required value="Accepté" class="mt-1 size-5 shrink-0 accent-navy-900" />
+          <label for="consentement" class="text-xs text-ink-muted">
+            {pageContact.formulaire.consentement} <span aria-hidden="true">*</span>
+          </label>
+        </div>
+
+        <div class="flex flex-col items-stretch gap-5 sm:items-start">
+          <Bouton type="submit" data-submit-button>
+            <span data-submit-label>{pageContact.formulaire.bouton}</span>
+          </Bouton>
+
+          <div class="max-w-texte" aria-live="polite" aria-atomic="true">
+            <div data-form-success hidden class="border-l border-gold-500 pl-5">
+              <p class="font-display text-lg font-semibold text-ink-strong">{pageContact.formulaire.succes.titre}</p>
+              <p class="mt-2 text-sm text-ink-muted">{pageContact.formulaire.succes.texte}</p>
+            </div>
+            <div data-form-error hidden class="border-l border-gold-500 pl-5">
+              <p class="font-display text-lg font-semibold text-ink-strong">{pageContact.formulaire.erreur.titre}</p>
+              <p class="mt-2 text-sm text-ink-muted">
+                {pageContact.formulaire.erreur.texte}{' '}
+                <a href={`tel:${coordonnees.telephoneLien}`} class="font-medium text-navy-900 underline decoration-gold-500 decoration-2 underline-offset-4">{coordonnees.telephoneAffiche}</a>
+                {' '}ou à{' '}
+                <a href={`mailto:${coordonnees.email}`} class="font-medium text-navy-900 underline decoration-gold-500 decoration-2 underline-offset-4">{coordonnees.email}</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </Section>
+</BaseLayout>
+
+<script>
+  const formulaire = document.querySelector<HTMLFormElement>('[data-contact-form]');
+
+  if (formulaire) {
+    const bouton = formulaire.querySelector<HTMLButtonElement>('[data-submit-button]');
+    const libelle = formulaire.querySelector<HTMLElement>('[data-submit-label]');
+    const succes = formulaire.querySelector<HTMLElement>('[data-form-success]');
+    const erreur = formulaire.querySelector<HTMLElement>('[data-form-error]');
+    const libelleInitial = libelle?.textContent ?? '';
+
+    const afficherRetour = (estSucces: boolean) => {
+      if (succes) succes.hidden = !estSucces;
+      if (erreur) erreur.hidden = estSucces;
+    };
+
+    formulaire.addEventListener('submit', async (evenement) => {
+      evenement.preventDefault();
+      if (!formulaire.reportValidity() || bouton?.disabled) return;
+
+      if (succes) succes.hidden = true;
+      if (erreur) erreur.hidden = true;
+      if (bouton) bouton.disabled = true;
+      formulaire.setAttribute('aria-busy', 'true');
+      if (libelle) libelle.textContent = 'Envoi en cours…';
+
+      try {
+        if (!formulaire.dataset.accessKey) throw new Error('Clé Web3Forms absente');
+
+        const reponse = await fetch(formulaire.action, {
+          method: 'POST',
+          body: new FormData(formulaire),
+          headers: { Accept: 'application/json' },
+        });
+        const resultat = await reponse.json() as { success?: boolean };
+        if (!reponse.ok || resultat.success !== true) throw new Error('Échec Web3Forms');
+
+        formulaire.reset();
+        afficherRetour(true);
+      } catch {
+        afficherRetour(false);
+      } finally {
+        if (bouton) bouton.disabled = false;
+        formulaire.removeAttribute('aria-busy');
+        if (libelle) libelle.textContent = libelleInitial;
+      }
+    });
+  }
+</script>

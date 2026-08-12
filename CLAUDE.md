@@ -309,9 +309,9 @@ Pas de « À propos ». Desktop : navigation horizontale sobre. Mobile :
 navigation compacte, accessible et réellement utilisable.
 
 **Barre de réassurance** : composant capable d'afficher « Appelez-nous —
-[vrai numéro] » et « Un interlocuteur local ». Le numéro réel n'est pas encore
-fourni ; le composant ne doit rien afficher tant qu'il manque, et jamais
-`XX XX XX`.
+[vrai numéro] » et « Un interlocuteur local ». Le numéro validé au Lot 4 vient
+exclusivement de `src/data/contact.ts` ; le composant ne doit rien afficher
+s’il manque, et jamais `XX XX XX`.
 
 **Design tokens** : toutes les valeurs sont centralisées dans le bloc `@theme`
 de `src/styles/global.css`. **Ne pas disperser de couleurs, tailles ou
@@ -479,7 +479,7 @@ desktop · grand desktop**. Points de rupture définis dans les tokens :
 | **Lot 1**  | Design system final + Accueil              | ✅ fait     |
 | **Lot 2**  | `/sites-internet`                          | ✅ fait     |
 | **Lot 3**  | `/realisations`                            | ✅ fait     |
-| **Lot 4**  | `/evenementiel` + `/contact`               | à venir     |
+| **Lot 4**  | `/evenementiel` + `/contact`               | ✅ fait     |
 | **Lot 5**  | Recette globale                            | à venir     |
 
 **Lot −1 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
@@ -518,6 +518,13 @@ restent donc absents de l'interface tant qu'ils ne sont pas validés. Le détail
 du périmètre est consigné dans
 `docs/decisions/2026-08-12-lot3-realisations.md`.
 
+**Lot 4 livré :** page `/evenementiel` avec le positionnement BtoB / BtoC,
+les huit réalisations événementielles validées et des emplacements neutres
+pour leurs futures photos réelles ; page `/contact` donnant la priorité au
+téléphone et à l’e-mail validés, puis formulaire statique Web3Forms avec
+validation native, états accessibles, honeypot et gestion d’erreur. La clé
+publique est fournie uniquement par `PUBLIC_WEB3FORMS_ACCESS_KEY`.
+
 ---
 
 ## O. Points ouverts (à ce jour non tranchés)
@@ -539,15 +546,16 @@ ne pas les combler par une invention.
    Graph. Aucun n'a été produit : les fabriquer supposerait d'inventer un
    visuel de marque. `seoDefauts.imageParDefaut` vaut toujours `null` et
    aucune balise `og:image` n'est émise.
-3. **Coordonnées** — numéro de téléphone, e-mail, adresse, horaires : aucun
-   n'est fourni. Tous valent `null` dans `src/data/contact.ts`.
+3. **Coordonnées** — le téléphone `77 36 47` et l’e-mail
+   `contact@labevents.nc` ont été fournis au Lot 4. L’adresse et les horaires
+   restent inconnus et valent `null` dans `src/data/contact.ts`.
 4. **Photos événementiel** et **captures des sites** — aucun asset réel
    fourni. `public/images/` et `public/captures/` sont vides.
 5. **Contenu des études de cas** `salonemploi.nc` et `nounou.nc` — à rédiger
    après vérification sur les sites réels ; `publiable: false` en attendant.
-6. **Formulaire de contact** — la V1 prévoit un formulaire simple ; la
-   mécanique d'envoi (service, destinataire) n'est pas décidée. Elle
-   nécessitera peut-être de sortir du 100 % statique sur cette seule route.
+6. ~~**Formulaire de contact**~~ — **CLOS au Lot 4.** Envoi côté client via
+   Web3Forms, sans backend LabEvents. La clé publique n’est jamais versionnée
+   et provient de `PUBLIC_WEB3FORMS_ACCESS_KEY`.
 7. **Hébergement et déploiement** — non décidés. Aucune configuration de
    plateforme n'a été ajoutée.
 8. ~~**Échelle typographique fluide**~~ — **CLOS au Lot 1.** Arbitrage :

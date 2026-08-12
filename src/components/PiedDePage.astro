@@ -50,9 +50,8 @@ const annee = new Date().getFullYear();
     </div>
 
     {
-      /* Bloc coordonnées : rendu UNIQUEMENT si une coordonnée réelle existe.
-         Aujourd'hui `contact.ts` ne contient que des `null` — rien n'est donc
-         affiché, et surtout aucune valeur de remplissage. */
+      /* Bloc coordonnées : rendu UNIQUEMENT si une coordonnée réelle existe
+         dans `contact.ts`, sans aucune valeur de remplissage. */
       (telephoneDisponible || emailDisponible) && (
         <ul class="mt-bloc flex flex-col gap-1 text-xs text-ink-muted">
           {telephoneDisponible && (

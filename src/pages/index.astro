@@ -19,7 +19,7 @@
  *
  * ⚠️ Tous les textes viennent de `src/data/`. Aucun fait, aucun chiffre,
  * aucun témoignage, aucune photo, aucune capture n'est inventé ici. Les
- * coordonnées réelles n'étant pas fournies, aucune n'est affichée.
+ * les coordonnées affichées viennent exclusivement de `src/data/contact.ts`.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Section from '@components/Section.astro';
@@ -145,9 +145,8 @@ const salonEmploi = realisationParId('salonemploi-nc');
         <Bouton href={ctaPrincipal.href}>{ctaPrincipal.label}</Bouton>
       </div>
 
-      {/* Le bloc téléphone ne sera rendu que le jour où un VRAI numéro
-          existera dans `src/data/contact.ts`. Aujourd'hui la barre n'affiche
-          que « Un interlocuteur local ». Aucune valeur de remplissage. */}
+      {/* Le bloc téléphone n'est rendu que parce qu'un vrai numéro validé
+          existe dans `src/data/contact.ts`. Aucune valeur de remplissage. */}
       <BarreReassurance class="mt-bloc max-w-texte" />
     </div>
   </Section>

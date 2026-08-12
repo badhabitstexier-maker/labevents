@@ -20,6 +20,15 @@ La page doit expliquer simplement l'offre Web de LabEvents et conduire vers un c
 8. Projet sur mesure : cadrage séparé ; aucune promesse de délai standard.
 9. CTA : contact humain prioritaire ; « Commencer en ligne » reste secondaire et mène à `/contact` en V1.
 
+## Emplacements visuels réservés
+
+Deux emplacements sont intégrés dans la section « prise en charge » afin que la composition soit déjà prête lorsque de vrais visuels seront disponibles :
+
+- un emplacement destiné prioritairement à une vraie capture desktop d'une réalisation LabEvents ;
+- un second emplacement destiné à une vraie capture mobile ou à un détail réel du même projet.
+
+Tant que ces assets n'existent pas, les deux zones utilisent uniquement `PanneauVisuel`, le composant neutre du design system. Elles ne doivent jamais être remplacées par une fausse interface, une capture recréée, une banque d'images générique ou un visuel généré présenté comme une réalisation réelle.
+
 ## Interdits maintenus
 
 Aucun prix ou « à partir de » ; aucune formule commerciale ; aucun nombre de pages vendu comme produit ; aucune promesse de positionnement Google ; aucune fonctionnalité métier inventée ; aucun témoignage ou chiffre non vérifié ; aucun faux téléphone, e-mail, photo ou visuel de réalisation.

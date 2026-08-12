@@ -1,0 +1,86 @@
+---
+/**
+ * Pied de page.
+ *
+ * Sobre et minimal : bloc-marque, navigation utile, mention LabEvents.
+ *
+ * ⚠️ DOCTRINE FACTUELLE ⚠️
+ * Rien n'est inventé ici : ni adresse, ni téléphone, ni e-mail, ni numéro
+ * d'entreprise, ni horaires, ni réseaux sociaux, ni mentions légales. Les
+ * coordonnées éventuellement affichables viennent exclusivement de
+ * `src/data/contact.ts` et restent absentes tant qu'elles valent `null`.
+ *
+ * Aucune page juridique n'est créée ni liée : elle n'est pas prévue au
+ * périmètre de la V1 et un lien mort vaudrait moins que pas de lien.
+ */
+import MarqueLabEvents from '@components/MarqueLabEvents.astro';
+import { navigationPrincipale } from '@data/navigation';
+import { site } from '@data/site';
+import { coordonnees, emailDisponible, telephoneDisponible } from '@data/contact';
+
+const annee = new Date().getFullYear();
+---
+
+<footer class="border-t border-line bg-paper-warm">
+  <div class="mx-auto max-w-page px-gutter py-section lg:px-10">
+    <div class="flex flex-col gap-bloc md:flex-row md:items-start md:justify-between">
+      <div>
+        <MarqueLabEvents taille="md" />
+        <p class="mt-4 max-w-texte text-xs text-ink-muted">
+          Événementiel et création de sites internet, en {site.region}.
+        </p>
+      </div>
+
+      <nav aria-label="Navigation du pied de page">
+        <ul class="flex flex-col gap-1 md:items-end">
+          {
+            navigationPrincipale.map((lien) => (
+              <li>
+                <a
+                  href={lien.href}
+                  class="flex min-h-11 items-center text-xs text-ink-muted transition-colors hover:text-ink-strong"
+                >
+                  {lien.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    {
+      /* Bloc coordonnées : rendu UNIQUEMENT si une coordonnée réelle existe.
+         Aujourd'hui `contact.ts` ne contient que des `null` — rien n'est donc
+         affiché, et surtout aucune valeur de remplissage. */
+      (telephoneDisponible || emailDisponible) && (
+        <ul class="mt-bloc flex flex-col gap-1 text-xs text-ink-muted">
+          {telephoneDisponible && (
+            <li>
+              <a
+                href={`tel:${coordonnees.telephoneLien}`}
+                class="transition-colors hover:text-ink-strong"
+              >
+                {coordonnees.telephoneAffiche}
+              </a>
+            </li>
+          )}
+          {emailDisponible && (
+            <li>
+              <a
+                href={`mailto:${coordonnees.email}`}
+                class="transition-colors hover:text-ink-strong"
+              >
+                {coordonnees.email}
+              </a>
+            </li>
+          )}
+        </ul>
+      )
+    }
+
+    <p class="mt-bloc border-t border-line pt-8 text-2xs text-ink-muted">
+      © {annee} {site.name}
+    </p>
+  </div>
+</footer>

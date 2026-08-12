@@ -15,6 +15,49 @@ export const accueil = {
     'LabEvents conçoit et organise vos événements professionnels et crée votre site internet, en Nouvelle-Calédonie.',
 } as const;
 
+/**
+ * Sections de la page d'accueil — formulations arrêtées (Lot 1).
+ *
+ * Validation factuelle LabEvents du 12 août 2026 :
+ * - les réalisations digitales présentées sur l'accueil (`salonemploi.nc` et
+ *   l'écosystème `nounou.nc`) ont bien été conçues en Nouvelle-Calédonie ;
+ * - la formulation du bloc « territoire » décrit bien l'activité réelle de
+ *   LabEvents.
+ *
+ * Aucune de ces phrases n'est une promesse chiffrée, un résultat, un
+ * témoignage ni une qualification. Elles ne doivent pas être réécrites
+ * librement d'une session à l'autre.
+ */
+export const sectionsAccueil = {
+  expertises: {
+    titre: 'Deux expertises.',
+    /**
+     * Les deux lignes ci-dessous ne sont PAS une nouvelle promesse : ce sont
+     * les deux moitiés du sous-titre validé du hero, énoncées séparément
+     * sous chaque porte. Ne pas y ajouter de prestation, de périmètre ni de
+     * qualification qui n'y figure pas — LabEvents n'est pas une agence de
+     * communication généraliste.
+     */
+    evenementiel: 'Nous concevons et organisons vos événements professionnels.',
+    sitesInternet: 'Nous créons votre site internet.',
+  },
+  realisations: {
+    titre: 'Nos réalisations parlent pour nous.',
+    chapo:
+      'Nous ne montrons pas des maquettes, mais des réalisations réelles, conçues en Nouvelle-Calédonie.',
+  },
+  territoire: {
+    titre: 'LabEvents, en Nouvelle-Calédonie.',
+    texte:
+      'Nous accompagnons les entreprises et les organisations du territoire, de la conception à la mise en œuvre.',
+  },
+  contact: {
+    titre: 'Parlons de votre projet.',
+    texte:
+      'Un événement à organiser, un site à créer ? Le plus simple, c’est d’en parler.',
+  },
+} as const;
+
 /** Positionnement de l'offre de création de sites internet. */
 export const offreWeb = {
   promesse: 'Votre site internet. On s’occupe de tout.',

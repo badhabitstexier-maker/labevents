@@ -6,10 +6,12 @@ Le site présente deux activités distinctes : l'**événementiel** et la
 **création de sites internet**. Il doit expliquer simplement, orienter
 rapidement, montrer des preuves réelles et faciliter la prise de contact.
 
-> **État du projet : Lot −1 — initialisation.**
-> Les fondations techniques et documentaires sont en place. Les pages du site
-> ne sont pas encore construites : `src/pages/index.astro` est une page de
-> vérification technique temporaire, pas l'accueil.
+> **État du projet : Lot 1 — design system final et page d'accueil.**
+> Les fondations techniques, le design system, l'en-tête, le pied de page et
+> la véritable page d'accueil `/` sont en place. Les quatre autres routes
+> (`/evenementiel`, `/sites-internet`, `/realisations`, `/contact`) sont
+> présentes dans la navigation mais **pas encore construites** : elles font
+> l'objet des lots suivants.
 
 ---
 
@@ -52,8 +54,10 @@ sans erreur.
 
 ```
 src/
-  components/   Composants présentationnels
-  layouts/      BaseLayout.astro — squelette HTML et métadonnées
+  components/   Composants présentationnels (en-tête, pied de page,
+                bloc-marque, bouton, section, portes d'activité…)
+  layouts/      BaseLayout.astro — squelette HTML, métadonnées,
+                en-tête et pied de page
   pages/        Routes (un fichier = une page)
   styles/       global.css — polices, design tokens, styles de base
   data/         Source unique des données du site
@@ -80,8 +84,20 @@ Aucune autre page (À propos, Tarifs, Blog…) n'est prévue en V1.
 ### Design tokens
 
 Toutes les valeurs de design — couleurs, typographies, échelle typographique,
-espacements, rayons, largeurs maximales, ombres, transitions, points de
-rupture — sont centralisées dans le bloc `@theme` de `src/styles/global.css`.
+espacements, rayons, largeurs maximales, proportions de panneaux, ombres,
+transitions, points de rupture — sont centralisées dans le bloc `@theme` de
+`src/styles/global.css`.
+
+L'échelle typographique mêle deux régimes : les **tailles de texte sont
+fixes**, les **quatre plus grands titres sont fluides** (`clamp()`). Les
+valeurs de la planche graphique en sont les maxima desktop. Un composant
+écrit donc `text-4xl` une seule fois, sans variantes par point de rupture.
+
+⚠️ Certains utilitaires Tailwind sont définis **en dur** et ne lisent pas le
+thème : `max-w-prose` vaut `65ch` quel que soit `--container-prose`. La
+longueur de ligne du projet s'appelle donc `--container-texte`
+(`max-w-texte`, 640 px). Avant de nommer un token, vérifier qu'aucun
+utilitaire Tailwind homonyme n'existe.
 
 La **palette V1 est figée** : bleu nuit `#0F1B2D`, or `#D4A23A`, fond chaud
 `#F6F4F1`, bordure `#E6E8EB`, texte `#2B2F33`, blanc `#FFFFFF`. Elle ne
@@ -112,6 +128,15 @@ ailleurs que dans `contact.ts`.
 `public/brand/`, `public/images/` et `public/captures/` sont **vides** : ils
 n'accueillent que de vrais assets LabEvents (vrai logo, vraies photos de
 réalisations, vraies captures des sites réalisés).
+
+En conséquence, l'accueil ne contient **aucune photo ni capture**. Le
+bloc-marque est un wordmark **typographique en HTML/CSS**
+(`MarqueLabEvents.astro`), pas une image. Les emplacements visuels des deux
+portes sont des **panneaux graphiques neutres** (`PanneauVisuel.astro`) :
+un aplat de la palette et un pictogramme, assumés comme éléments graphiques
+du site — jamais une image de démonstration qu'on pourrait prendre pour une
+réalisation. Aucun favicon ni visuel Open Graph n'est produit tant qu'aucun
+asset de marque réel n'existe.
 
 Rien n'y est généré, et aucune image ne doit être extraite de la planche
 graphique pour servir de preuve : les visuels de la planche sont des éléments

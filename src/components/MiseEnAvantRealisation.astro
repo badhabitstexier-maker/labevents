@@ -1,0 +1,124 @@
+---
+/**
+ * Mise en avant d'une réalisation sur l'accueil.
+ *
+ * ⚠️ DOCTRINE FACTUELLE (CLAUDE.md § D, § F, § G) ⚠️
+ *
+ * Ce composant n'affiche QUE ce que `src/data/realisations.ts` contient :
+ *   - le nom du projet ;
+ *   - sa qualification factuelle (`nature`), déjà validée ;
+ *   - le lien vers le site réel, s'il existe.
+ *
+ * Les blocs d'étude de cas (« Le besoin », « Ce que LabEvents a réalisé »,
+ * « Le résultat ») ne sont rendus que si `etudeDeCasAffichable()` l'autorise
+ * — c'est-à-dire jamais tant que le contenu n'a pas été vérifié sur le site
+ * en ligne. Aujourd'hui les trois blocs valent `null` : rien ne s'affiche.
+ *
+ * Ne JAMAIS rédiger ici une fonctionnalité, un résultat ou un chiffre. Une
+ * appréciation (« un site moderne, clair et évolutif ») n'est pas un
+ * résultat : c'est une formulation explicitement interdite.
+ *
+ * TRAITEMENT VISUEL — aucun emplacement de capture n'est réservé tant
+ * qu'aucune capture réelle et explicitement validée n'existe. Une surface
+ * vide posée à côté du nom du projet se lirait comme une image cassée, ou
+ * pire, comme une capture qu'on aurait « oublié » de charger. La mise en
+ * avant est donc éditoriale. Une capture ne s'affiche qu'après validation via
+ * le garde-fou dédié `capturesValidees`.
+ */
+import { etudeDeCas as trame } from '@data/messages';
+import {
+  etudeDeCasAffichable,
+  premiereCaptureAffichable,
+  type Realisation,
+} from '@data/realisations';
+
+interface Props {
+  realisation: Realisation;
+  /** Sur-titre de repérage (ex. « Réalisation digitale »). */
+  surTitre: string;
+  /** Niveau de titre, pour respecter la hiérarchie de la page hôte. */
+  niveauTitre?: 'h2' | 'h3';
+}
+
+const { realisation, surTitre, niveauTitre: Titre = 'h3' } = Astro.props;
+
+const afficherEtudeDeCas = etudeDeCasAffichable(realisation);
+
+const blocs = afficherEtudeDeCas
+  ? [
+      { intitule: trame.besoin, texte: realisation.etudeDeCas.besoin },
+      { intitule: trame.realise, texte: realisation.etudeDeCas.realise },
+      { intitule: trame.resultat, texte: realisation.etudeDeCas.resultat },
+    ].filter((bloc) => bloc.texte !== null)
+  : [];
+
+/** Capture réelle ET explicitement validée uniquement. */
+const capture = premiereCaptureAffichable(realisation);
+---
+
+<article class="grid gap-8 lg:grid-cols-12 lg:gap-16">
+  <div class="lg:col-span-4">
+    <p class="text-2xs font-semibold text-ink-muted uppercase">{surTitre}</p>
+    <Titre class="mt-4 text-2xl break-words">{realisation.titre}</Titre>
+  </div>
+
+  <div class="lg:col-span-8">
+    <p class="max-w-texte text-base text-ink">{realisation.nature}</p>
+
+    {
+      blocs.length > 0 && (
+        <dl class="mt-bloc space-y-8 border-t border-line pt-bloc">
+          {blocs.map((bloc) => (
+            <div>
+              <dt class="text-2xs font-semibold text-ink-strong uppercase">
+                {bloc.intitule}
+              </dt>
+              <dd class="mt-3 max-w-texte text-sm text-ink-muted">{bloc.texte}</dd>
+            </div>
+          ))}
+        </dl>
+      )
+    }
+
+    {
+      capture && (
+        /* Rendu uniquement si une capture RÉELLE a été fournie et validée. */
+        <img
+          src={capture}
+          alt={`Capture du site ${realisation.titre}`}
+          loading="lazy"
+          decoding="async"
+          class="mt-bloc rounded-lg border border-line"
+        />
+      )
+    }
+
+    {
+      realisation.url && (
+        <p class="mt-8">
+          <a
+            href={realisation.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-11 items-center gap-2 text-xs font-medium text-navy-900 underline decoration-gold-500 decoration-2 underline-offset-4 transition-colors hover:text-navy-700"
+          >
+            {trame.lien}
+            <span class="sr-only">— {realisation.titre}, nouvelle fenêtre</span>
+            <svg
+              class="size-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M7 17L17 7M9 7h8v8" />
+            </svg>
+          </a>
+        </p>
+      )
+    }
+  </div>
+</article>

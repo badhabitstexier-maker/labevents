@@ -1,0 +1,201 @@
+---
+/**
+ * En-tête du site.
+ *
+ * Direction (CLAUDE.md § H) : fin, sobre, beaucoup d'air, fond clair.
+ * Pas de barre sombre, pas de navigation façon application SaaS, pas de
+ * `backdrop-filter`, pas de barre d'onglets basse, pas d'icône « compte ».
+ *
+ * Desktop (≥ 1024 px) : bloc-marque · navigation horizontale · CTA principal.
+ * Mobile : bloc-marque · CTA compact · bouton de menu ouvrant un panneau.
+ *
+ * Le JavaScript se limite au strict nécessaire pour rendre le menu mobile
+ * accessible : état `aria-expanded`, panneau `hidden`, fermeture au clavier
+ * (Échap) et au retour en desktop. Aucune librairie.
+ */
+import MarqueLabEvents from '@components/MarqueLabEvents.astro';
+import Bouton from '@components/Bouton.astro';
+import { navigationPrincipale, ctaPrincipal } from '@data/navigation';
+import { site } from '@data/site';
+
+/** Chemin courant, normalisé sans slash final (sauf la racine). */
+const chemin = Astro.url.pathname.replace(/(.+)\/$/, '$1');
+const estCourant = (href: string) => chemin === href;
+---
+
+<header class="sticky top-0 z-50 border-b border-line bg-paper">
+  <div
+    class="mx-auto flex h-16 max-w-page items-center justify-between gap-4 px-gutter lg:h-20 lg:px-10"
+  >
+    {/* `min-h-12` : le bloc-marque est un lien, sa zone tactile doit rester
+        confortable même si le mot occupe moins de 40 px de haut. */}
+    <a
+      href="/"
+      class="inline-flex min-h-12 shrink-0 items-center"
+      aria-label={`${site.name} — accueil`}
+    >
+      <MarqueLabEvents />
+    </a>
+
+    <!-- Navigation desktop -->
+    <nav class="hidden lg:block" aria-label="Navigation principale">
+      <ul class="flex items-center gap-8">
+        {
+          navigationPrincipale.map((lien) => (
+            <li>
+              <a
+                href={lien.href}
+                aria-current={estCourant(lien.href) ? 'page' : undefined}
+                class:list={[
+                  'text-xs transition-colors hover:text-ink-strong',
+                  estCourant(lien.href)
+                    ? 'font-medium text-ink-strong'
+                    : 'text-ink-muted',
+                ]}
+              >
+                {lien.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      {/* Le CTA est masqué par son conteneur, jamais par une classe `hidden`
+          posée sur le bouton lui-même : `display` resterait en concurrence
+          avec l'`inline-flex` de la variante. */}
+      <div class="hidden sm:block">
+        <Bouton href={ctaPrincipal.href} taille="sm">
+          {ctaPrincipal.label}
+        </Bouton>
+      </div>
+
+      <!-- Bouton de menu mobile -->
+      <button
+        type="button"
+        data-menu-bouton
+        aria-expanded="false"
+        aria-controls="menu-mobile"
+        class="menu-bouton -mr-2 inline-flex size-12 items-center justify-center rounded-md text-ink-strong transition-colors hover:bg-paper-warm lg:hidden"
+      >
+        <span class="sr-only">Ouvrir le menu</span>
+        <svg
+          class="icone-ouvrir size-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+        <svg
+          class="icone-fermer size-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Panneau de navigation mobile -->
+  <div
+    id="menu-mobile"
+    data-menu-panneau
+    hidden
+    class="border-t border-line bg-paper lg:hidden"
+  >
+    <nav
+      class="mx-auto max-w-page px-gutter py-4"
+      aria-label="Navigation principale"
+    >
+      <ul class="divide-y divide-line">
+        {
+          navigationPrincipale.map((lien) => (
+            <li>
+              <a
+                href={lien.href}
+                aria-current={estCourant(lien.href) ? 'page' : undefined}
+                class:list={[
+                  'flex min-h-14 items-center text-sm transition-colors',
+                  estCourant(lien.href)
+                    ? 'font-medium text-ink-strong'
+                    : 'text-ink-muted hover:text-ink-strong',
+                ]}
+              >
+                {lien.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      {/* Doublon volontaire du CTA sous 640 px, où il n'a pas sa place dans
+          la barre. Au-delà, il est déjà présent dans le header. */}
+      <div class="mt-6 sm:hidden">
+        <Bouton href={ctaPrincipal.href} class="w-full">
+          {ctaPrincipal.label}
+        </Bouton>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* L'icône affichée suit l'état réel du bouton : pas de classe à
+     synchroniser en JavaScript, pas de désaccord possible entre l'icône et
+     `aria-expanded`. */
+  .menu-bouton .icone-fermer,
+  .menu-bouton[aria-expanded='true'] .icone-ouvrir {
+    display: none;
+  }
+
+  .menu-bouton[aria-expanded='true'] .icone-fermer {
+    display: block;
+  }
+</style>
+
+<script>
+  /**
+   * Menu mobile — le minimum nécessaire à son accessibilité.
+   * Aucune dépendance : ouverture/fermeture, Échap, retour en desktop.
+   */
+  const bouton = document.querySelector<HTMLButtonElement>('[data-menu-bouton]');
+  const panneau = document.querySelector<HTMLElement>('[data-menu-panneau]');
+
+  if (bouton && panneau) {
+    const libelle = bouton.querySelector<HTMLElement>('.sr-only');
+
+    const definirEtat = (ouvert: boolean) => {
+      bouton.setAttribute('aria-expanded', String(ouvert));
+      panneau.hidden = !ouvert;
+      if (libelle) libelle.textContent = ouvert ? 'Fermer le menu' : 'Ouvrir le menu';
+    };
+
+    bouton.addEventListener('click', () => {
+      definirEtat(bouton.getAttribute('aria-expanded') !== 'true');
+    });
+
+    document.addEventListener('keydown', (evenement) => {
+      if (evenement.key === 'Escape' && !panneau.hidden) {
+        definirEtat(false);
+        bouton.focus();
+      }
+    });
+
+    // Le panneau n'existe qu'en dessous de 1024 px : on le referme si la
+    // fenêtre repasse en desktop, pour ne pas laisser un état incohérent.
+    const desktop = window.matchMedia('(min-width: 64rem)');
+    desktop.addEventListener('change', (evenement) => {
+      if (evenement.matches) definirEtat(false);
+    });
+  }
+</script>

@@ -1,0 +1,68 @@
+---
+/**
+ * « Porte » d'activité — une des deux entrées de l'accueil.
+ *
+ * Composition retenue (CLAUDE.md § H) : un GRAND PANNEAU VISUEL, puis un
+ * LIBELLÉ SÉPARÉ en dessous. Aucun texte blanc superposé à un visuel : le
+ * libellé reste lisible quel que soit le visuel qui remplacera le panneau.
+ *
+ * La carte entière est cliquable, mais un seul élément est réellement
+ * focusable : le lien du titre, étendu par un pseudo-élément. Le clavier
+ * n'a donc qu'une tabulation par porte, et le lecteur d'écran n'annonce pas
+ * trois fois la même destination.
+ */
+import PanneauVisuel from '@components/PanneauVisuel.astro';
+
+interface Props {
+  label: string;
+  href: string;
+  description: string;
+  /** Libellé de « porte » validé (ex. « Organiser un événement »). */
+  porte: string;
+  picto: 'evenementiel' | 'web';
+}
+
+const { label, href, description, porte, picto } = Astro.props;
+---
+
+<article class="group relative flex flex-col">
+  <PanneauVisuel picto={picto} class="transition-colors group-hover:border-line-strong" />
+
+  <h3 class="mt-8 text-xl">
+    <a href={href} class="porte-lien text-ink-strong">
+      {label}
+    </a>
+  </h3>
+
+  <p class="mt-3 max-w-texte text-sm text-ink-muted">{description}</p>
+
+  {/* Reprise du libellé de porte validé. `aria-hidden` : la destination est
+      déjà annoncée par le lien du titre, inutile de la répéter. */}
+  <p
+    aria-hidden="true"
+    class="mt-auto flex items-center gap-2 pt-6 text-xs font-medium text-navy-900"
+  >
+    {porte}
+    <svg
+      class="size-4 transition-transform group-hover:translate-x-1"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.75"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  </p>
+</article>
+
+<style>
+  /* Étend la zone cliquable du lien de titre à toute la carte, sans ajouter
+     de lien supplémentaire dans l'ordre de tabulation. */
+  .porte-lien::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+</style>

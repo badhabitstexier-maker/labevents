@@ -1,0 +1,74 @@
+---
+/**
+ * Panneau visuel neutre.
+ *
+ * ⚠️ DOCTRINE VISUELLE (CLAUDE.md § E) ⚠️
+ * Aucune photographie de réalisation LabEvents ni aucune capture de site réel
+ * n'a été fournie à ce jour (`public/images/` et `public/captures/` sont
+ * vides). Ce composant occupe l'emplacement prévu pour ces visuels avec une
+ * SURFACE GRAPHIQUE NEUTRE.
+ *
+ * Ce n'est PAS une image de démonstration :
+ *   - aucune photo, aucune capture, aucun visuel généré ;
+ *   - aucune fausse interface, aucun faux écran ;
+ *   - rien qui puisse être pris pour une réalisation LabEvents.
+ *
+ * C'est un aplat de la palette, un filet et un pictogramme de repérage —
+ * soit exactement le vocabulaire graphique du site, assumé comme tel. Le
+ * panneau garde la proportion (`--aspect-panneau`) que les vrais visuels
+ * occuperont, pour que la grille ne bouge pas quand ils arriveront.
+ *
+ * TODO(assets): remplacer par un <img> dès que de vrais visuels LabEvents
+ * sont disponibles — vraies photos d'événements, vraies captures de sites.
+ */
+interface Props {
+  /** Pictogramme de repérage : `evenementiel`, `web`, ou aucun. */
+  picto?: 'evenementiel' | 'web' | null;
+  class?: string;
+}
+
+const { picto = null, class: classeSupplementaire = '' } = Astro.props;
+---
+
+<div
+  class:list={[
+    'relative flex aspect-panneau items-center justify-center overflow-hidden rounded-lg border border-line bg-paper-warm lg:aspect-panneau-large',
+    classeSupplementaire,
+  ]}
+>
+  {
+    picto && (
+      <span class="relative flex size-16 items-center justify-center rounded-full bg-navy-900 text-ink-inverse">
+        {picto === 'evenementiel' ? (
+          <svg
+            class="size-7"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="5" width="18" height="16" rx="2" />
+            <path d="M3 10h18M8 3v4M16 3v4" />
+          </svg>
+        ) : (
+          <svg
+            class="size-7"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="4" width="18" height="13" rx="2" />
+            <path d="M9 21h6M12 17v4" />
+          </svg>
+        )}
+      </span>
+    )
+  }
+</div>

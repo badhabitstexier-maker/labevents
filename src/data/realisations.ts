@@ -9,8 +9,10 @@
  * Interdits absolus : inventer un client, une fonctionnalité, un résultat,
  * un chiffre, un témoignage, une capture d'écran.
  *
- * Le champ `publiable` est un garde-fou : une réalisation ne doit pas être
- * rendue publique tant qu'il vaut `false`.
+ * Le champ `publiable` protège uniquement l'ÉTUDE DE CAS détaillée. Les faits
+ * de base déjà validés (`titre`, `url`, `nature`) peuvent être cités même si
+ * `publiable` vaut `false`. Les captures disposent d'un garde-fou distinct :
+ * `capturesValidees`.
  */
 
 export type StatutRealisation =
@@ -41,7 +43,7 @@ export interface Realisation {
   /** Courte qualification factuelle du projet. */
   nature: string;
   statut: StatutRealisation;
-  /** Garde-fou : ne rien afficher publiquement tant que `false`. */
+  /** Garde-fou de l'étude de cas détaillée uniquement. */
   publiable: boolean;
   etudeDeCas: EtudeDeCas;
   /**
@@ -50,6 +52,11 @@ export interface Realisation {
    * de la planche graphique pour la faire passer pour une capture.
    */
   captures: readonly string[];
+  /**
+   * Garde-fou visuel distinct de `publiable` : une capture n'est rendue que
+   * si son fichier est réel ET que ce drapeau a été explicitement validé.
+   */
+  capturesValidees: boolean;
 }
 
 /**
@@ -108,6 +115,7 @@ export const realisations: readonly Realisation[] = [
       resultat: null,
     },
     captures: [], // TODO(assets): vraies captures du site à fournir
+    capturesValidees: false,
   },
   {
     id: 'nounou-nc',
@@ -124,8 +132,42 @@ export const realisations: readonly Realisation[] = [
       resultat: null,
     },
     captures: [], // TODO(assets): vraies captures des sites à fournir
+    capturesValidees: false,
   },
 ];
 
-/** Réalisations réellement affichables aujourd'hui. */
+/** Études de cas détaillées réellement affichables aujourd'hui. */
 export const realisationsPubliables = realisations.filter((r) => r.publiable);
+
+/**
+ * Portée exacte du drapeau `publiable`.
+ *
+ * Deux niveaux d'information coexistent pour une même réalisation :
+ *
+ *  1. LA MENTION FACTUELLE — `titre`, `url`, `nature`. Ces champs ne
+ *     contiennent que des faits déjà validés dans `CLAUDE.md` § F. Ils sont
+ *     affichables indépendamment de l'état de l'étude de cas.
+ *
+ *  2. L'ÉTUDE DE CAS — `besoin`, `realise`, `resultat`. Ces blocs relèvent
+ *     d'une rédaction à contrôler sur le site réellement en ligne. C'est
+ *     précisément ce que `publiable` protège.
+ *
+ * Les CAPTURES ont leur propre garde-fou (`capturesValidees`) afin qu'un
+ * fichier ajouté dans `captures` ne devienne jamais public par accident.
+ */
+export function etudeDeCasAffichable(realisation: Realisation): boolean {
+  if (!realisation.publiable) return false;
+  const { besoin, realise, resultat } = realisation.etudeDeCas;
+  return besoin !== null || realise !== null || resultat !== null;
+}
+
+/** Première capture publiable, ou `null` tant qu'elle n'est pas validée. */
+export function premiereCaptureAffichable(realisation: Realisation): string | null {
+  if (!realisation.capturesValidees) return null;
+  return realisation.captures[0] ?? null;
+}
+
+/** Retrouve une réalisation par son identifiant. */
+export function realisationParId(id: string): Realisation | undefined {
+  return realisations.find((realisation) => realisation.id === id);
+}

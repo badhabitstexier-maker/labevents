@@ -299,6 +299,22 @@ par défaut (`--color-*`, `--text-*`, `--font-*`, `--radius-*`, `--shadow-*`,
 `--breakpoint-*`) sont volontairement remis à zéro : seules les valeurs
 LabEvents existent, `bg-sky-500` ou `shadow-2xl` n'existent pas.
 
+**Échelle typographique (arbitré au Lot 1)** : les tailles de **texte**
+restent **fixes** — un texte de lecture qui rétrécit sur petit écran perd en
+lisibilité. Les **quatre plus grands titres** (`--text-xl` à `--text-4xl`)
+sont **fluides** en `clamp()`. Les valeurs de la planche restent les maxima
+desktop (40 px pour un titre de section, 72 px pour le hero) ; le minimum est
+la valeur mobile. Un composant écrit donc `text-4xl` **une seule fois**, sans
+empiler `text-2xl md:text-3xl lg:text-4xl`.
+
+⚠️ **Noms de tokens et utilitaires Tailwind en dur.** L'espace de noms
+`--container-*` n'est pas remis à zéro, et certains utilitaires Tailwind sont
+définis **en dur**, sans lire le thème : `max-w-prose` vaut `65ch` quoi qu'on
+mette dans `--container-prose`. Le token de longueur de ligne s'appelle donc
+`--container-texte` (utilitaire `max-w-texte`, 640 px). Avant de nommer un
+token, vérifier qu'aucun utilitaire Tailwind homonyme n'existe déjà — sinon
+le token est silencieusement ignoré.
+
 ---
 
 ## I. Référence graphique
@@ -438,7 +454,7 @@ desktop · grand desktop**. Points de rupture définis dans les tokens :
 | Lot        | Contenu                                    | État        |
 | ---------- | ------------------------------------------ | ----------- |
 | **Lot −1** | Initialisation technique et documentaire   | ✅ fait     |
-| **Lot 1**  | Design system final + Accueil              | à venir     |
+| **Lot 1**  | Design system final + Accueil              | ✅ fait     |
 | **Lot 2**  | `/sites-internet`                          | à venir     |
 | **Lot 3**  | `/realisations`                            | à venir     |
 | **Lot 4**  | `/evenementiel` + `/contact`               | à venir     |
@@ -447,8 +463,21 @@ desktop · grand desktop**. Points de rupture définis dans les tokens :
 **Lot −1 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
 design tokens, polices auto-hébergées, couche données, SEO technique,
 accessibilité de base, arborescence d'assets, documentation.
-`src/pages/index.astro` est une **page de vérification technique temporaire**,
-pas l'accueil : elle sera intégralement remplacée au Lot 1.
+
+**Lot 1 livré :** design system finalisé (échelle typographique fluide pour
+les grands titres, proportions de panneaux, filet de focus), bloc-marque
+typographique, en-tête définitif avec navigation mobile accessible, pied de
+page, véritable page d'accueil `/` en neuf sections, composants réutilisables
+(`Section`, `Bouton`, `MarqueLabEvents`, `PorteActivite`, `PanneauVisuel`,
+`MiseEnAvantRealisation`, `EcosystemeNounou`, `EnTeteSite`, `PiedDePage`),
+métadonnées SEO de l'accueil. La page de vérification technique temporaire a
+été **intégralement remplacée**.
+
+Aucun asset réel n'ayant été fourni, l'accueil ne contient **aucune photo,
+aucune capture et aucune coordonnée** : les emplacements visuels des deux
+portes sont des **panneaux graphiques neutres** assumés comme tels, et les
+réalisations sont présentées de façon **éditoriale**, limitée aux faits déjà
+validés en section F. Les études de cas restent `publiable: false`.
 
 ---
 
@@ -462,9 +491,15 @@ ne pas les combler par une invention.
 2. **Logo LabEvents** — **partiellement clos.** Décision : aucun logo
    actualisé n'est attendu, la proposition graphique de la planche fait
    référence pour la V1. En conséquence, **la palette est figée** (section H)
-   et le Lot 1 n'est plus bloqué par cette attente. Reste ouvert : le
-   traitement concret du bloc-marque dans le header, et l'absence de fichiers
-   dérivés (favicon, icônes, image Open Graph) — à traiter au Lot 1.
+   et le Lot 1 n'est plus bloqué par cette attente.
+   **Bloc-marque : clos au Lot 1.** Le wordmark est **typographique, en
+   HTML/CSS** (`src/components/MarqueLabEvents.astro`) — « LAB » en bleu nuit,
+   « EVENTS » en or, Space Grotesk SemiBold. Aucune image de logo n'est
+   générée, aucun symbole graphique n'est inventé.
+   **Reste ouvert :** les fichiers dérivés — favicon, icônes, image Open
+   Graph. Aucun n'a été produit : les fabriquer supposerait d'inventer un
+   visuel de marque. `seoDefauts.imageParDefaut` vaut toujours `null` et
+   aucune balise `og:image` n'est émise.
 3. **Coordonnées** — numéro de téléphone, e-mail, adresse, horaires : aucun
    n'est fourni. Tous valent `null` dans `src/data/contact.ts`.
 4. **Photos événementiel** et **captures des sites** — aucun asset réel
@@ -476,6 +511,12 @@ ne pas les combler par une invention.
    nécessitera peut-être de sortir du 100 % statique sur cette seule route.
 7. **Hébergement et déploiement** — non décidés. Aucune configuration de
    plateforme n'a été ajoutée.
-8. **Échelle typographique fluide** — l'échelle actuelle est fixe, avec
-   adaptation par points de rupture. Une échelle fluide (`clamp()`) est à
-   arbitrer au Lot 1.
+8. ~~**Échelle typographique fluide**~~ — **CLOS au Lot 1.** Arbitrage :
+   **fluide pour les grands titres, fixe pour le texte** (voir section H).
+   Les quatre plus grandes tailles passent en `clamp()`, centralisées dans
+   les tokens ; les tailles de lecture ne bougent pas.
+9. **Indicateur de focus sur fond clair** — l'or `#D4A23A` ne mesure
+   qu'environ 2,3:1 sur blanc, sous le seuil de 3:1 attendu d'un indicateur
+   de focus. Le Lot 1 lui adjoint un filet bleu nuit (`--shadow-focus`) pour
+   rester lisible sur fond clair, **sans modifier la palette**. Si un jour
+   une couleur de focus dédiée est souhaitée, c'est une décision explicite.

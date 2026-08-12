@@ -158,7 +158,22 @@
        sous-titre / accent 24 px
        texte d'intro/corps 16 px
        texte secondaire    14 px
-     Complétée vers le haut (hero) et vers le bas (mentions). */
+     Complétée vers le haut (hero) et vers le bas (mentions).
+
+     TAILLES DE TEXTE : FIXES.
+     Le corps de texte ne varie pas avec la largeur du viewport. Un texte de
+     lecture qui rétrécit sur petit écran dégrade la lisibilité ; les valeurs
+     de la planche sont donc conservées telles quelles.
+
+     GRANDS TITRES : FLUIDES (Lot 1).
+     Les quatre plus grandes tailles interpolent en `clamp()`. Les valeurs de
+     la planche (40 px pour un titre de section, jusqu'à 72 px pour le hero)
+     restent les MAXIMA atteints en desktop ; le minimum est la valeur mobile.
+     Conséquence voulue : un composant écrit `text-4xl` une seule fois, sans
+     empiler `text-2xl md:text-3xl lg:text-4xl` ni valeur arbitraire.
+
+     Chaque borne mêle `rem` et `vw` : la taille reste proportionnelle au
+     réglage de police du navigateur et le zoom continue de fonctionner. */
   --text-2xs: 0.75rem; /* 12 px — mentions, sur-titres */
   --text-2xs--line-height: 1.4;
   --text-2xs--letter-spacing: 0.08em;
@@ -175,20 +190,20 @@
   --text-lg: 1.5rem; /* 24 px — sous-titre, accent */
   --text-lg--line-height: 1.45;
 
-  --text-xl: 2rem; /* 32 px — titre de bloc */
+  --text-xl: clamp(1.625rem, 1.35rem + 1.4vw, 2rem); /* 26 → 32 px */
   --text-xl--line-height: 1.25;
   --text-xl--letter-spacing: -0.01em;
 
-  --text-2xl: 2.5rem; /* 40 px — titre de section */
+  --text-2xl: clamp(1.875rem, 1.4rem + 2.4vw, 2.5rem); /* 30 → 40 px */
   --text-2xl--line-height: 1.15;
   --text-2xl--letter-spacing: -0.02em;
 
-  --text-3xl: 3.5rem; /* 56 px — titre de page */
+  --text-3xl: clamp(2.25rem, 1.5rem + 3.7vw, 3.5rem); /* 36 → 56 px */
   --text-3xl--line-height: 1.08;
   --text-3xl--letter-spacing: -0.025em;
 
-  --text-4xl: 4.5rem; /* 72 px — hero desktop */
-  --text-4xl--line-height: 1.02;
+  --text-4xl: clamp(2.5rem, 1.4rem + 5.6vw, 4.5rem); /* 40 → 72 px */
+  --text-4xl--line-height: 1.04;
   --text-4xl--letter-spacing: -0.03em;
 
   /* --- Rythme vertical / espacements ------------------------------------
@@ -204,7 +219,28 @@
   /* --- Largeurs maximales ----------------------------------------------- */
   --container-page: 80rem; /* 1280 px — largeur maximale du site */
   --container-content: 64rem; /* 1024 px — blocs éditoriaux larges */
-  --container-prose: 40rem; /* 640 px — longueur de ligne confortable */
+
+  /* 640 px — longueur de ligne confortable.
+     ⚠️ COLLISION RÉELLE CORRIGÉE AU LOT 1. Ce token s'appelait
+     `--container-prose`, ce qui produisait `max-w-prose`… sauf que Tailwind
+     livre `.max-w-prose { max-width: 65ch }` comme utilitaire EN DUR, sans
+     passer par l'espace de noms `--container-*`. Le token n'était donc jamais
+     lu : toutes les colonnes de texte mesuraient 65ch (~738 px à 18 px) au
+     lieu des 640 px voulus, silencieusement.
+     La remise à zéro des espaces de noms (§ `--color-*: initial` etc.) ne
+     couvrait pas ce cas : `--container-*` n'est pas remis à zéro, et l'aurait
+     été que l'utilitaire en dur aurait subsisté.
+     Correction : le token est renommé pour ne plus entrer en concurrence avec
+     un nom réservé par Tailwind. Utilitaire à employer : `max-w-texte`. */
+  --container-texte: 40rem;
+
+  /* --- Proportions de panneaux ------------------------------------------
+     Les grandes surfaces visuelles (les deux portes de l'accueil, les futurs
+     emplacements de photos et de captures) partagent une proportion unique
+     pour que la grille reste stable quand de vrais visuels remplaceront les
+     panneaux neutres. Défini ici plutôt qu'en `aspect-[4/3]` au cas par cas. */
+  --aspect-panneau: 4 / 3; /* mobile — plus haut, plus lisible en colonne */
+  --aspect-panneau-large: 3 / 2; /* desktop — plus horizontal, plus calme */
 
   /* --- Rayons -----------------------------------------------------------
      Sobres et constants. Pas de « tout arrondi ». */
@@ -223,6 +259,8 @@
   --shadow-subtle: 0 1px 2px rgb(15 27 45 / 0.04);
   --shadow-card: 0 1px 3px rgb(15 27 45 / 0.06), 0 8px 24px rgb(15 27 45 / 0.04);
   --shadow-media: 0 12px 40px rgb(15 27 45 / 0.1);
+  /* Filet de contraste du focus clavier — voir `:focus-visible` plus bas. */
+  --shadow-focus: 0 0 0 1px var(--color-navy-900);
 
   /* --- Transitions -------------------------------------------------------
      `--ease-*` est un espace de noms Tailwind : il génère `ease-out-soft`.
@@ -284,11 +322,21 @@
     text-wrap: pretty;
   }
 
-  /* Focus clavier visible sur l'ensemble du site. Ne jamais supprimer. */
+  /* Focus clavier visible sur l'ensemble du site. Ne jamais supprimer.
+
+     L'or `--color-focus` reste l'indicateur de focus : il ressort très bien
+     sur le bleu nuit (≈ 7,4:1). Sur fond blanc en revanche il ne mesure
+     qu'environ 2,3:1, sous le seuil de 3:1 attendu d'un indicateur de focus.
+     On lui adjoint donc un filet bleu nuit collé à l'élément : l'anneau reste
+     lisible sur fond clair comme sur fond sombre.
+
+     La palette n'est pas modifiée — aucune couleur nouvelle n'est introduite,
+     on combine deux valeurs déjà figées. */
   :focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 3px;
     border-radius: var(--radius-xs);
+    box-shadow: var(--shadow-focus);
   }
 
   /* Aucun débordement horizontal, quelle que soit la largeur d'écran. */

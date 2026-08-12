@@ -8,6 +8,13 @@ import { seoDefauts, construireTitre } from '@data/seo';
 
 interface Props {
   titre?: string;
+  /**
+   * Titre `<title>` complet, utilisé TEL QUEL.
+   * Pour les pages dont l'intitulé est arrêté mot pour mot et ne doit pas
+   * recevoir le suffixe « — LabEvents » (l'accueil, notamment).
+   * Prioritaire sur `titre`.
+   */
+  titreComplet?: string;
   description?: string;
   /** Chemin absolu depuis la racine du site (ex. /images/og.jpg). */
   image?: string | null;
@@ -17,12 +24,13 @@ interface Props {
 
 const {
   titre,
+  titreComplet: titreImpose,
   description = seoDefauts.descriptionParDefaut,
   image = seoDefauts.imageParDefaut,
   noindex = false,
 } = Astro.props;
 
-const titreComplet = construireTitre(titre);
+const titreComplet = titreImpose ?? construireTitre(titre);
 const canonique = new URL(Astro.url.pathname, Astro.site ?? site.url);
 const imageAbsolue = image ? new URL(image, Astro.site ?? site.url).href : null;
 ---

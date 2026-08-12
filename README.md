@@ -6,11 +6,13 @@ Le site présente deux activités distinctes : l'**événementiel** et la
 **création de sites internet**. Il doit expliquer simplement, orienter
 rapidement, montrer des preuves réelles et faciliter la prise de contact.
 
-> **État du projet : Lot 4 — pages Événementiel et Contact.**
+> **État du projet : audit technique préalable validé.**
 > Les fondations techniques, le design system, l'en-tête, le pied de page,
 > l'accueil `/`, les pages `/sites-internet`, `/realisations`,
 > `/evenementiel` et `/contact` sont en place. Le formulaire de contact
 > statique utilise Web3Forms et requiert une clé publique d'environnement.
+> Le Lot 5 intégrera les assets visuels réels ; le Lot 6 assurera ensuite la
+> recette finale et la préparation de la mise en ligne.
 
 ---
 
@@ -63,6 +65,13 @@ npm run dev
 Le fichier `.env` reste ignoré par Git. Sans cette variable, la page reste
 consultable et le formulaire affiche proprement son message d'échec lors
 d'une tentative d'envoi ; aucune clé de remplacement n'est embarquée.
+
+Pour la mise en ligne, `PUBLIC_WEB3FORMS_ACCESS_KEY` doit être configurée dans
+les variables d'environnement de l'hébergement avant le build de production.
+Sa vraie valeur ne doit jamais être commitée ni versionnée dans Git. Le build
+statique l'injecte ensuite dans le HTML du formulaire : elle est donc visible
+côté client dans les fichiers générés, ce qui est attendu pour cette clé
+publique Web3Forms.
 
 ## Architecture
 

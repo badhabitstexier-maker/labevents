@@ -71,6 +71,50 @@ export const offreWeb = {
 } as const;
 
 /**
+ * Page commerciale `/sites-internet` — Lot 2.
+ *
+ * Le contenu reste volontairement simple : il explique le problème client,
+ * le déroulé, la prise en charge par LabEvents et les limites de l'engagement
+ * d'une semaine. Aucun prix, aucune formule, aucun volume de pages, aucune
+ * promesse de référencement ni fonctionnalité métier non validée.
+ */
+export const pageSitesInternet = {
+  surtitre: 'Sites internet',
+  probleme: {
+    titre: 'Vous savez qu’il faudrait être présent sur internet.',
+    texte: 'Vous n’avez pas le temps de vous en occuper.',
+  },
+  priseEnCharge: {
+    titre: 'Vous nous expliquez votre activité. Nous nous occupons du site.',
+    texte:
+      'À partir des informations réelles que vous nous fournissez, nous prenons en charge la conception du site. Si vous avez déjà des contenus, nous les améliorons ; sinon, nous vous accompagnons pour les préparer.',
+  },
+  processus: {
+    titre: 'Comment ça se passe ?',
+    etapes: [
+      'Vous nous expliquez votre activité.',
+      'Nous préparons votre site.',
+      'Vous vérifiez, nous ajustons.',
+      'Votre site est en ligne.',
+    ],
+  },
+  delai: {
+    titre: offreWeb.engagementDelai,
+    texte:
+      'Cet engagement concerne un projet standard, à partir du moment où nous disposons des informations nécessaires.',
+  },
+  cible: {
+    titre: 'Une offre pensée pour les petites structures calédoniennes.',
+    items: ['Artisans', 'TPE', 'Petits commerces', 'Indépendants'],
+  },
+  surMesure: {
+    titre: 'Votre projet ne rentre pas dans une case ?',
+    texte:
+      'Un projet sur mesure est cadré séparément. Le plus simple est d’en parler.',
+  },
+} as const;
+
+/**
  * Trame obligatoire des études de cas.
  * Le bloc « résultat » n'accueille qu'un fait vérifiable, jamais une
  * appréciation (« un site moderne, clair et évolutif » est interdit).

@@ -68,8 +68,10 @@ d'une tentative d'envoi ; aucune clé de remplacement n'est embarquée.
 
 Pour la mise en ligne, `PUBLIC_WEB3FORMS_ACCESS_KEY` doit être configurée dans
 les variables d'environnement de l'hébergement avant le build de production.
-La valeur réelle ne doit être enregistrée ni dans Git, ni dans un fichier
-déployé avec le site.
+Sa vraie valeur ne doit jamais être commitée ni versionnée dans Git. Le build
+statique l'injecte ensuite dans le HTML du formulaire : elle est donc visible
+côté client dans les fichiers générés, ce qui est attendu pour cette clé
+publique Web3Forms.
 
 ## Architecture
 

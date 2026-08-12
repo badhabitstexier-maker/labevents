@@ -40,6 +40,10 @@ export const sectionsAccueil = {
      */
     evenementiel: 'Nous concevons et organisons vos événements professionnels.',
     sitesInternet: 'Nous créons votre site internet.',
+    cartes: {
+      evenementiel: 'Des événements professionnels bien pensés et bien réalisés.',
+      sitesInternet: 'Des sites efficaces, performants et pensés pour vos objectifs.',
+    },
   },
   realisations: {
     titre: 'Nos réalisations parlent pour nous.',

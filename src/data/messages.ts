@@ -18,6 +18,12 @@ export const accueil = {
 /**
  * Sections de la page d'accueil — formulations arrêtées (Lot 1).
  *
+ * Validation factuelle LabEvents du 12 août 2026 :
+ * - les réalisations digitales présentées sur l'accueil (`salonemploi.nc` et
+ *   l'écosystème `nounou.nc`) ont bien été conçues en Nouvelle-Calédonie ;
+ * - la formulation du bloc « territoire » décrit bien l'activité réelle de
+ *   LabEvents.
+ *
  * Aucune de ces phrases n'est une promesse chiffrée, un résultat, un
  * témoignage ni une qualification. Elles ne doivent pas être réécrites
  * librement d'une session à l'autre.

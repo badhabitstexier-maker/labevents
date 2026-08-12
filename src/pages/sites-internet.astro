@@ -1,0 +1,165 @@
+---
+/**
+ * SITES INTERNET — page commerciale V1 (Lot 2).
+ *
+ * Objectif : expliquer l'offre sans jargon ni configurateur, rassurer sur la
+ * prise en charge et conduire vers un contact humain. Les formulations sont
+ * centralisées dans `src/data/messages.ts` et respectent la doctrine
+ * factuelle : pas de prix, pas de volume de pages, pas de promesse SEO, pas de
+ * fonctionnalité métier inventée.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Section from '@components/Section.astro';
+import Bouton from '@components/Bouton.astro';
+import BarreReassurance from '@components/BarreReassurance.astro';
+import { ctaPrincipal, ctaSecondaire } from '@data/navigation';
+import {
+  offreWeb,
+  pageSitesInternet,
+  sectionsAccueil,
+} from '@data/messages';
+import { seoSitesInternet } from '@data/seo';
+---
+
+<BaseLayout
+  titreComplet={seoSitesInternet.titre}
+  description={seoSitesInternet.description}
+>
+  {/* --- Hero ----------------------------------------------------------- */}
+  <Section aria-labelledby="titre-sites-internet">
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <div class="lg:col-span-8">
+        <p class="text-2xs font-semibold tracking-widest text-ink-muted uppercase">
+          {pageSitesInternet.surtitre}
+        </p>
+        <h1 id="titre-sites-internet" class="mt-5 max-w-content text-4xl">
+          {offreWeb.promesse}
+        </h1>
+        <p class="mt-8 max-w-texte text-base text-ink-muted lg:text-lg">
+          {offreWeb.accompagnement}
+        </p>
+
+        <div class="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+          <Bouton href={ctaPrincipal.href}>{ctaPrincipal.label}</Bouton>
+          <Bouton href={ctaSecondaire.href} variante="secondaire">
+            {ctaSecondaire.label}
+          </Bouton>
+        </div>
+      </div>
+
+      <aside class="border-l border-gold-500 pl-6 lg:col-span-4 lg:pl-8" aria-label="Délai pour un projet standard">
+        <p class="text-lg font-display font-semibold text-ink-strong">
+          {offreWeb.engagementDelai}
+        </p>
+        <p class="mt-4 text-xs text-ink-muted">
+          {pageSitesInternet.delai.texte}
+        </p>
+      </aside>
+    </div>
+
+    <BarreReassurance class="mt-section max-w-content" />
+  </Section>
+
+  {/* --- Problème client ------------------------------------------------ */}
+  <Section fond="warm" aria-labelledby="titre-probleme-web">
+    <div class="grid gap-6 lg:grid-cols-12 lg:gap-16">
+      <h2 id="titre-probleme-web" class="max-w-content text-2xl lg:col-span-7">
+        {pageSitesInternet.probleme.titre}
+      </h2>
+      <p class="max-w-texte text-base text-ink-muted lg:col-span-5 lg:pt-2">
+        {pageSitesInternet.probleme.texte}
+      </p>
+    </div>
+  </Section>
+
+  {/* --- Prise en charge ------------------------------------------------ */}
+  <Section aria-labelledby="titre-prise-en-charge">
+    <div class="grid gap-8 lg:grid-cols-12 lg:gap-16">
+      <h2 id="titre-prise-en-charge" class="max-w-content text-2xl lg:col-span-5">
+        {pageSitesInternet.priseEnCharge.titre}
+      </h2>
+      <div class="lg:col-span-7 lg:pt-2">
+        <p class="max-w-texte text-base text-ink-muted">
+          {pageSitesInternet.priseEnCharge.texte}
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* --- Processus ------------------------------------------------------ */}
+  <Section aria-labelledby="titre-processus-web" class="border-t border-line">
+    <h2 id="titre-processus-web" class="text-2xl">
+      {pageSitesInternet.processus.titre}
+    </h2>
+
+    <ol class="mt-section grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      {
+        pageSitesInternet.processus.etapes.map((etape, index) => (
+          <li class="border-t border-line pt-5">
+            <span class="text-2xs font-semibold tracking-widest text-gold-500" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <p class="mt-4 max-w-texte text-sm font-medium text-ink-strong">
+              {etape}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </Section>
+
+  {/* --- Engagement de délai ------------------------------------------- */}
+  <Section fond="navy" aria-labelledby="titre-delai-web">
+    <div class="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <h2 id="titre-delai-web" class="text-2xl text-ink-inverse lg:col-span-7">
+        {pageSitesInternet.delai.titre}
+      </h2>
+      <p class="max-w-texte text-base text-ink-inverse-muted lg:col-span-5">
+        {pageSitesInternet.delai.texte}
+      </p>
+    </div>
+  </Section>
+
+  {/* --- Cible ---------------------------------------------------------- */}
+  <Section aria-labelledby="titre-cible-web">
+    <h2 id="titre-cible-web" class="max-w-content text-2xl">
+      {pageSitesInternet.cible.titre}
+    </h2>
+
+    <ul class="mt-section grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {
+        pageSitesInternet.cible.items.map((item) => (
+          <li class="flex min-h-24 items-center bg-paper px-6 py-5 text-sm font-medium text-ink-strong">
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  {/* --- Sur mesure + contact ------------------------------------------ */}
+  <Section fond="warm" aria-labelledby="titre-sur-mesure">
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <div class="lg:col-span-7">
+        <h2 id="titre-sur-mesure" class="text-2xl">
+          {pageSitesInternet.surMesure.titre}
+        </h2>
+        <p class="mt-6 max-w-texte text-base text-ink-muted">
+          {pageSitesInternet.surMesure.texte}
+        </p>
+      </div>
+
+      <div class="lg:col-span-5">
+        <p class="text-lg font-display font-semibold text-ink-strong">
+          {sectionsAccueil.contact.titre}
+        </p>
+        <div class="mt-6 flex flex-col items-stretch gap-3 sm:flex-row lg:flex-col xl:flex-row">
+          <Bouton href={ctaPrincipal.href}>{ctaPrincipal.label}</Bouton>
+          <Bouton href={ctaSecondaire.href} variante="secondaire">
+            {ctaSecondaire.label}
+          </Bouton>
+        </div>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

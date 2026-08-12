@@ -57,11 +57,11 @@ import { seoSitesInternet } from '@data/seo';
       </aside>
     </div>
 
-    <BarreReassurance class="mt-section max-w-content" />
+    <BarreReassurance class="mt-bloc max-w-texte" />
   </Section>
 
   {/* --- Problème client ------------------------------------------------ */}
-  <Section fond="warm" aria-labelledby="titre-probleme-web">
+  <Section fond="warm" rythme="compact" aria-labelledby="titre-probleme-web">
     <div class="grid gap-6 lg:grid-cols-12 lg:gap-16">
       <h2 id="titre-probleme-web" class="max-w-content text-2xl lg:col-span-7">
         {pageSitesInternet.probleme.titre}
@@ -73,7 +73,7 @@ import { seoSitesInternet } from '@data/seo';
   </Section>
 
   {/* --- Prise en charge ------------------------------------------------ */}
-  <Section aria-labelledby="titre-prise-en-charge">
+  <Section rythme="compact" aria-labelledby="titre-prise-en-charge">
     <div class="grid gap-8 lg:grid-cols-12 lg:gap-16">
       <h2 id="titre-prise-en-charge" class="max-w-content text-2xl lg:col-span-5">
         {pageSitesInternet.priseEnCharge.titre}
@@ -87,12 +87,12 @@ import { seoSitesInternet } from '@data/seo';
   </Section>
 
   {/* --- Processus ------------------------------------------------------ */}
-  <Section aria-labelledby="titre-processus-web" class="border-t border-line">
+  <Section rythme="compact" aria-labelledby="titre-processus-web" class="border-t border-line">
     <h2 id="titre-processus-web" class="text-2xl">
       {pageSitesInternet.processus.titre}
     </h2>
 
-    <ol class="mt-section grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+    <ol class="mt-bloc grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
       {
         pageSitesInternet.processus.etapes.map((etape, index) => (
           <li class="border-t border-line pt-5">
@@ -126,11 +126,14 @@ import { seoSitesInternet } from '@data/seo';
       {pageSitesInternet.cible.titre}
     </h2>
 
-    <ul class="mt-section grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+    <ul class="mt-bloc grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
       {
         pageSitesInternet.cible.items.map((item) => (
-          <li class="flex min-h-24 items-center bg-paper px-6 py-5 text-sm font-medium text-ink-strong">
-            {item}
+          <li class="flex min-h-28 flex-col items-start justify-between bg-paper px-6 py-6">
+            <span class="block h-1 w-8 rounded-full bg-gold-500" aria-hidden="true"></span>
+            <span class="mt-6 font-display text-base font-semibold text-ink-strong">
+              {item}
+            </span>
           </li>
         ))
       }

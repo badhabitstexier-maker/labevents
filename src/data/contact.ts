@@ -29,7 +29,7 @@ export interface Coordonnees {
 
 export const coordonnees: Coordonnees = {
   telephoneAffiche: '77 36 47',
-  telephoneLien: '773647',
+  telephoneLien: '+687773647',
   email: 'contact@labevents.nc',
   adresse: null, // TODO(labevents): à fournir, ou à laisser absente
   horaires: null, // TODO(labevents): à fournir, ou à laisser absente

@@ -43,7 +43,6 @@ export const pageEvenementiel = {
   realisations: {
     surtitre: 'Sélection de réalisations',
     titre: 'Quelques événements conçus et réalisés par LabEvents',
-    placeholder: 'Visuel à fournir',
   },
   contact: {
     titre: 'Vous préparez un événement ?',

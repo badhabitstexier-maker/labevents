@@ -90,12 +90,10 @@ import { seoEvenementiel } from '@data/seo';
               class="aspect-panneau w-full rounded-lg border border-line object-cover lg:aspect-panneau-large"
             />
           ) : (
-            <div class="flex aspect-panneau items-center justify-center rounded-lg border border-line bg-paper lg:aspect-panneau-large">
-              <p class="flex items-center gap-3 text-xs font-medium text-ink-muted">
-                <span class="size-2 rounded-full bg-gold-500" aria-hidden="true"></span>
-                {pageEvenementiel.realisations.placeholder}
-              </p>
-            </div>
+            <div
+              class="aspect-panneau rounded-lg border border-line bg-paper lg:aspect-panneau-large"
+              aria-hidden="true"
+            ></div>
           )}
           <h3 class="mt-6 max-w-texte text-lg">{realisation.titre}</h3>
         </article>

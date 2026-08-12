@@ -14,15 +14,16 @@ chiffre, résultat ni descriptif de prestation.
 
 Chaque réalisation possède dans `src/data/evenementiel.ts` des champs
 `image` et `alt` à `null`. En attendant de vraies photos validées, la page
-affiche une surface graphique neutre portant la mention « Visuel à fournir ».
-Elle n’utilise ni photo de stock, ni image générée, ni simulation de photo.
+affiche une surface graphique neutre sans libellé public. Elle n’utilise ni
+photo de stock, ni image générée, ni simulation de photo.
 
 ## Page Contact
 
-Le téléphone `77 36 47` et l’e-mail `contact@labevents.nc`, fournis pour ce
-lot, deviennent les seules coordonnées publiques et sont centralisés dans
-`src/data/contact.ts`. Ils précèdent le formulaire et bénéficient d’une
-hiérarchie visuelle plus forte. Aucune adresse ni aucun horaire n’est ajouté.
+Le téléphone `77 36 47` (lié au format international `+687773647`) et l’e-mail
+`contact@labevents.nc`, fournis pour ce lot, deviennent les seules coordonnées
+publiques et sont centralisés dans `src/data/contact.ts`. Ils précèdent le
+formulaire et bénéficient d’une hiérarchie visuelle plus forte. Aucune adresse
+ni aucun horaire n’est ajouté.
 
 Le formulaire reste statique et envoie côté client vers Web3Forms. Il utilise
 la variable `PUBLIC_WEB3FORMS_ACCESS_KEY`, documentée dans `.env.example`, et

@@ -12,6 +12,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Section from '@components/Section.astro';
 import Bouton from '@components/Bouton.astro';
 import BarreReassurance from '@components/BarreReassurance.astro';
+import PanneauVisuel from '@components/PanneauVisuel.astro';
 import { ctaPrincipal, ctaSecondaire } from '@data/navigation';
 import {
   offreWeb,
@@ -82,6 +83,15 @@ import { seoSitesInternet } from '@data/seo';
         <p class="max-w-texte text-base text-ink-muted">
           {pageSitesInternet.priseEnCharge.texte}
         </p>
+
+        {/* Emplacements réservés pour de VRAIES captures LabEvents.
+            Ils restent volontairement neutres tant que les assets n'existent
+            pas. Le premier pourra accueillir une vue desktop ; le second une
+            vue mobile ou un détail réel du même projet. */}
+        <div class="mt-bloc grid gap-4 sm:grid-cols-2" aria-hidden="true">
+          <PanneauVisuel picto="web" />
+          <PanneauVisuel />
+        </div>
       </div>
     </div>
   </Section>

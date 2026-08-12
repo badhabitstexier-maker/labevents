@@ -14,9 +14,12 @@
  *   - rien qui puisse être pris pour une réalisation LabEvents.
  *
  * C'est un aplat de la palette, un filet et un pictogramme de repérage —
- * soit exactement le vocabulaire graphique du site, assumé comme tel. Le
- * panneau garde la proportion (`--aspect-panneau`) que les vrais visuels
- * occuperont, pour que la grille ne bouge pas quand ils arriveront.
+ * soit exactement le vocabulaire graphique du site, assumé comme tel.
+ *
+ * Par défaut, le panneau garde la proportion (`--aspect-panneau`) prévue pour
+ * les grands visuels. Le mode `libre` permet de remplir une zone dont la forme
+ * est imposée par la composition parente — utilisé notamment pour réserver
+ * une future capture mobile verticale à côté d'une capture desktop.
  *
  * TODO(assets): remplacer par un <img> dès que de vrais visuels LabEvents
  * sont disponibles — vraies photos d'événements, vraies captures de sites.
@@ -24,15 +27,27 @@
 interface Props {
   /** Pictogramme de repérage : `evenementiel`, `web`, ou aucun. */
   picto?: 'evenementiel' | 'web' | null;
+  /** `panneau` garde la proportion standard ; `libre` remplit son conteneur. */
+  proportion?: 'panneau' | 'libre';
   class?: string;
 }
 
-const { picto = null, class: classeSupplementaire = '' } = Astro.props;
+const {
+  picto = null,
+  proportion = 'panneau',
+  class: classeSupplementaire = '',
+} = Astro.props;
+
+const proportions = {
+  panneau: 'aspect-panneau lg:aspect-panneau-large',
+  libre: 'h-full',
+} as const;
 ---
 
 <div
   class:list={[
-    'relative flex aspect-panneau items-center justify-center overflow-hidden rounded-lg border border-line bg-paper-warm lg:aspect-panneau-large',
+    'relative flex items-center justify-center overflow-hidden rounded-lg border border-line bg-paper-warm',
+    proportions[proportion],
     classeSupplementaire,
   ]}
 >

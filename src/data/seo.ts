@@ -39,7 +39,7 @@ export const seoAccueil = {
 export const seoSitesInternet = {
   titre: 'Création de sites internet en Nouvelle-Calédonie — LabEvents',
   description:
-    'LabEvents prend en charge la conception de votre site internet en Nouvelle-Calédonie, avec un interlocuteur local et un délai d’une semaine pour un projet standard.',
+    'LabEvents conçoit votre site internet en Nouvelle-Calédonie. Pour un projet standard, délai d’une semaine dès réception des informations nécessaires.',
 } as const;
 
 export function construireTitre(titrePage?: string): string {

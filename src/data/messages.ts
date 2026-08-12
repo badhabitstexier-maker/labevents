@@ -99,7 +99,7 @@ export const pageSitesInternet = {
     ],
   },
   delai: {
-    titre: offreWeb.engagementDelai,
+    titre: 'Une semaine, pour quel projet ?',
     texte:
       'Cet engagement concerne un projet standard, à partir du moment où nous disposons des informations nécessaires.',
   },

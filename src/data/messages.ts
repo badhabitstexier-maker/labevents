@@ -133,8 +133,8 @@ export const pageRealisations = {
   introduction:
     'Nous ne montrons pas des maquettes, mais des réalisations réelles, conçues en Nouvelle-Calédonie.',
   projets: {
-    surtitre: 'Projets réels',
-    titre: 'Deux réalisations digitales',
+    surtitre: 'Sélection de réalisations',
+    titre: 'Quelques projets conçus et réalisés par LabEvents',
   },
   contact: {
     titre: 'Parlons de votre projet.',

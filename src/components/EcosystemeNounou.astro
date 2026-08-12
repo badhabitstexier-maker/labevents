@@ -17,15 +17,27 @@
 import { ecosystemeNounou, realisationParId } from '@data/realisations';
 import { etudeDeCas as trame } from '@data/messages';
 
+interface Props {
+  /** Niveau du titre selon la hiérarchie de la page hôte. */
+  niveauTitre?: 'h2' | 'h3';
+  /** Sur-titre de repérage, sans enrichissement factuel. */
+  surTitre?: string;
+}
+
+const {
+  niveauTitre: Titre = 'h3',
+  surTitre = 'Réalisation digitale',
+}: Props = Astro.props;
+
 const realisation = realisationParId(ecosystemeNounou.id);
 ---
 
 <article class="grid gap-8 lg:grid-cols-12 lg:gap-16">
   <div class="lg:col-span-4">
     <p class="text-2xs font-semibold text-ink-muted uppercase">
-      Réalisation digitale
+      {surTitre}
     </p>
-    <h3 class="mt-4 text-2xl break-words">{ecosystemeNounou.titre}</h3>
+    <Titre class="mt-4 text-2xl break-words">{ecosystemeNounou.titre}</Titre>
   </div>
 
   <div class="lg:col-span-8">

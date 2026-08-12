@@ -87,7 +87,12 @@ import { seoEvenementiel } from '@data/seo';
               alt={realisation.alt}
               loading="lazy"
               decoding="async"
-              class="aspect-panneau w-full rounded-lg border border-line object-cover lg:aspect-panneau-large"
+              class:list={[
+                'aspect-panneau w-full rounded-lg border border-line lg:aspect-panneau-large',
+                realisation.modeAffichage === 'contain'
+                  ? 'bg-paper object-contain'
+                  : 'object-cover',
+              ]}
             />
           ) : (
             <div

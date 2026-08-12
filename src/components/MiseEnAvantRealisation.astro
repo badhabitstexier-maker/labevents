@@ -19,13 +19,18 @@
  * résultat : c'est une formulation explicitement interdite.
  *
  * TRAITEMENT VISUEL — aucun emplacement de capture n'est réservé tant
- * qu'aucune capture réelle n'existe. Une surface vide posée à côté du nom du
- * projet se lirait comme une image cassée, ou pire, comme une capture qu'on
- * aurait « oublié » de charger. La mise en avant est donc éditoriale. Dès
- * qu'une vraie capture est fournie dans `captures`, elle s'affiche ici.
+ * qu'aucune capture réelle et explicitement validée n'existe. Une surface
+ * vide posée à côté du nom du projet se lirait comme une image cassée, ou
+ * pire, comme une capture qu'on aurait « oublié » de charger. La mise en
+ * avant est donc éditoriale. Une capture ne s'affiche qu'après validation via
+ * le garde-fou dédié `capturesValidees`.
  */
 import { etudeDeCas as trame } from '@data/messages';
-import { etudeDeCasAffichable, type Realisation } from '@data/realisations';
+import {
+  etudeDeCasAffichable,
+  premiereCaptureAffichable,
+  type Realisation,
+} from '@data/realisations';
 
 interface Props {
   realisation: Realisation;
@@ -47,8 +52,8 @@ const blocs = afficherEtudeDeCas
     ].filter((bloc) => bloc.texte !== null)
   : [];
 
-/** Vraies captures uniquement. Aucun visuel de substitution n'est inventé. */
-const capture = realisation.captures[0] ?? null;
+/** Capture réelle ET explicitement validée uniquement. */
+const capture = premiereCaptureAffichable(realisation);
 ---
 
 <article class="grid gap-8 lg:grid-cols-12 lg:gap-16">
@@ -77,7 +82,7 @@ const capture = realisation.captures[0] ?? null;
 
     {
       capture && (
-        /* Rendu uniquement si une capture RÉELLE a été fournie. */
+        /* Rendu uniquement si une capture RÉELLE a été fournie et validée. */
         <img
           src={capture}
           alt={`Capture du site ${realisation.titre}`}

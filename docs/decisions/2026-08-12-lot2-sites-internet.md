@@ -24,8 +24,10 @@ La page doit expliquer simplement l'offre Web de LabEvents et conduire vers un c
 
 Deux emplacements sont intégrés dans la section « prise en charge » afin que la composition soit déjà prête lorsque de vrais visuels seront disponibles :
 
-- un emplacement destiné prioritairement à une vraie capture desktop d'une réalisation LabEvents ;
-- un second emplacement destiné à une vraie capture mobile ou à un détail réel du même projet.
+- un grand emplacement horizontal destiné prioritairement à une vraie capture desktop d'une réalisation LabEvents ;
+- un emplacement étroit et vertical, aligné avec le premier, destiné à une vraie capture mobile du même projet ou d'une autre réalisation validée.
+
+La composition desktop/mobile est volontairement asymétrique : la capture desktop reste dominante et la capture mobile joue un rôle d'accompagnement. Quand les vrais assets seront fournis, ils pourront remplacer les surfaces neutres sans revoir la grille de la page.
 
 Tant que ces assets n'existent pas, les deux zones utilisent uniquement `PanneauVisuel`, le composant neutre du design system. Elles ne doivent jamais être remplacées par une fausse interface, une capture recréée, une banque d'images générique ou un visuel généré présenté comme une réalisation réelle.
 

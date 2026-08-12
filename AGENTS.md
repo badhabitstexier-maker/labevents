@@ -10,6 +10,8 @@ Treat the decisions and rules in `CLAUDE.md` as the authoritative project contex
 
 Also read `README.md` and `docs/design/README.md` when the task touches setup, architecture, design, or assets.
 
+For factual review of the Lot 1 homepage, also read `docs/decisions/2026-08-12-validations-factuelles-lot1.md`, which records explicit LabEvents confirmations made during PR #3 review. This document supplements the factual record without weakening the doctrine in `CLAUDE.md`.
+
 ## 2. Preserve the factual doctrine
 
 Never invent or publish LabEvents- or client-specific facts, including clients, testimonials, results, figures, qualifications, guarantees, prices, contact details, services, photos, screenshots, or features.

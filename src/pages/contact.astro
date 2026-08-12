@@ -15,7 +15,10 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 ---
 
 <BaseLayout titreComplet={seoContact.titre} description={seoContact.description}>
-  <Section aria-labelledby="titre-contact-page">
+  <Section
+    aria-labelledby="titre-contact-page"
+    class="[&>div]:py-16 lg:[&>div]:py-24"
+  >
     <div class="max-w-content">
       <h1 id="titre-contact-page" class="text-4xl">{pageContact.titre}</h1>
       <p class="mt-8 max-w-texte text-base text-ink-muted">
@@ -61,6 +64,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
         class="grid gap-6 lg:col-span-8"
         data-contact-form
         data-access-key={accessKey}
+        data-submit-label-loading={pageContact.formulaire.boutonEnvoi}
         action="https://api.web3forms.com/submit"
         method="post"
       >
@@ -148,6 +152,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
     const succes = formulaire.querySelector<HTMLElement>('[data-form-success]');
     const erreur = formulaire.querySelector<HTMLElement>('[data-form-error]');
     const libelleInitial = libelle?.textContent ?? '';
+    const libelleEnvoi = formulaire.dataset.submitLabelLoading ?? '';
 
     const afficherRetour = (estSucces: boolean) => {
       if (succes) succes.hidden = !estSucces;
@@ -162,7 +167,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
       if (erreur) erreur.hidden = true;
       if (bouton) bouton.disabled = true;
       formulaire.setAttribute('aria-busy', 'true');
-      if (libelle) libelle.textContent = 'Envoi en cours…';
+      if (libelle) libelle.textContent = libelleEnvoi;
 
       try {
         if (!formulaire.dataset.accessKey) throw new Error('Clé Web3Forms absente');

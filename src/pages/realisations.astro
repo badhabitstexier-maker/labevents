@@ -1,0 +1,79 @@
+---
+/**
+ * RÉALISATIONS — page de preuves V1 (Lot 3).
+ *
+ * Cette page ne publie que des faits déjà validés dans
+ * `src/data/realisations.ts`. Les études de cas détaillées et les captures
+ * restent protégées par leurs garde-fous respectifs : aucun contenu de
+ * remplacement n'est inventé pour remplir la page.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Section from '@components/Section.astro';
+import Bouton from '@components/Bouton.astro';
+import MiseEnAvantRealisation from '@components/MiseEnAvantRealisation.astro';
+import EcosystemeNounou from '@components/EcosystemeNounou.astro';
+import { sectionsAccueil } from '@data/messages';
+import { ctaPrincipal } from '@data/navigation';
+import { realisationParId } from '@data/realisations';
+import { seoRealisations } from '@data/seo';
+
+const salonEmploi = realisationParId('salonemploi-nc');
+---
+
+<BaseLayout titreComplet={seoRealisations.titre} description={seoRealisations.description}>
+  {/* --- Hero ----------------------------------------------------------- */}
+  <Section aria-labelledby="titre-realisations">
+    <div class="grid gap-8 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-9">
+        <p class="text-2xs font-semibold tracking-widest text-ink-muted uppercase">
+          Réalisations
+        </p>
+        <h1 id="titre-realisations" class="mt-5 max-w-content text-4xl">
+          {sectionsAccueil.realisations.titre}
+        </h1>
+        <p class="mt-8 max-w-texte text-base text-ink-muted">
+          {sectionsAccueil.realisations.chapo}
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* --- salonemploi.nc ------------------------------------------------- */}
+  {
+    salonEmploi && (
+      <Section fond="warm" aria-labelledby="titre-salonemploi">
+        <div id="titre-salonemploi">
+          <MiseEnAvantRealisation
+            realisation={salonEmploi}
+            surTitre="Réalisation digitale"
+            niveauTitre="h2"
+          />
+        </div>
+      </Section>
+    )
+  }
+
+  {/* --- Écosystème nounou.nc ------------------------------------------ */}
+  <Section aria-labelledby="titre-nounou">
+    <div id="titre-nounou">
+      <EcosystemeNounou niveauTitre="h2" />
+    </div>
+  </Section>
+
+  {/* --- Contact -------------------------------------------------------- */}
+  <Section fond="navy" aria-labelledby="titre-contact-realisations">
+    <div class="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <div class="lg:col-span-8">
+        <h2 id="titre-contact-realisations" class="text-2xl text-ink-inverse">
+          {sectionsAccueil.contact.titre}
+        </h2>
+        <p class="mt-6 max-w-texte text-base text-ink-inverse-muted">
+          {sectionsAccueil.contact.texte}
+        </p>
+      </div>
+      <div class="lg:col-span-4 lg:flex lg:justify-end">
+        <Bouton href={ctaPrincipal.href} variante="inverse">{ctaPrincipal.label}</Bouton>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

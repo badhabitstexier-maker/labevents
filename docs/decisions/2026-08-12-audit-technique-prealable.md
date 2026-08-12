@@ -2,8 +2,8 @@
 
 Date : 12 août 2026
 
-Ce document consigne l'audit technique réalisé après les Lots 0 à 4 et avant
-l'intégration des assets visuels réels. Il complète
+Ce document consigne l'audit technique réalisé après le Lot −1 et les Lots 1
+à 4, avant l'intégration des assets visuels réels. Il complète
 `CLAUDE.md` sans modifier les décisions produit, éditoriales, factuelles ou
 visuelles déjà validées.
 

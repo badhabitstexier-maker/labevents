@@ -475,7 +475,7 @@ desktop · grand desktop**. Points de rupture définis dans les tokens :
 
 | Étape                         | Contenu                                            | État       |
 | ----------------------------- | -------------------------------------------------- | ---------- |
-| **Lot 0**                     | Initialisation technique et documentaire           | ✅ fait    |
+| **Lot −1**                    | Initialisation technique et documentaire           | ✅ fait    |
 | **Lot 1**                     | Design system final + Accueil                      | ✅ fait    |
 | **Lot 2**                     | `/sites-internet`                                  | ✅ fait    |
 | **Lot 3**                     | `/realisations`                                    | ✅ fait    |
@@ -484,7 +484,7 @@ desktop · grand desktop**. Points de rupture définis dans les tokens :
 | **Lot 5**                     | Production et intégration des assets visuels réels | à venir    |
 | **Lot 6**                     | Recette finale et préparation de la mise en ligne  | à venir    |
 
-**Lot 0 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
+**Lot −1 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
 design tokens, polices auto-hébergées, couche données, SEO technique,
 accessibilité de base, arborescence d'assets, documentation.
 

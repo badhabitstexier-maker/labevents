@@ -12,6 +12,8 @@ Also read `README.md` and `docs/design/README.md` when the task touches setup, a
 
 For factual review of the Lot 1 homepage, also read `docs/decisions/2026-08-12-validations-factuelles-lot1.md`, which records explicit LabEvents confirmations made during PR #3 review. This document supplements the factual record without weakening the doctrine in `CLAUDE.md`.
 
+For review of Lot 2 `/sites-internet`, also read `docs/decisions/2026-08-12-lot2-sites-internet.md`, which records the validated editorial scope applied to the commercial Web page. It supplements `CLAUDE.md` and never overrides it.
+
 ## 2. Preserve the factual doctrine
 
 Never invent or publish LabEvents- or client-specific facts, including clients, testimonials, results, figures, qualifications, guarantees, prices, contact details, services, photos, screenshots, or features.

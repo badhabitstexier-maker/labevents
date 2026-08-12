@@ -1,6 +1,6 @@
 ---
 /**
- * Mise en avant d'une réalisation sur l'accueil.
+ * Mise en avant d'une réalisation sur l'accueil et la page Réalisations.
  *
  * ⚠️ DOCTRINE FACTUELLE (CLAUDE.md § D, § F, § G) ⚠️
  *
@@ -10,20 +10,8 @@
  *   - le lien vers le site réel, s'il existe.
  *
  * Les blocs d'étude de cas (« Le besoin », « Ce que LabEvents a réalisé »,
- * « Le résultat ») ne sont rendus que si `etudeDeCasAffichable()` l'autorise
- * — c'est-à-dire jamais tant que le contenu n'a pas été vérifié sur le site
- * en ligne. Aujourd'hui les trois blocs valent `null` : rien ne s'affiche.
- *
- * Ne JAMAIS rédiger ici une fonctionnalité, un résultat ou un chiffre. Une
- * appréciation (« un site moderne, clair et évolutif ») n'est pas un
- * résultat : c'est une formulation explicitement interdite.
- *
- * TRAITEMENT VISUEL — aucun emplacement de capture n'est réservé tant
- * qu'aucune capture réelle et explicitement validée n'existe. Une surface
- * vide posée à côté du nom du projet se lirait comme une image cassée, ou
- * pire, comme une capture qu'on aurait « oublié » de charger. La mise en
- * avant est donc éditoriale. Une capture ne s'affiche qu'après validation via
- * le garde-fou dédié `capturesValidees`.
+ * « Le résultat ») ne sont rendus que si `etudeDeCasAffichable()` l'autorise.
+ * Une capture ne s'affiche qu'après validation via `capturesValidees`.
  */
 import { etudeDeCas as trame } from '@data/messages';
 import {
@@ -34,16 +22,20 @@ import {
 
 interface Props {
   realisation: Realisation;
-  /** Sur-titre de repérage (ex. « Réalisation digitale »). */
   surTitre: string;
-  /** Niveau de titre, pour respecter la hiérarchie de la page hôte. */
   niveauTitre?: 'h2' | 'h3';
+  /** Identifiant optionnel du titre pour `aria-labelledby` sur la page hôte. */
+  idTitre?: string;
 }
 
-const { realisation, surTitre, niveauTitre: Titre = 'h3' } = Astro.props;
+const {
+  realisation,
+  surTitre,
+  niveauTitre: Titre = 'h3',
+  idTitre,
+}: Props = Astro.props;
 
 const afficherEtudeDeCas = etudeDeCasAffichable(realisation);
-
 const blocs = afficherEtudeDeCas
   ? [
       { intitule: trame.besoin, texte: realisation.etudeDeCas.besoin },
@@ -52,14 +44,13 @@ const blocs = afficherEtudeDeCas
     ].filter((bloc) => bloc.texte !== null)
   : [];
 
-/** Capture réelle ET explicitement validée uniquement. */
 const capture = premiereCaptureAffichable(realisation);
 ---
 
 <article class="grid gap-8 lg:grid-cols-12 lg:gap-16">
   <div class="lg:col-span-4">
     <p class="text-2xs font-semibold text-ink-muted uppercase">{surTitre}</p>
-    <Titre class="mt-4 text-2xl break-words">{realisation.titre}</Titre>
+    <Titre id={idTitre} class="mt-4 text-2xl break-words">{realisation.titre}</Titre>
   </div>
 
   <div class="lg:col-span-8">
@@ -82,7 +73,6 @@ const capture = premiereCaptureAffichable(realisation);
 
     {
       capture && (
-        /* Rendu uniquement si une capture RÉELLE a été fournie et validée. */
         <img
           src={capture}
           alt={`Capture du site ${realisation.titre}`}

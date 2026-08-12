@@ -6,10 +6,10 @@ Le site présente deux activités distinctes : l'**événementiel** et la
 **création de sites internet**. Il doit expliquer simplement, orienter
 rapidement, montrer des preuves réelles et faciliter la prise de contact.
 
-> **État du projet : Lot 1 — design system final et page d'accueil.**
-> Les fondations techniques, le design system, l'en-tête, le pied de page et
-> la véritable page d'accueil `/` sont en place. Les quatre autres routes
-> (`/evenementiel`, `/sites-internet`, `/realisations`, `/contact`) sont
+> **État du projet : Lot 2 — page Sites internet.**
+> Les fondations techniques, le design system, l'en-tête, le pied de page,
+> l'accueil `/` et la page commerciale `/sites-internet` sont en place. Les
+> trois autres routes (`/evenementiel`, `/realisations`, `/contact`) sont
 > présentes dans la navigation mais **pas encore construites** : elles font
 > l'objet des lots suivants.
 
@@ -67,6 +67,7 @@ public/
   captures/     Captures des sites réalisés
 docs/
   design/       Planche graphique V1 et notes de direction graphique
+  decisions/    Validations et décisions complémentaires tracées par lot
 ```
 
 ### Pages prévues en V1
@@ -166,6 +167,9 @@ Deux règles en découlent :
    ou devient un `TODO` explicite dans les sources.
 2. **Il ne se modifie pas silencieusement.** Toute évolution d'une décision
    existante doit être explicite dans la pull request.
+
+Les décisions complémentaires validées pendant les revues sont consignées
+sous `docs/decisions/` et ne peuvent jamais contredire `CLAUDE.md`.
 
 ## Contribution
 

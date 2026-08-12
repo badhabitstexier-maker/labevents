@@ -17,6 +17,14 @@
 import { ecosystemeNounou, realisationParId } from '@data/realisations';
 import { etudeDeCas as trame } from '@data/messages';
 
+interface Props {
+  /** Identifiant du titre lorsque le composant nomme une section. */
+  idTitre?: string;
+  /** Niveau de titre, pour respecter la hiérarchie de la page hôte. */
+  niveauTitre?: 'h2' | 'h3';
+}
+
+const { idTitre, niveauTitre: Titre = 'h3' } = Astro.props;
 const realisation = realisationParId(ecosystemeNounou.id);
 ---
 
@@ -25,11 +33,13 @@ const realisation = realisationParId(ecosystemeNounou.id);
     <p class="text-2xs font-semibold text-ink-muted uppercase">
       Réalisation digitale
     </p>
-    <h3 class="mt-4 text-2xl break-words">{ecosystemeNounou.titre}</h3>
+    <Titre id={idTitre} class="mt-4 text-2xl break-words">{ecosystemeNounou.titre}</Titre>
   </div>
 
   <div class="lg:col-span-8">
-    <p class="max-w-texte text-base text-ink">{realisation?.nature}</p>
+    <p class="max-w-texte text-base text-ink">
+      LabEvents a conçu, mis en ligne et exploite {ecosystemeNounou.formulation}.
+    </p>
 
     {/* Les cinq sites, listés sans capture ni commentaire ajouté.
         Liste en UNE colonne : à cinq éléments, toute grille laisse une

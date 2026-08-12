@@ -35,3 +35,14 @@ export const ctaSecondaire = {
   label: 'Commencer en ligne',
   href: '/contact',
 } as const;
+
+/** Accès directs aux deux activités depuis le hero de l'accueil. */
+export const ctaAccueilEvenementiel = {
+  label: 'Organiser un événement',
+  href: '/evenementiel',
+} as const;
+
+export const ctaAccueilSitesInternet = {
+  label: 'Créer un site internet',
+  href: '/sites-internet',
+} as const;

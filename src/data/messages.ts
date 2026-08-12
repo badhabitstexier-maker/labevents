@@ -11,8 +11,7 @@
 /** Hero de la page d'accueil. */
 export const accueil = {
   titre: 'Que pouvons-nous faire pour vous ?',
-  sousTitre:
-    'LabEvents conçoit et organise vos événements professionnels et crée votre site internet, en Nouvelle-Calédonie.',
+  sousTitre: 'Deux expertises pour vos projets professionnels, en Nouvelle-Calédonie.',
 } as const;
 
 /**

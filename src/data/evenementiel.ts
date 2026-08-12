@@ -1,16 +1,13 @@
 /**
- * Contenus validés de la page `/evenementiel` — Lot 4.
- *
- * Les emplacements photo restent explicitement vides jusqu’à la fourniture
- * et la validation de vrais assets LabEvents. Aucun texte alternatif n’est
- * inventé pour une image qui n’existe pas.
+ * Contenus validés de la page `/evenementiel` et visuels réels du Lot 5A.
  */
 
 export interface RealisationEvenementielle {
   id: string;
   titre: string;
-  image: string | null;
-  alt: string | null;
+  image: string;
+  alt: string;
+  modeAffichage: 'cover' | 'contain';
 }
 
 export const pageEvenementiel = {
@@ -53,17 +50,60 @@ export const pageEvenementiel = {
 } as const;
 
 export const realisationsEvenementielles: readonly RealisationEvenementielle[] = [
-  'Forum de l’Emploi et de la Formation',
-  'Forum de l’Immobilier',
-  'Salon de l’Électricité',
-  'Salon des Réseaux d’Eau',
-  'Journée Job Dating de la Province Sud',
-  'Salon ACDET « Découverte des métiers et des formations »',
-  'Trophées des Entreprises',
-  'Trophées des Initiatives Publiques',
-].map((titre, index) => ({
-  id: `evenement-${index + 1}`,
-  titre,
-  image: null,
-  alt: null,
-}));
+  {
+    id: 'forum-emploi',
+    titre: 'Forum de l’Emploi et de la Formation',
+    image: '/images/evenementiel/forum-emploi.jpg',
+    alt: 'Espace d’exposition du Forum de l’Emploi et de la Formation',
+    modeAffichage: 'cover',
+  },
+  {
+    id: 'forum-immobilier',
+    titre: 'Forum de l’Immobilier',
+    image: '/images/evenementiel/forum-immobilier.jpg',
+    alt: 'Espace de conférence du Forum de l’Immobilier',
+    modeAffichage: 'cover',
+  },
+  {
+    id: 'salon-electricite',
+    titre: 'Salon de l’Électricité',
+    image: '/images/evenementiel/salon-electricite.jpg',
+    alt: 'Stand d’exposition du Salon de l’Électricité',
+    modeAffichage: 'cover',
+  },
+  {
+    id: 'reseaux-eau-panorama',
+    titre: 'Salon des Réseaux d’Eau',
+    image: '/images/evenementiel/reseaux-eau-panorama.jpg',
+    alt: 'Vue panoramique du Salon des Réseaux d’Eau',
+    modeAffichage: 'cover',
+  },
+  {
+    id: 'job-dating',
+    titre: 'Journée Job Dating de la Province Sud',
+    image: '/images/evenementiel/job-dating.jpg',
+    alt: 'Stands de la Journée Job Dating de la Province Sud',
+    modeAffichage: 'cover',
+  },
+  {
+    id: 'acdet',
+    titre: 'Salon ACDET « Découverte des métiers et des formations »',
+    image: '/images/evenementiel/acdet.jpg',
+    alt: 'Espace de présentation du salon ACDET',
+    modeAffichage: 'cover',
+  },
+  {
+    id: 'trophees-entreprises',
+    titre: 'Trophées des Entreprises',
+    image: '/images/evenementiel/trophees-entreprises.jpg',
+    alt: 'Trophée présenté lors des Trophées des Entreprises',
+    modeAffichage: 'cover',
+  },
+  {
+    id: 'trophees-initiatives-publiques',
+    titre: 'Trophées des Initiatives Publiques',
+    image: '/images/evenementiel/trophees-initiatives-publiques.png',
+    alt: 'Document graphique des Trophées des Initiatives Publiques',
+    modeAffichage: 'contain',
+  },
+];

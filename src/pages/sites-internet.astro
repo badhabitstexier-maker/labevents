@@ -84,13 +84,14 @@ import { seoSitesInternet } from '@data/seo';
           {pageSitesInternet.priseEnCharge.texte}
         </p>
 
-        {/* Emplacements réservés pour de VRAIES captures LabEvents.
-            Ils restent volontairement neutres tant que les assets n'existent
-            pas. Le premier pourra accueillir une vue desktop ; le second une
-            vue mobile ou un détail réel du même projet. */}
-        <div class="mt-bloc grid gap-4 sm:grid-cols-2" aria-hidden="true">
-          <PanneauVisuel picto="web" />
-          <PanneauVisuel />
+        {/*
+          Réserves de composition pour de VRAIES captures à venir :
+          un grand écran desktop et un écran mobile vertical. Les surfaces
+          restent volontairement neutres tant que les assets réels manquent.
+        */}
+        <div class="mt-bloc grid grid-cols-7 items-stretch gap-4" aria-hidden="true">
+          <PanneauVisuel picto="web" class="col-span-5" />
+          <PanneauVisuel proportion="libre" class="col-span-2" />
         </div>
       </div>
     </div>

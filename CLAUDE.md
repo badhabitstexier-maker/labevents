@@ -105,6 +105,26 @@ charge la conception. Si le client a des contenus, LabEvents les améliore ;
 sinon, LabEvents l'accompagne dans leur création **à partir d'informations
 réelles fournies par le client** — jamais inventées.
 
+### Page `/sites-internet` — structure retenue au Lot 2
+
+La page commerciale suit un parcours simple :
+
+1. hero avec la promesse, l'accompagnement, le délai standard et les CTA ;
+2. problème client : besoin d'être présent sur internet, manque de temps pour
+   s'en occuper ;
+3. prise en charge de la conception à partir d'informations réelles ;
+4. processus en quatre étapes : expliquer l'activité → préparation du site →
+   vérification et ajustements → mise en ligne ;
+5. cadrage explicite du délai d'une semaine ;
+6. rappel des cibles : artisans, TPE, petits commerces, indépendants ;
+7. projet sur mesure cadré séparément ;
+8. contact humain prioritaire, « Commencer en ligne » secondaire.
+
+Le détail éditorial appliqué est consigné dans
+`docs/decisions/2026-08-12-lot2-sites-internet.md` et centralisé dans
+`src/data/messages.ts`. Aucun configurateur, prix, nombre de pages, catalogue
+de modules ou promesse SEO n'est ajouté.
+
 ### CTA
 
 - **CTA principal : contact humain.** « Parlons de votre projet » /
@@ -161,9 +181,10 @@ témoignages.
 - `src/data/contact.ts` — **source unique** des coordonnées. Chaque champ non
   fourni vaut `null`. Aucun numéro, e-mail ou adresse ne doit être écrit
   ailleurs. Les composants doivent gérer l'absence en **ne rendant rien**.
-- `src/data/realisations.ts` — les blocs d'étude de cas valent `null` tant
-  qu'ils n'ont pas été vérifiés ; le drapeau `publiable` empêche l'affichage
-  d'une réalisation non validée.
+- `src/data/realisations.ts` — les mentions factuelles validées (`titre`, `url`,
+  `nature`) peuvent être citées ; le drapeau `publiable` protège uniquement
+  l'étude de cas détaillée (`besoin`, `realise`, `resultat`) ; les captures ont
+  leur garde-fou distinct `capturesValidees`.
 - `src/components/BarreReassurance.astro` — ne rend le bloc téléphone que si
   le numéro existe réellement.
 
@@ -398,6 +419,7 @@ public/
   captures/     captures réelles des sites réalisés
 docs/
   design/       planche graphique V1 + notes de direction graphique
+  decisions/    validations et décisions complémentaires tracées par lot
 ```
 
 **Couche données (`src/data/`)** — les composants restent autant que possible
@@ -455,7 +477,7 @@ desktop · grand desktop**. Points de rupture définis dans les tokens :
 | ---------- | ------------------------------------------ | ----------- |
 | **Lot −1** | Initialisation technique et documentaire   | ✅ fait     |
 | **Lot 1**  | Design system final + Accueil              | ✅ fait     |
-| **Lot 2**  | `/sites-internet`                          | à venir     |
+| **Lot 2**  | `/sites-internet`                          | ✅ fait     |
 | **Lot 3**  | `/realisations`                            | à venir     |
 | **Lot 4**  | `/evenementiel` + `/contact`               | à venir     |
 | **Lot 5**  | Recette globale                            | à venir     |
@@ -478,6 +500,14 @@ aucune capture et aucune coordonnée** : les emplacements visuels des deux
 portes sont des **panneaux graphiques neutres** assumés comme tels, et les
 réalisations sont présentées de façon **éditoriale**, limitée aux faits déjà
 validés en section F. Les études de cas restent `publiable: false`.
+
+**Lot 2 livré :** page commerciale `/sites-internet`, structurée autour de la
+promesse « Votre site internet. On s'occupe de tout. », du processus en quatre
+étapes, du cadrage explicite du délai d'une semaine pour un projet standard,
+des cibles retenues, du traitement séparé du sur-mesure et des CTA vers le
+contact. Les textes vivent dans `src/data/messages.ts` et les métadonnées dans
+`src/data/seo.ts`. Aucun prix, configurateur, volume de pages, promesse SEO,
+fonctionnalité métier inventée, photo ou capture n'est ajouté.
 
 ---
 

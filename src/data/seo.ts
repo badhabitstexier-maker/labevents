@@ -35,6 +35,13 @@ export const seoAccueil = {
     'LabEvents conçoit et organise vos événements professionnels et crée votre site internet en Nouvelle-Calédonie.',
 } as const;
 
+/** Métadonnées de la page commerciale Sites internet — Lot 2. */
+export const seoSitesInternet = {
+  titre: 'Création de sites internet en Nouvelle-Calédonie — LabEvents',
+  description:
+    'LabEvents conçoit votre site internet en Nouvelle-Calédonie. Pour un projet standard, délai d’une semaine dès réception des informations nécessaires.',
+} as const;
+
 export function construireTitre(titrePage?: string): string {
   if (!titrePage) return seoDefauts.titreParDefaut;
   return `${titrePage} — ${site.name}`;

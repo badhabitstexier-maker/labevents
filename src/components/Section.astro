@@ -4,7 +4,9 @@
  *
  * Centralise le rythme vertical et les marges latérales pour que chaque
  * section n'ait pas à réinventer ses valeurs :
- *   - respiration `--spacing-section` en mobile, `--spacing-section-lg`
+ *   - rythme normal : `--spacing-section` en mobile, `--spacing-section-lg`
+ *     à partir de 1024 px ;
+ *   - rythme compact : `--spacing-bloc` en mobile, `--spacing-section`
  *     à partir de 1024 px ;
  *   - gouttière `--spacing-gutter` en mobile, plus large en desktop ;
  *   - largeur maximale `--container-page`.
@@ -15,6 +17,7 @@
  */
 interface Props {
   fond?: 'paper' | 'warm' | 'navy';
+  rythme?: 'normal' | 'compact';
   /** Balise de section. `section` par défaut. */
   as?: 'section' | 'div';
   /** Relie la section à son titre pour la navigation par landmarks. */
@@ -27,6 +30,7 @@ interface Props {
 // automatique d'Astro de rattacher `Astro.props` à l'interface `Props`.
 const {
   fond = 'paper',
+  rythme = 'normal',
   as: Balise = 'section',
   class: classeSupplementaire = '',
   ...reste
@@ -37,10 +41,15 @@ const fonds = {
   warm: 'bg-paper-warm',
   navy: 'bg-navy-900',
 } as const;
+
+const rythmes = {
+  normal: 'py-section lg:py-section-lg',
+  compact: 'py-bloc lg:py-section',
+} as const;
 ---
 
 <Balise class:list={[fonds[fond], classeSupplementaire]} {...reste}>
-  <div class="mx-auto max-w-page px-gutter py-section lg:px-10 lg:py-section-lg">
+  <div class:list={['mx-auto max-w-page px-gutter lg:px-10', rythmes[rythme]]}>
     <slot />
   </div>
 </Balise>

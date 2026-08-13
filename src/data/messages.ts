@@ -85,11 +85,21 @@ export const pageSitesInternet = {
   surtitre: 'Sites internet',
   probleme: {
     titre: 'Vous savez qu’il faudrait être présent sur internet.',
-    texte: 'Vous n’avez pas le temps de vous en occuper.',
+    texte:
+      'Mais entre le manque de temps, la complexité technique et les solutions impersonnelles, c’est souvent repoussé.',
     reperes: [
-      'Vous manquez de temps.',
-      'Le web semble complexe.',
-      'Vous cherchez un accompagnement local et simple.',
+      {
+        titre: 'Vous n’avez pas le temps',
+        texte: 'Votre activité prend toute votre énergie.',
+      },
+      {
+        titre: 'C’est parfois compliqué',
+        texte: 'Difficile de s’y retrouver et de savoir par où commencer.',
+      },
+      {
+        titre: 'Vous cherchez du local et du simple',
+        texte: 'Une solution claire, humaine et adaptée à la Nouvelle-Calédonie.',
+      },
     ],
   },
   priseEnCharge: {

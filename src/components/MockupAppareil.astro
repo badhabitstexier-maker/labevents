@@ -11,6 +11,8 @@ interface Props {
   hauteur: number;
   loading?: 'eager' | 'lazy';
   fetchpriority?: 'high' | 'low' | 'auto';
+  /** Recadre une capture desktop réelle dans un écran de téléphone vertical. */
+  recadrageTelephone?: boolean;
   class?: string;
 }
 
@@ -22,13 +24,14 @@ const {
   hauteur,
   loading = 'lazy',
   fetchpriority,
+  recadrageTelephone = false,
   class: classeSupplementaire = '',
 } = Astro.props;
 ---
 
 {variante === 'ordinateur' ? (
   <div class:list={['relative', classeSupplementaire]}>
-    <div class="rounded-lg border border-navy-700 bg-navy-900 p-2 shadow-media sm:p-3">
+    <div class="rounded-lg border border-navy-700 bg-navy-950 p-2 shadow-media sm:p-3">
       <span class="mx-auto mb-2 block size-1.5 rounded-full bg-navy-600" aria-hidden="true"></span>
       <div class="overflow-hidden rounded-sm bg-paper">
         <img
@@ -43,13 +46,17 @@ const {
         />
       </div>
     </div>
-    <div class="mx-auto h-2 w-11/12 rounded-b-lg border-x border-b border-line-strong bg-paper-cool shadow-subtle" aria-hidden="true"></div>
+    <div class="relative mx-auto h-11 w-11/12 border-x border-b border-line-strong bg-line-strong shadow-subtle sm:h-14" aria-hidden="true">
+      <span class="absolute top-2 left-1/2 h-4 w-4/5 -translate-x-1/2 rounded-xs border border-navy-700 bg-navy-900 opacity-80 sm:h-5"></span>
+      <span class="absolute bottom-1 left-1/2 h-4 w-1/3 -translate-x-1/2 rounded-sm border border-line bg-paper-cool sm:h-5"></span>
+    </div>
+    <div class="mx-auto h-2 w-full rounded-b-xl border-x border-b border-line-strong bg-paper-cool shadow-card" aria-hidden="true"></div>
     <div class="mx-auto h-1 w-1/3 rounded-b-full bg-line-strong" aria-hidden="true"></div>
   </div>
 ) : (
-  <div class:list={['overflow-hidden rounded-xl border-4 border-navy-900 bg-navy-900 p-1 shadow-media', classeSupplementaire]}>
+  <div class:list={['overflow-hidden rounded-xl border-4 border-navy-950 bg-navy-950 p-1 shadow-media', classeSupplementaire]}>
     <span class="mx-auto mb-1 block h-1.5 w-10 rounded-full bg-navy-700" aria-hidden="true"></span>
-    <div class="overflow-hidden rounded-lg bg-paper">
+    <div class:list={['overflow-hidden rounded-lg bg-paper', recadrageTelephone && 'h-44 sm:h-52']}>
       <img
         src={src}
         alt={alt}
@@ -58,7 +65,7 @@ const {
         loading={loading}
         fetchpriority={fetchpriority}
         decoding="async"
-        class="block h-auto w-full"
+        class:list={['block w-full', recadrageTelephone ? 'h-full object-cover object-top' : 'h-auto']}
       />
     </div>
     <span class="mx-auto mt-1 block size-1.5 rounded-full border border-navy-600" aria-hidden="true"></span>

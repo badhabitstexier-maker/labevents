@@ -528,7 +528,7 @@ faite.
 | **Lot 5A**                    | Intégration des photos événementielles réelles     | ✅ fait — PR #9 fusionnée  |
 | **Lot 5A.1**                  | Refonte visuelle de `/evenementiel`                | ✅ fait — PR #10 fusionnée |
 | **Lot 5B**                    | Refonte finale de la HP, captures Web et vrai logo | ✅ fait — PR #11 fusionnée |
-| **Lot 5C**                    | Finition visuelle de `/sites-internet`             | en cours — PR #12          |
+| **Lot 5C.1**                  | Corrections visuelles finales de `/sites-internet` | en cours — PR #12          |
 | **Lot 5D**                    | Finition visuelle de `/realisations`               | à venir    |
 | **Lot 6**                     | Recette finale et préparation de la mise en ligne  | à venir    |
 
@@ -537,7 +537,7 @@ faite.
 - la homepage `/` est terminée ;
 - `/evenementiel` est terminée et validée sur desktop et mobile ;
 - `/contact` est fonctionnelle avec Web3Forms ;
-- `/sites-internet` fait l'objet du Lot 5C ;
+- `/sites-internet` fait l'objet du Lot 5C.1 ;
 - `/realisations` sera finalisée au Lot 5D avec les vraies captures.
 
 **Lot −1 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
@@ -602,7 +602,7 @@ validée sur desktop et mobile.
 visuelle, les vraies captures Web, le visuel d'accueil événementiel et le vrai
 logo LabEvents utilisé dans le header et le footer.
 
-**Lot 5C en cours — PR #12 :** `/sites-internet` reçoit sa finition visuelle
+**Lot 5C.1 en cours — PR #12 :** `/sites-internet` reçoit ses corrections visuelles finales
 à partir des captures réelles de `salonemploi.nc` et de l'écosystème
 `nounou.nc`, sans modification de son périmètre éditorial validé.
 
@@ -651,7 +651,7 @@ ne pas les combler par une invention.
 
 ## P. Prochaines étapes
 
-1. terminer le Lot 5C ;
+1. terminer le Lot 5C.1 ;
 2. Lot 5D — `/realisations` ;
 3. recette visuelle finale de `/contact` ;
 4. finition globale du header et du footer ;

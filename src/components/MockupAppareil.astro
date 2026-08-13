@@ -1,0 +1,36 @@
+---
+/**
+ * Affiche un mockup composite finalisé à partir d'un châssis PNG fourni.
+ * Le composant ne dessine, ne recadre et ne repositionne aucun appareil.
+ */
+interface Props {
+  src: string;
+  alt: string;
+  largeur: number;
+  hauteur: number;
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  largeur,
+  hauteur,
+  loading = 'lazy',
+  fetchpriority,
+  class: classeSupplementaire = '',
+} = Astro.props;
+---
+
+<img
+  src={src}
+  alt={alt}
+  width={largeur}
+  height={hauteur}
+  loading={loading}
+  fetchpriority={fetchpriority}
+  decoding="async"
+  class:list={['block h-auto w-full', classeSupplementaire]}
+/>

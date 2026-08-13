@@ -72,13 +72,13 @@ de la V1.
 ### Accueil — hero retenu
 
 - Titre : **« Que pouvons-nous faire pour vous ? »**
-- Sous-titre : **« LabEvents conçoit et organise vos événements professionnels
-  et crée votre site internet, en Nouvelle-Calédonie. »**
+- Sous-titre : **« Deux expertises pour vos projets professionnels, en
+  Nouvelle-Calédonie. »**
 
-Les deux portes qui suivent :
+Le hero contient deux CTA directs :
 
-- **Événementiel** → « Organiser un événement »
-- **Sites internet** → « Créer votre site internet »
+- **Organiser un événement** → `/evenementiel`
+- **Créer un site internet** → `/sites-internet`
 
 Ne pas chercher à inventer une grande promesse abstraite commune aux deux
 métiers.
@@ -124,6 +124,16 @@ Le détail éditorial appliqué est consigné dans
 `docs/decisions/2026-08-12-lot2-sites-internet.md` et centralisé dans
 `src/data/messages.ts`. Aucun configurateur, prix, nombre de pages, catalogue
 de modules ou promesse SEO n'est ajouté.
+
+### Page `/sites-internet` — validations complémentaires du Lot 5C
+
+Philippe a explicitement validé le 13 août 2026 l'affichage des quatre
+prestations suivantes et de leurs formulations centralisées dans
+`src/data/messages.ts` : **Design responsive**, **Texte & contenus**,
+**Référencement local** et **Performance**. Le bloc « Ce que vous obtenez » et
+ses trois formulations y sont également validés. « Référencement local » ne
+constitue pas une promesse de position ou de classement Google, qui reste
+interdite.
 
 ### CTA
 
@@ -209,6 +219,38 @@ Ne jamais extraire une photo ou une capture de la planche graphique pour
 l'utiliser comme preuve. Si le fichier original réel correspondant n'existe
 pas, l'image est **non autorisée en production**.
 
+### Assets réels disponibles au 13 août 2026
+
+Les assets suivants ont été fournis et sont autorisés en production :
+
+- visuel d'accueil événementiel :
+  `public/images/accueil/accueil-evenementiel.jpg` ;
+- photos événementielles réelles : `public/images/evenementiel/` ;
+- captures Web réelles :
+  - `public/images/web/salonemploi-desktop.png` ;
+  - `public/images/web/salonemploi-mobile.png` ;
+  - `public/images/web/nounou-home.png` ;
+  - `public/images/web/nounou-devoirs.png` ;
+  - `public/images/web/nounou-pet.png` ;
+  - `public/images/web/nounou-gardiennage.png` ;
+  - `public/images/web/nounou-services.png`.
+
+Les mockups définitifs fournis et leurs compositions validées sont conservés
+dans `public/images/web/mockups/` :
+
+- `mockup-portable-telephone-source.png` — source portable noir + téléphone ;
+- `mockup-ecran-bureau-telephone-source.png` — source écran argenté + téléphone ;
+- `salonemploi-portable-telephone.png` — composite avec les captures réelles
+  desktop et mobile de `salonemploi.nc` ;
+- `nounou-ecran-bureau-telephone.png` — composite avec la capture desktop et
+  une capture mobile réelle de `nounou.nc` ;
+- `nounou-mobile-390.png` — capture réelle de `nounou.nc` réalisée dans un
+  viewport mobile de 390 px pour le téléphone du composite.
+
+`salonemploi-mobile.png` est la capture validée montrant : **« DEUX UNIVERS
+COMPLÉMENTAIRES / UNIVERS 1 / HALL EMPLOI »**. Les fichiers PNG sources sont
+conservés et leur contenu ne doit pas être modifié.
+
 ---
 
 ## F. Réalisations digitales connues
@@ -288,9 +330,9 @@ graphique validée :
 | Texte                  | `#2B2F33` | `--color-ink`         |
 | Blanc                  | `#FFFFFF` | `--color-paper`       |
 
-L'or `#D4A23A` est une **valeur définitive**, pas une valeur de travail : il
-n'y a plus de recalage à attendre sur un futur logo. La palette ne doit pas
-être modifiée autrement que par une décision explicite.
+L'or `#D4A23A` est une **valeur définitive**, pas une valeur de travail : le
+logo fourni ne remet pas en cause cet arbitrage. La palette ne doit pas être
+modifiée autrement que par une décision explicite.
 
 **À proscrire** : gradients violet/bleu façon produit IA · glassmorphism ·
 grosses formes 3D · ordinateurs flottants · robots · symbolique IA ·
@@ -303,10 +345,16 @@ lisibles : préférer un grand panneau visuel + un libellé séparé ou très
 lisible, plutôt qu'un long texte blanc superposé à une photo chargée. Sur
 mobile, les deux portes s'empilent proprement.
 
-**Header final prévu** : logo LabEvents + navigation (Accueil, Événementiel,
+**Header en place** : logo LabEvents + navigation (Accueil, Événementiel,
 Sites internet, Réalisations, Contact) + CTA « Parlons de votre projet ».
 Pas de « À propos ». Desktop : navigation horizontale sobre. Mobile :
 navigation compacte, accessible et réellement utilisable.
+
+**Logo LabEvents** : le vrai logo fourni par l'utilisateur est conservé dans
+`public/brand/labevents-logo.png`. Il est utilisé sans redessin ni
+interprétation dans le header et le footer via
+`src/components/MarqueLabEvents.astro`. Le favicon, les icônes navigateur et
+l'image Open Graph restent à produire séparément.
 
 **Barre de réassurance** : composant capable d'afficher « Appelez-nous —
 [vrai numéro] » et « Un interlocuteur local ». Le numéro validé au Lot 4 vient
@@ -469,6 +517,14 @@ desktop · grand desktop**. Points de rupture définis dans les tokens :
   sauf contradiction technique réelle et importante — auquel cas l'exposer
   explicitement plutôt que de trancher seul.
 
+**Vérification documentaire obligatoire.** À chaque nouveau développement ou
+lot, vérifier avant la finalisation de la PR si `CLAUDE.md` ou `README.md`
+contient une information devenue obsolète. Toute évolution de l'état des lots,
+des assets, des contenus validés, de l'architecture ou des prochaines étapes
+doit être documentée dans la même PR. Une PR de développement ne doit pas être
+considérée comme terminée tant que cette vérification documentaire n'a pas été
+faite.
+
 ---
 
 ## N. Découpage en lots
@@ -481,27 +537,36 @@ desktop · grand desktop**. Points de rupture définis dans les tokens :
 | **Lot 3**                     | `/realisations`                                    | ✅ fait    |
 | **Lot 4**                     | `/evenementiel` + `/contact`                       | ✅ fait    |
 | **Audit technique préalable** | Validation du socle avant les assets visuels       | ✅ fait    |
-| **Lot 5**                     | Production et intégration des assets visuels réels | à venir    |
+| **Lot 5A**                    | Intégration des photos événementielles réelles     | ✅ fait — PR #9 fusionnée  |
+| **Lot 5A.1**                  | Refonte visuelle de `/evenementiel`                | ✅ fait — PR #10 fusionnée |
+| **Lot 5B**                    | Refonte finale de la HP, captures Web et vrai logo | ✅ fait — PR #11 fusionnée |
+| **Lot 5C.3**                  | Correction finale et recette de `/sites-internet`   | ✅ fait — PR #12 à valider |
+| **Lot 5D**                    | Finition visuelle de `/realisations`               | à venir    |
 | **Lot 6**                     | Recette finale et préparation de la mise en ligne  | à venir    |
+
+### État actuel des pages
+
+- la homepage `/` est terminée ;
+- `/evenementiel` est terminée et validée sur desktop et mobile ;
+- `/contact` est fonctionnelle avec Web3Forms ;
+- `/sites-internet` est finalisée au Lot 5C.3 et attend la validation de la PR #12 ;
+- `/realisations` sera finalisée au Lot 5D avec les vraies captures.
 
 **Lot −1 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
 design tokens, polices auto-hébergées, couche données, SEO technique,
 accessibilité de base, arborescence d'assets, documentation.
 
 **Lot 1 livré :** design system finalisé (échelle typographique fluide pour
-les grands titres, proportions de panneaux, filet de focus), bloc-marque
-typographique, en-tête définitif avec navigation mobile accessible, pied de
-page, véritable page d'accueil `/` en neuf sections, composants réutilisables
+les grands titres, proportions de panneaux, filet de focus), composant de
+marque, en-tête définitif avec navigation mobile accessible, pied de page,
+véritable page d'accueil `/` en neuf sections, composants réutilisables
 (`Section`, `Bouton`, `MarqueLabEvents`, `PorteActivite`, `PanneauVisuel`,
 `MiseEnAvantRealisation`, `EcosystemeNounou`, `EnTeteSite`, `PiedDePage`),
 métadonnées SEO de l'accueil. La page de vérification technique temporaire a
 été **intégralement remplacée**.
 
-Aucun asset réel n'ayant été fourni, l'accueil ne contient **aucune photo,
-aucune capture et aucune coordonnée** : les emplacements visuels des deux
-portes sont des **panneaux graphiques neutres** assumés comme tels, et les
-réalisations sont présentées de façon **éditoriale**, limitée aux faits déjà
-validés en section F. Les études de cas restent `publiable: false`.
+La homepage a ensuite été finalisée au Lot 5B avec le vrai logo, les photos et
+les captures Web réelles décrites en section E.
 
 **Lot 2 livré :** page commerciale `/sites-internet`, structurée autour de la
 promesse « Votre site internet. On s'occupe de tout. », du processus en quatre
@@ -509,23 +574,25 @@ promesse « Votre site internet. On s'occupe de tout. », du processus en quatre
 des cibles retenues, du traitement séparé du sur-mesure et des CTA vers le
 contact. Les textes vivent dans `src/data/messages.ts` et les métadonnées dans
 `src/data/seo.ts`. Aucun prix, configurateur, volume de pages, promesse SEO,
-fonctionnalité métier inventée, photo ou capture n'est ajouté.
+fonctionnalité métier inventée n'est ajouté. Le Lot 5C a complété cette base
+éditoriale par une composition visuelle utilisant les captures Web réelles.
 
 **Lot 3 livré :** page centrale de preuve `/realisations`, avec son hero,
 la présentation factuelle de `salonemploi.nc`, l'écosystème de cinq sites
 `nounou.nc` et le CTA final vers `/contact`. La page consomme exclusivement
 `src/data/realisations.ts` et applique les garde-fous `publiable` et
-`capturesValidees`. Les contenus besoin / réalisé / résultat et les captures
-restent donc absents de l'interface tant qu'ils ne sont pas validés. Le détail
-du périmètre est consigné dans
+`capturesValidees`. Les contenus besoin / réalisé / résultat restent absents
+tant qu'ils ne sont pas validés. Sa finition visuelle avec les vraies captures
+disponibles relève du Lot 5D. Le détail du périmètre est consigné dans
 `docs/decisions/2026-08-12-lot3-realisations.md`.
 
 **Lot 4 livré :** page `/evenementiel` avec le positionnement BtoB / BtoC,
-les huit réalisations événementielles validées et des emplacements neutres
-pour leurs futures photos réelles ; page `/contact` donnant la priorité au
-téléphone et à l’e-mail validés, puis formulaire statique Web3Forms avec
-validation native, états accessibles, honeypot et gestion d’erreur. La clé
-publique est fournie uniquement par `PUBLIC_WEB3FORMS_ACCESS_KEY`.
+les huit réalisations événementielles validées ; page `/contact` donnant la
+priorité au téléphone et à l’e-mail validés, puis formulaire statique
+Web3Forms avec validation native, états accessibles, honeypot et gestion
+d’erreur. La clé publique est fournie uniquement par
+`PUBLIC_WEB3FORMS_ACCESS_KEY`. Les photos réelles ont été intégrées au Lot 5A
+et la refonte visuelle de `/evenementiel` a été validée au Lot 5A.1.
 
 **Audit technique préalable validé :** recette technique et de cohérence des cinq routes V1,
 contrôle du build statique, du sitemap, de `robots.txt`, des métadonnées, des
@@ -533,8 +600,28 @@ liens internes, des formulaires et des garde-fous factuels. La documentation
 de production précise désormais que `PUBLIC_WEB3FORMS_ACCESS_KEY` doit être
 configurée dans l'environnement d'hébergement avant le build, sans jamais être
 versionnée. Les réserves relatives aux vrais assets et aux études de cas
-restent ouvertes jusqu'aux Lots 5 et 6. Le verdict de cette étape est :
-**socle V1 techniquement validé avant intégration des assets visuels**.
+étaient alors encore ouvertes. Le verdict de cette étape était : **socle V1
+techniquement validé avant intégration des assets visuels**.
+
+**Lot 5A terminé — PR #9 fusionnée :** les photos événementielles réelles ont
+été intégrées depuis `public/images/evenementiel/`.
+
+**Lot 5A.1 terminé — PR #10 fusionnée :** `/evenementiel` a été refondue puis
+validée sur desktop et mobile.
+
+**Lot 5B terminé — PR #11 fusionnée :** la homepage a reçu sa finition
+visuelle, les vraies captures Web, le visuel d'accueil événementiel et le vrai
+logo LabEvents utilisé dans le header et le footer.
+
+**Lot 5C.3 terminé — PR #12 à valider :** `/sites-internet` utilise les deux
+mockups PNG définitifs fournis par Philippe. Seules les zones vertes de leurs
+écrans ont été remplacées par les captures réelles de `salonemploi.nc` et
+`nounou.nc`, sans redessin des appareils ni modification du périmètre
+éditorial validé. Le H1 mobile est séparé en deux groupes lisibles et la page
+a été recettée du hero au footer sur mobile et desktop.
+
+**Lot 5D à venir :** `/realisations` sera finalisée avec les vraies captures
+Web disponibles.
 
 ---
 
@@ -545,23 +632,18 @@ ne pas les combler par une invention.
 
 1. ~~**Planche graphique**~~ — **CLOS.** Le fichier est dans le dépôt à
    `docs/design/labevents-direction-graphique-v1.png` (voir section I).
-2. **Logo LabEvents** — **partiellement clos.** Décision : aucun logo
-   actualisé n'est attendu, la proposition graphique de la planche fait
-   référence pour la V1. En conséquence, **la palette est figée** (section H)
-   et le Lot 1 n'est plus bloqué par cette attente.
-   **Bloc-marque : clos au Lot 1.** Le wordmark est **typographique, en
-   HTML/CSS** (`src/components/MarqueLabEvents.astro`) — « LAB » en bleu nuit,
-   « EVENTS » en or, Space Grotesk SemiBold. Aucune image de logo n'est
-   générée, aucun symbole graphique n'est inventé.
-   **Reste ouvert :** les fichiers dérivés — favicon, icônes, image Open
-   Graph. Aucun n'a été produit : les fabriquer supposerait d'inventer un
-   visuel de marque. `seoDefauts.imageParDefaut` vaut toujours `null` et
-   aucune balise `og:image` n'est émise.
+2. **Logo LabEvents** — **CLOS au Lot 5B.** Le vrai logo fourni par
+   l'utilisateur est conservé dans `public/brand/labevents-logo.png` et rendu
+   dans le header et le footer via `MarqueLabEvents.astro`, sans redessin ni
+   interprétation. **Restent ouverts uniquement :** le favicon, les icônes
+   navigateur et l'image Open Graph. `seoDefauts.imageParDefaut` vaut toujours
+   `null` et aucune balise `og:image` n'est émise.
 3. **Coordonnées** — le téléphone `77 36 47` et l’e-mail
    `contact@labevents.nc` ont été fournis au Lot 4. L’adresse et les horaires
    restent inconnus et valent `null` dans `src/data/contact.ts`.
-4. **Photos événementiel** et **captures des sites** — aucun asset réel
-   fourni. `public/images/` et `public/captures/` sont vides.
+4. ~~**Photos événementiel et captures des sites**~~ — **CLOS aux Lots 5A et
+   5B.** Les assets réels disponibles sont inventoriés en section E. Leur
+   intégration finale dans `/realisations` relève du Lot 5D.
 5. **Contenu des études de cas** `salonemploi.nc` et `nounou.nc` — à rédiger
    après vérification sur les sites réels ; `publiable: false` en attendant.
 6. ~~**Formulaire de contact**~~ — **CLOS au Lot 4.** Envoi côté client via
@@ -578,3 +660,15 @@ ne pas les combler par une invention.
    de focus. Le Lot 1 lui adjoint un filet bleu nuit (`--shadow-focus`) pour
    rester lisible sur fond clair, **sans modifier la palette**. Si un jour
    une couleur de focus dédiée est souhaitée, c'est une décision explicite.
+
+---
+
+## P. Prochaines étapes
+
+1. Lot 5D — `/realisations` ;
+2. recette visuelle finale de `/contact` ;
+3. finition globale du header et du footer ;
+4. favicon et Open Graph ;
+5. resynchronisation finale de `README.md` si nécessaire ;
+6. Lot 6 — recette globale ;
+7. préparation de la mise en production.

@@ -79,13 +79,28 @@ export const offreWeb = {
  * Le contenu reste volontairement simple : il explique le problème client,
  * le déroulé, la prise en charge par LabEvents et les limites de l'engagement
  * d'une semaine. Aucun prix, aucune formule, aucun volume de pages, aucune
- * promesse de référencement ni fonctionnalité métier non validée.
+ * promesse de classement ni fonctionnalité métier non validée.
  */
 export const pageSitesInternet = {
   surtitre: 'Sites internet',
   probleme: {
     titre: 'Vous savez qu’il faudrait être présent sur internet.',
-    texte: 'Vous n’avez pas le temps de vous en occuper.',
+    texte:
+      'Mais entre le manque de temps, la complexité technique et les solutions impersonnelles, c’est souvent repoussé.',
+    reperes: [
+      {
+        titre: 'Vous n’avez pas le temps',
+        texte: 'Votre activité prend toute votre énergie.',
+      },
+      {
+        titre: 'C’est parfois compliqué',
+        texte: 'Difficile de s’y retrouver et de savoir par où commencer.',
+      },
+      {
+        titre: 'Vous cherchez du local et du simple',
+        texte: 'Une solution claire, humaine et adaptée à la Nouvelle-Calédonie.',
+      },
+    ],
   },
   priseEnCharge: {
     titre: 'Vous nous expliquez votre activité. Nous nous occupons du site.',
@@ -109,6 +124,41 @@ export const pageSitesInternet = {
   cible: {
     titre: 'Une offre pensée pour les petites structures calédoniennes.',
     items: ['Artisans', 'TPE', 'Petits commerces', 'Indépendants'],
+  },
+  prestations: [
+    {
+      titre: 'Design responsive',
+      texte: 'Un site adapté à tous les écrans.',
+    },
+    {
+      titre: 'Texte & contenus',
+      texte: 'Des contenus clairs, structurés et travaillés avec vous.',
+    },
+    {
+      titre: 'Référencement local',
+      texte: 'Un site préparé pour être trouvé en Nouvelle-Calédonie.',
+    },
+    {
+      titre: 'Performance',
+      texte: 'Un site rapide, sécurisé et fiable.',
+    },
+  ],
+  obtention: {
+    titre: 'Ce que vous obtenez.',
+    items: [
+      {
+        titre: 'Site vitrine professionnel',
+        texte: 'Un site clair et adapté à votre activité.',
+      },
+      {
+        titre: 'Contenus accompagnés',
+        texte: 'Textes, images et structure préparés avec vous.',
+      },
+      {
+        titre: 'Interlocuteur local',
+        texte: 'Un contact unique pour suivre votre projet.',
+      },
+    ],
   },
   surMesure: {
     titre: 'Votre projet ne rentre pas dans une case ?',

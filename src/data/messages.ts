@@ -270,8 +270,8 @@ export const pageContact = {
   },
   reassurance: [
     {
-      titre: 'Un contact direct',
-      texte: 'Échangez avec un interlocuteur local au sujet de votre projet.',
+      titre: 'Un premier échange',
+      texte: 'Échangeons sur votre besoin et les prochaines étapes.',
       icone: 'direct',
     },
     {

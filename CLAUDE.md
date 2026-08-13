@@ -677,8 +677,8 @@ Le formulaire conserve Web3Forms, ses champs, ses attributs, sa validation
 native, son consentement, son honeypot, ses retours accessibles et sa logique
 d’envoi. Les trois repères inférieurs retenus sont :
 
-- « Un contact direct » — « Échangez avec un interlocuteur local au sujet de
-  votre projet. » ;
+- « Un premier échange » — « Échangeons sur votre besoin et les prochaines
+  étapes. » ;
 - « Une demande orientée » — « Précisez s’il s’agit d’un événement,
   d’un site internet ou d’une autre demande. » ;
 - « Vos informations » — « Les informations transmises sont utilisées

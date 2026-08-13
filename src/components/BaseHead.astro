@@ -31,7 +31,10 @@ const {
 } = Astro.props;
 
 const titreComplet = titreImpose ?? construireTitre(titre);
-const canonique = new URL(Astro.url.pathname, Astro.site ?? site.url);
+const cheminCanonique = Astro.url.pathname === '/'
+  ? '/'
+  : Astro.url.pathname.replace(/\/$/, '');
+const canonique = new URL(cheminCanonique, Astro.site ?? site.url);
 const imageAbsolue = image ? new URL(image, Astro.site ?? site.url).href : null;
 ---
 
@@ -39,7 +42,11 @@ const imageAbsolue = image ? new URL(image, Astro.site ?? site.url).href : null;
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{titreComplet}</title>
 <meta name="description" content={description} />
+<meta name="theme-color" content="#0F1B2D" />
 <link rel="canonical" href={canonique.href} />
+<link rel="icon" href="/brand/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/brand/favicon-32.png" type="image/png" sizes="32x32" />
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" sizes="180x180" />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 
 <meta property="og:type" content="website" />
@@ -48,12 +55,19 @@ const imageAbsolue = image ? new URL(image, Astro.site ?? site.url).href : null;
 <meta property="og:title" content={titreComplet} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonique.href} />
-{imageAbsolue && <meta property="og:image" content={imageAbsolue} />}
+{imageAbsolue && (
+  <>
+    <meta property="og:image" content={imageAbsolue} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="LabEvents — Événementiel et sites internet en Nouvelle-Calédonie" />
+  </>
+)}
 
-<meta name="twitter:card" content={imageAbsolue ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={titreComplet} />
 <meta name="twitter:description" content={description} />
+{imageAbsolue && <meta name="twitter:image" content={imageAbsolue} />}
+{imageAbsolue && <meta name="twitter:image:alt" content="LabEvents — Événementiel et sites internet en Nouvelle-Calédonie" />}
 
 <meta name="generator" content={Astro.generator} />
-
-{/* TODO(assets): favicon et icônes à produire depuis le vrai logo LabEvents. */}

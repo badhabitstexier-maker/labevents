@@ -25,7 +25,9 @@ const annee = new Date().getFullYear();
   <div class="mx-auto max-w-page px-gutter py-6 sm:py-8 lg:px-10 lg:py-10">
     <div class="grid gap-5 md:grid-cols-12 md:gap-8">
       <div class="md:col-span-5">
-        <MarqueLabEvents taille="md" />
+        <a href="/" class="inline-flex min-h-11 items-center" aria-label={`${site.name} — accueil`}>
+          <MarqueLabEvents taille="md" />
+        </a>
         <p class="mt-2 max-w-texte text-xs text-ink-muted">
           Événementiel et création de sites internet, en {site.region}.
         </p>

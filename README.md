@@ -6,14 +6,15 @@ Le site présente deux activités distinctes : l'**événementiel** et la
 **création de sites internet**. Il doit expliquer simplement, orienter
 rapidement, montrer des preuves réelles et faciliter la prise de contact.
 
-> **État du projet : Lot 5E fusionné, Lot 6A implémenté dans une PR brouillon distincte.**
+> **État du projet : Lot 6A fusionné, Lot 6B implémenté avec favicon validé.**
 > Les fondations techniques, le design system, l'en-tête, le pied de page,
 > l'accueil `/`, les pages `/sites-internet`, `/realisations`,
 > `/evenementiel` et `/contact` sont en place. Le formulaire de contact
 > statique utilise toujours Web3Forms et requiert une clé publique
-> d'environnement. Les assets visuels réels sont intégrés. Le Lot 6A apporte
-> quatre corrections d’harmonisation ciblées avant la suite de la recette
-> globale et la préparation de la mise en ligne.
+> d'environnement. Les assets visuels réels sont intégrés. Le Lot 6B finalise
+> les métadonnées, l'image Open Graph, les liens, l'accessibilité élémentaire
+> et des optimisations d'images ciblées. Le Lot 6B.1 intègre le favicon validé,
+> composé uniquement de la lettre « L » exacte du logo sur fond blanc.
 
 ---
 
@@ -156,12 +157,16 @@ captures Web et les deux composites de mockups. La homepage, les pages
 `/evenementiel`, `/sites-internet` et `/realisations` utilisent désormais ces
 visuels. Les chemins et validations exacts sont inventoriés dans `CLAUDE.md`.
 
-Le favicon et le visuel Open Graph restent à produire séparément. Aucun asset
-de remplacement n'est généré pour combler leur absence.
+Le visuel Open Graph par défaut est produit depuis le vrai logo et l'identité
+figée, sans génération IA. Le favicon validé est décliné exclusivement depuis
+la lettre « L » marine exacte du mot-symbole, sur fond blanc, sans redessin ni
+monogramme. Les formats SVG, PNG 32 × 32 et Apple Touch Icon 180 × 180 vivent
+dans `public/brand/` ; leur planche de contrôle est conservée dans
+`docs/audits/lot-6b/`.
 
-Rien n'y est généré, et aucune image ne doit être extraite de la planche
-graphique pour servir de preuve : les visuels de la planche sont des éléments
-de démonstration.
+Aucune preuve visuelle n'y est inventée, et aucune image ne doit être extraite
+de la planche graphique pour servir de preuve : les visuels de la planche sont
+des éléments de démonstration.
 
 La planche graphique validée est versionnée à
 `docs/design/labevents-direction-graphique-v1.png`. C'est la référence

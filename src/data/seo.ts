@@ -16,10 +16,10 @@ export const seoDefauts = {
   descriptionParDefaut: accueil.sousTitre,
   /**
    * Image Open Graph par défaut.
-   * `null` tant qu'un vrai visuel LabEvents n'a pas été fourni : aucune image
-   * générée ou empruntée ne doit être utilisée.
+   * Composition produite au Lot 6B exclusivement depuis le vrai logo et les
+   * éléments d'identité validés, sans image générée ni empruntée.
    */
-  imageParDefaut: null as string | null, // TODO(assets): visuel OG réel
+  imageParDefaut: '/brand/labevents-open-graph.png',
 } as const;
 
 /**
@@ -30,37 +30,37 @@ export const seoDefauts = {
  * superlatif, aucun chiffre.
  */
 export const seoAccueil = {
-  titre: 'LabEvents — Événementiel & sites internet en Nouvelle-Calédonie',
+  titre: 'LabEvents | Événementiel et sites web en Nouvelle-Calédonie',
   description:
-    'LabEvents conçoit et organise vos événements professionnels et crée votre site internet en Nouvelle-Calédonie.',
+    'LabEvents conçoit vos événements et crée votre site internet en Nouvelle-Calédonie, avec un accompagnement local de la conception à la mise en ligne.',
 } as const;
 
 /** Métadonnées de la page commerciale Sites internet — Lot 2. */
 export const seoSitesInternet = {
-  titre: 'Création de sites internet en Nouvelle-Calédonie — LabEvents',
+  titre: 'Création de sites internet en Nouvelle-Calédonie | LabEvents',
   description:
-    'LabEvents conçoit votre site internet en Nouvelle-Calédonie. Pour un projet standard, délai d’une semaine dès réception des informations nécessaires.',
+    'LabEvents crée des sites internet clairs et adaptés aux artisans, TPE et commerces de Nouvelle-Calédonie. Votre site standard prêt en une semaine.',
 } as const;
 
 /** Métadonnées de la page centrale de preuve — Lot 3. */
 export const seoRealisations = {
-  titre: 'Réalisations — LabEvents',
+  titre: 'Réalisations événementielles et web | LabEvents',
   description:
-    'Découvrez les réalisations digitales de LabEvents en Nouvelle-Calédonie : salonemploi.nc et l’écosystème de cinq sites nounou.nc.',
+    'Découvrez les événements, sites internet et plateformes conçus par LabEvents en Nouvelle-Calédonie, dont salonemploi.nc et l’écosystème nounou.nc.',
 } as const;
 
 /** Métadonnées de la page Événementiel — Lot 4. */
 export const seoEvenementiel = {
-  titre: 'Événementiel — LabEvents',
+  titre: 'Organisation d’événements en Nouvelle-Calédonie | LabEvents',
   description:
-    'LabEvents conçoit et organise des événements BtoB et BtoC en Nouvelle-Calédonie, de la préparation à la mise en œuvre.',
+    'LabEvents conçoit et organise salons, forums et événements professionnels en Nouvelle-Calédonie, de la stratégie à la coordination opérationnelle.',
 } as const;
 
 /** Métadonnées de la page Contact — Lot 4. */
 export const seoContact = {
-  titre: 'Contact — LabEvents',
+  titre: 'Contacter LabEvents | Nouvelle-Calédonie',
   description:
-    'Contactez LabEvents pour échanger sur votre projet événementiel ou votre site internet.',
+    'Parlez-nous de votre projet événementiel ou de votre site internet. Contactez LabEvents par formulaire, téléphone ou e-mail.',
 } as const;
 
 export function construireTitre(titrePage?: string): string {

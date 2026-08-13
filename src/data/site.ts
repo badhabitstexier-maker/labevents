@@ -10,7 +10,8 @@ export const site = {
   domain: 'labevents.nc',
   url: 'https://labevents.nc',
   lang: 'fr',
-  locale: 'fr_NC',
+  /** Locale Open Graph demandée pour les aperçus sociaux. */
+  locale: 'fr_FR',
   /** Zone d'implantation. Ne PAS en déduire une zone d'intervention. */
   region: 'Nouvelle-Calédonie',
 } as const;

@@ -17,11 +17,11 @@ import { seoAccueil } from '@data/seo';
 const salonEmploi = realisationParId('salonemploi-nc');
 
 const sitesNounou = [
-  { ...ecosystemeNounou.sites[0], capture: '/images/web/nounou-home.png' },
-  { ...ecosystemeNounou.sites[1], capture: '/images/web/nounou-devoirs.png' },
-  { ...ecosystemeNounou.sites[2], capture: '/images/web/nounou-pet.png' },
-  { ...ecosystemeNounou.sites[3], capture: '/images/web/nounou-gardiennage.png' },
-  { ...ecosystemeNounou.sites[4], capture: '/images/web/nounou-services.png' },
+  { ...ecosystemeNounou.sites[0], capture: '/images/web/optimized/nounou-home.png', largeur: 960, hauteur: 582 },
+  { ...ecosystemeNounou.sites[1], capture: '/images/web/optimized/nounou-devoirs.png', largeur: 960, hauteur: 577 },
+  { ...ecosystemeNounou.sites[2], capture: '/images/web/optimized/nounou-pet.png', largeur: 960, hauteur: 582 },
+  { ...ecosystemeNounou.sites[3], capture: '/images/web/optimized/nounou-gardiennage.png', largeur: 960, hauteur: 584 },
+  { ...ecosystemeNounou.sites[4], capture: '/images/web/optimized/nounou-services.png', largeur: 960, hauteur: 504 },
 ] as const;
 ---
 
@@ -163,7 +163,7 @@ const sitesNounou = [
                 <span class="flex h-4 items-center gap-1 border-b border-line bg-paper-cool px-2" aria-hidden="true">
                   <span class="size-1 rounded-full bg-line-strong"></span><span class="size-1 rounded-full bg-line-strong"></span><span class="size-1 rounded-full bg-line-strong"></span>
                 </span>
-                <img src={site.capture} alt={`Capture de la page d’accueil de ${site.label}`} width="2744" height="1662" loading="lazy" decoding="async" class="aspect-panneau-large w-full object-cover object-top" />
+                <img src={site.capture} alt={`Capture de la page d’accueil de ${site.label}`} width={site.largeur} height={site.hauteur} loading="lazy" decoding="async" class="aspect-panneau-large w-full object-cover object-top" />
               </div>
               <span class="mt-3 block text-2xs font-medium break-words text-ink-strong underline decoration-line underline-offset-4 transition-colors group-hover:decoration-gold-500">
                 {site.label}<span class="sr-only"> — nouvelle fenêtre</span>

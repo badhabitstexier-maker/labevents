@@ -381,8 +381,10 @@ navigation compacte, accessible et réellement utilisable.
 **Logo LabEvents** : le vrai logo fourni par l'utilisateur est conservé dans
 `public/brand/labevents-logo.png`. Il est utilisé sans redessin ni
 interprétation dans le header et le footer via
-`src/components/MarqueLabEvents.astro`. Le favicon, les icônes navigateur et
-l'image Open Graph restent à produire séparément.
+`src/components/MarqueLabEvents.astro`. L'image Open Graph par défaut a été
+produite au Lot 6B depuis ce logo, sans génération IA. Le favicon reste soumis
+à arbitrage : le mot-symbole ne comporte pas de pictogramme autonome lisible à
+16 ou 32 px, et aucun monogramme ne doit être inventé.
 
 **Barre de réassurance** : composant capable d'afficher « Appelez-nous —
 [vrai numéro] » et « Un interlocuteur local ». Le numéro validé au Lot 4 vient
@@ -578,7 +580,8 @@ faite.
 | **Lot 5D**                    | Finition visuelle de `/realisations`               | ✅ fait — PR #14 fusionnée |
 | **Lot 5D.1**                  | Rapprochement fidèle de la maquette `/realisations` | ✅ fait — PR #14 fusionnée |
 | **Lot 5E**                    | Refonte visuelle finale de `/contact`              | ✅ fait — PR #15 fusionnée |
-| **Lot 6A**                    | Harmonisation visuelle transversale                | ✅ implémenté — PR brouillon à valider |
+| **Lot 6A**                    | Harmonisation visuelle transversale                | ✅ fait — PR #16 fusionnée |
+| **Lot 6B**                    | SEO, liens, accessibilité et performances          | 🟡 implémenté hors favicon — arbitrage requis |
 | **Lot 6**                     | Recette finale et préparation de la mise en ligne  | à venir    |
 
 ### État actuel des pages
@@ -695,10 +698,20 @@ La branche du Lot 5E a été resynchronisée avec le `main` contenant la PR #14.
 Les apports documentaires et éditoriaux des deux lots sont conservés et la
 recette complète a été rejouée avant la fusion de la PR #15.
 
-**Lot 6A implémenté — PR brouillon à valider :** quatre corrections ciblées
+**Lot 6A terminé — PR #16 fusionnée :** quatre corrections ciblées
 harmonisent les hauteurs des boutons et des héros de `/realisations`,
 `/contact`, `/sites-internet` et `/evenementiel`, sans refonte générale ni
 modification de contenu.
+
+**Lot 6B implémenté hors favicon — arbitrage requis :** les métadonnées SEO
+validées, URL canoniques, cartes Open Graph/Twitter, `theme-color`,
+`robots.txt` et `sitemap.xml` couvrent les cinq routes V1. Le visuel Open
+Graph 1200 × 630 est produit depuis le vrai logo et l'identité figée. Six
+dérivés PNG ciblés réduisent le poids des captures rendues en vignette tout en
+conservant les originaux validés, les cadrages et les compositions. L'audit
+détaillé est consigné dans `docs/audits/lot-6b/README.md`. Aucun favicon n'est
+activé tant qu'un symbole existant n'est pas fourni ou qu'une solution n'est
+pas explicitement validée.
 
 ---
 
@@ -712,9 +725,10 @@ ne pas les combler par une invention.
 2. **Logo LabEvents** — **CLOS au Lot 5B.** Le vrai logo fourni par
    l'utilisateur est conservé dans `public/brand/labevents-logo.png` et rendu
    dans le header et le footer via `MarqueLabEvents.astro`, sans redessin ni
-   interprétation. **Restent ouverts uniquement :** le favicon, les icônes
-   navigateur et l'image Open Graph. `seoDefauts.imageParDefaut` vaut toujours
-   `null` et aucune balise `og:image` n'est émise.
+   interprétation. **L'image Open Graph est close au Lot 6B** et référencée par
+   défaut. **Restent ouverts :** le favicon et les icônes navigateur. Le logo
+   horizontal ne contient pas de symbole autonome exploitable à petite taille ;
+   ne pas inventer de monogramme sans validation explicite.
 3. **Coordonnées** — le téléphone `77 36 47` et l’e-mail
    `contact@labevents.nc` ont été fournis au Lot 4. L’adresse et les horaires
    restent inconnus et valent `null` dans `src/data/contact.ts`.
@@ -743,8 +757,7 @@ ne pas les combler par une invention.
 
 ## P. Prochaines étapes
 
-1. validation de la PR brouillon du Lot 6A ;
-2. finition globale du header et du footer ;
-3. favicon et Open Graph ;
-4. suite du Lot 6 — recette globale ;
-5. préparation de la mise en production.
+1. arbitrage du favicon du Lot 6B ;
+2. validation de la PR brouillon du Lot 6B ;
+3. suite du Lot 6 — recette globale ;
+4. préparation de la mise en production.

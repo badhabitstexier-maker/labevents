@@ -28,12 +28,12 @@ export const ctaPrincipal = {
 } as const;
 
 /**
- * CTA secondaire. En V1 il mène vers le formulaire de contact simple.
- * Ce n'est PAS un configurateur ni un cahier des charges automatisé.
+ * CTA secondaire. En V1 il mène directement à la section du formulaire
+ * complet de la page Contact.
  */
 export const ctaSecondaire = {
-  label: 'Commencer en ligne',
-  href: '/contact',
+  label: 'Décrire mon projet',
+  href: '/contact#formulaire-contact',
 } as const;
 
 /** Accès directs aux deux activités depuis le hero de l'accueil. */

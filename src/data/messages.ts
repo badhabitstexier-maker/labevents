@@ -55,15 +55,14 @@ export const sectionsAccueil = {
       'Nous accompagnons les entreprises et les organisations du territoire, de la conception à la mise en œuvre.',
   },
   contact: {
-    titre: 'Parlons de votre projet.',
-    texte:
-      'Un événement à organiser, un site à créer ? Le plus simple, c’est d’en parler.',
+    titre: 'Un projet à concrétiser ?',
+    texte: 'Événement ou site internet, le plus simple, c’est d’en parler.',
   },
 } as const;
 
 /** Positionnement de l'offre de création de sites internet. */
 export const offreWeb = {
-  promesse: 'Votre site internet. On s’occupe de tout.',
+  promesse: 'Votre site internet, on s’occupe de tout.',
   accompagnement: 'Vous connaissez votre métier. Nous nous occupons du web.',
   /**
    * Engagement de délai. S'entend pour un projet standard disposant des

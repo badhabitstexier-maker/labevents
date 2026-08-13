@@ -21,7 +21,7 @@ export const pageEvenementiel = {
     surtitre: 'Événementiel',
     titre: 'Des événements conçus pour créer des rencontres.',
     texte:
-      'LabEvents conçoit et organise des événements BtoB et BtoC en Nouvelle-Calédonie, de la préparation à la mise en œuvre.',
+      'LabEvents conçoit et organise des événements BtoB et BtoC sur l’ensemble du territoire, de leur conception à leur mise en œuvre, en passant par leur préparation.',
     cta: 'Parlons de votre événement',
   },
   positionnement: {

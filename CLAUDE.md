@@ -541,7 +541,7 @@ faite.
 | **Lot 5A.1**                  | Refonte visuelle de `/evenementiel`                | ✅ fait — PR #10 fusionnée |
 | **Lot 5B**                    | Refonte finale de la HP, captures Web et vrai logo | ✅ fait — PR #11 fusionnée |
 | **Lot 5C.3**                  | Correction finale et recette de `/sites-internet`   | ✅ fait — PR #12 fusionnée |
-| **Lot 5D**                    | Finition visuelle de `/realisations`               | ✅ fait — PR brouillon à valider |
+| **Lot 5D**                    | Finition visuelle de `/realisations`               | ✅ fait — PR #14 à valider |
 | **Lot 6**                     | Recette finale et préparation de la mise en ligne  | à venir    |
 
 ### État actuel des pages
@@ -551,7 +551,7 @@ faite.
 - `/contact` est fonctionnelle avec Web3Forms ;
 - `/sites-internet` est finalisée au Lot 5C.3 ;
 - `/realisations` est finalisée au Lot 5D avec les vraies captures et le
-  mockup validé de `salonemploi.nc` ; la PR du lot reste à valider.
+  mockup validé de `salonemploi.nc` ; la PR #14 reste à valider.
 
 **Lot −1 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
 design tokens, polices auto-hébergées, couche données, SEO technique,
@@ -621,7 +621,7 @@ mockups PNG définitifs fournis par Philippe. Seules les zones vertes de leurs
 éditorial validé. Le H1 mobile est séparé en deux groupes lisibles et la page
 a été recettée du hero au footer sur mobile et desktop.
 
-**Lot 5D terminé — PR brouillon à valider :** `/realisations` reprend la
+**Lot 5D terminé — PR #14 à valider :** `/realisations` reprend la
 composition éditoriale finale avec son hero en deux colonnes, son bandeau
 chaud, le mockup validé
 `/images/web/mockups/salonemploi-portable-telephone.png`, les cinq captures
@@ -672,7 +672,7 @@ ne pas les combler par une invention.
 
 ## P. Prochaines étapes
 
-1. validation de la PR du Lot 5D ;
+1. validation de la PR #14 du Lot 5D ;
 2. recette visuelle finale de `/contact` ;
 3. finition globale du header et du footer ;
 4. favicon et Open Graph ;

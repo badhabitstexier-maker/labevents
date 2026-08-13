@@ -6,15 +6,14 @@ Le site présente deux activités distinctes : l'**événementiel** et la
 **création de sites internet**. Il doit expliquer simplement, orienter
 rapidement, montrer des preuves réelles et faciliter la prise de contact.
 
-> **État du projet : Lot 5D fusionné, Lot 5E implémenté dans une PR brouillon distincte.**
+> **État du projet : Lot 5E fusionné, Lot 6A implémenté dans une PR brouillon distincte.**
 > Les fondations techniques, le design system, l'en-tête, le pied de page,
 > l'accueil `/`, les pages `/sites-internet`, `/realisations`,
 > `/evenementiel` et `/contact` sont en place. Le formulaire de contact
 > statique utilise toujours Web3Forms et requiert une clé publique
-> d'environnement. Les assets visuels réels sont intégrés et la branche
-> Contact est resynchronisée avec le `main` contenant la PR #14. Le Lot 6
-> assurera ensuite la recette globale et la préparation de la mise en ligne
-> après validation du Lot 5E.
+> d'environnement. Les assets visuels réels sont intégrés. Le Lot 6A apporte
+> quatre corrections d’harmonisation ciblées avant la suite de la recette
+> globale et la préparation de la mise en ligne.
 
 ---
 

@@ -4,6 +4,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Section from '@components/Section.astro';
 import Bouton from '@components/Bouton.astro';
 import BarreReassurance from '@components/BarreReassurance.astro';
+import MockupAppareil from '@components/MockupAppareil.astro';
 import {
   ctaAccueilEvenementiel,
   ctaAccueilSitesInternet,
@@ -64,7 +65,7 @@ const sitesNounou = [
   <Section
     rythme="compact"
     aria-labelledby="titre-expertises"
-    class="[&>div]:pt-5 [&>div]:pb-10 lg:[&>div]:pt-6 lg:[&>div]:pb-14"
+    class="[&>div]:pt-5 [&>div]:pb-6 lg:[&>div]:pt-6 lg:[&>div]:pb-8"
   >
     <h2 id="titre-expertises" class="sr-only">Nos services et une réalisation mise en avant</h2>
     <div class="grid gap-8 lg:grid-cols-12 lg:gap-5">
@@ -91,19 +92,14 @@ const sitesNounou = [
           </a>
 
           <a href="/sites-internet" class="group overflow-hidden rounded-md border border-line bg-paper transition-colors hover:border-line-strong">
-            <div class="relative aspect-panneau overflow-hidden bg-paper-warm p-4">
-              <div class="flex h-full flex-col overflow-hidden rounded-sm border border-line-strong bg-paper shadow-subtle">
-                <span class="block h-3 shrink-0 border-b border-line bg-paper-cool"></span>
-                <img
-                  src="/images/web/nounou-home.png"
-                  alt="Capture de la page d’accueil de nounou.nc"
-                  width="2742"
-                  height="1662"
-                  loading="lazy"
-                  decoding="async"
-                  class="min-h-0 w-full flex-1 object-cover object-top"
-                />
-              </div>
+            <div class="aspect-panneau overflow-hidden bg-paper">
+              <MockupAppareil
+                src="/images/web/mockups/nounou-ecran-bureau-telephone.png"
+                alt="Le site nounou.nc présenté sur un écran de bureau argenté et un téléphone"
+                largeur={1448}
+                hauteur={1086}
+                class="h-full object-contain"
+              />
             </div>
             <div class="px-5 py-5">
               <div class="flex items-center justify-between gap-4">
@@ -119,7 +115,7 @@ const sitesNounou = [
       {salonEmploi && (
         <article class="lg:col-span-7">
           <p class="mb-4 text-2xs font-semibold tracking-widest text-ink-strong uppercase">Réalisation digitale</p>
-          <div class="grid h-full overflow-hidden rounded-md border border-line bg-paper lg:grid-cols-12">
+          <div class="grid overflow-hidden rounded-md border border-line bg-paper lg:grid-cols-12">
             <div class="px-6 py-8 sm:px-8 lg:col-span-6 lg:flex lg:flex-col lg:justify-center">
               <h3 class="text-lg whitespace-nowrap">{salonEmploi.titre}</h3>
               <p class="mt-5 text-xs text-ink-muted">{salonEmploi.nature}</p>
@@ -135,14 +131,14 @@ const sitesNounou = [
                 </a>
               )}
             </div>
-            <div class="relative min-h-80 overflow-hidden bg-paper-warm p-6 sm:min-h-96 lg:col-span-6">
-              <div class="absolute top-12 right-7 left-7 overflow-hidden rounded-sm border border-line-strong bg-paper shadow-media">
-                <span class="block h-3 border-b border-line bg-paper-cool"></span>
-                <img src="/images/web/salonemploi-desktop.png" alt="Capture de la page d’accueil du site salonemploi.nc sur ordinateur" width="2736" height="1590" loading="lazy" decoding="async" />
-              </div>
-              <div class="absolute right-7 bottom-5 h-40 w-20 overflow-hidden rounded-lg border border-navy-900 bg-paper shadow-media sm:h-48 sm:w-24">
-                <img src="/images/web/salonemploi-mobile.png" alt="Capture de la page d’accueil du site salonemploi.nc sur mobile montrant les deux univers complémentaires et le Hall Emploi" width="390" height="849" loading="lazy" decoding="async" class="h-full w-full object-cover object-top" />
-              </div>
+            <div class="flex min-h-80 items-center overflow-hidden bg-paper sm:min-h-96 lg:col-span-6 lg:min-h-80">
+              <MockupAppareil
+                src="/images/web/mockups/salonemploi-portable-telephone.png"
+                alt="Le site salonemploi.nc présenté sur un ordinateur portable et un téléphone montrant les deux univers complémentaires et le Hall Emploi"
+                largeur={1448}
+                hauteur={1086}
+                class="object-contain"
+              />
             </div>
           </div>
         </article>
@@ -150,7 +146,7 @@ const sitesNounou = [
     </div>
   </Section>
 
-  <Section fond="warm" rythme="compact" aria-labelledby="titre-ecosysteme" class="[&>div]:py-12 lg:[&>div]:py-16">
+  <Section fond="warm" rythme="compact" aria-labelledby="titre-ecosysteme" class="[&>div]:pt-6 [&>div]:pb-12 lg:[&>div]:pt-8 lg:[&>div]:pb-16">
     <div class="rounded-md border border-line bg-paper px-5 py-7 sm:px-8 sm:py-9">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>

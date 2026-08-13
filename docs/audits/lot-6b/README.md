@@ -5,13 +5,34 @@ Date : 13 août 2026. Branche : `codex/lot-6b-finitions-techniques`.
 ## Statut
 
 Le périmètre SEO, Open Graph, liens, accessibilité élémentaire et performances
-est implémenté. Le lot n'est pas déclaré terminé : le favicon nécessite encore
-un arbitrage de Philippe. Le logo validé est un mot-symbole horizontal sans
-pictogramme autonome ; sa réduction fidèle devient illisible à 16 et 32 px.
-Aucun monogramme n'a été inventé et aucune balise favicon n'est activée.
+est implémenté. **Le favicon est validé et intégré au Lot 6B.1.** Philippe a
+autorisé une déclinaison fonctionnelle utilisant uniquement la lettre « L »
+marine exacte du mot-symbole existant, sur fond blanc.
 
-Prévisualisation préparée :
-`docs/audits/lot-6b/favicon-proposition-mot-symbole.png`.
+## Favicon validé et intégré
+
+- extraction raster exacte du premier composant du logo source, correspondant
+  à la lettre « L » : aucun tracé, redessin ou changement typographique ;
+- fond blanc et marges constantes ; aucun accent ajouté, afin de préserver la
+  lisibilité à 16 px ;
+- aucun monogramme « LE », ombre, dégradé ou effet ;
+- `public/brand/favicon.svg` : conteneur SVG fidèle embarquant l'extraction
+  raster exacte, sans vectorisation approximative ;
+- `public/brand/favicon-32.png` : fallback PNG 32 × 32 ;
+- `public/brand/apple-touch-icon.png` : Apple Touch Icon 180 × 180 ;
+- aucun `.ico` ajouté : SVG + PNG couvrent les navigateurs actuels sans
+  dupliquer inutilement l'asset ;
+- balises `icon` et `apple-touch-icon` intégrées une seule fois dans
+  `src/components/BaseHead.astro`.
+
+Planche des rendus réels à 16, 32 et 180 px :
+`docs/audits/lot-6b/favicon-rendus-valides.png`.
+
+Capture de contrôle du SVG réellement chargé à 16 px dans des onglets sur
+interfaces claire et sombre :
+`docs/audits/lot-6b/favicon-onglets-clair-sombre.png`.
+
+La planche provisoire `favicon-proposition-mot-symbole.png` a été supprimée.
 
 ## Métadonnées validées
 

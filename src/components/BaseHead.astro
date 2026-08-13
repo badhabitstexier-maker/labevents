@@ -44,6 +44,9 @@ const imageAbsolue = image ? new URL(image, Astro.site ?? site.url).href : null;
 <meta name="description" content={description} />
 <meta name="theme-color" content="#0F1B2D" />
 <link rel="canonical" href={canonique.href} />
+<link rel="icon" href="/brand/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/brand/favicon-32.png" type="image/png" sizes="32x32" />
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" sizes="180x180" />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 
 <meta property="og:type" content="website" />

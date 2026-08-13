@@ -382,9 +382,10 @@ navigation compacte, accessible et réellement utilisable.
 `public/brand/labevents-logo.png`. Il est utilisé sans redessin ni
 interprétation dans le header et le footer via
 `src/components/MarqueLabEvents.astro`. L'image Open Graph par défaut a été
-produite au Lot 6B depuis ce logo, sans génération IA. Le favicon reste soumis
-à arbitrage : le mot-symbole ne comporte pas de pictogramme autonome lisible à
-16 ou 32 px, et aucun monogramme ne doit être inventé.
+produite au Lot 6B depuis ce logo, sans génération IA. **Le favicon est validé
+et intégré au Lot 6B.1** : il utilise uniquement la lettre « L » marine exacte
+extraite du mot-symbole, sur fond blanc, sans redessin, monogramme, accent,
+ombre, dégradé ni effet.
 
 **Barre de réassurance** : composant capable d'afficher « Appelez-nous —
 [vrai numéro] » et « Un interlocuteur local ». Le numéro validé au Lot 4 vient
@@ -581,7 +582,7 @@ faite.
 | **Lot 5D.1**                  | Rapprochement fidèle de la maquette `/realisations` | ✅ fait — PR #14 fusionnée |
 | **Lot 5E**                    | Refonte visuelle finale de `/contact`              | ✅ fait — PR #15 fusionnée |
 | **Lot 6A**                    | Harmonisation visuelle transversale                | ✅ fait — PR #16 fusionnée |
-| **Lot 6B**                    | SEO, liens, accessibilité et performances          | 🟡 implémenté hors favicon — arbitrage requis |
+| **Lot 6B**                    | SEO, liens, accessibilité et performances          | ✅ implémenté — favicon validé et intégré au Lot 6B.1 |
 | **Lot 6**                     | Recette finale et préparation de la mise en ligne  | à venir    |
 
 ### État actuel des pages
@@ -703,15 +704,16 @@ harmonisent les hauteurs des boutons et des héros de `/realisations`,
 `/contact`, `/sites-internet` et `/evenementiel`, sans refonte générale ni
 modification de contenu.
 
-**Lot 6B implémenté hors favicon — arbitrage requis :** les métadonnées SEO
+**Lot 6B implémenté — favicon validé et intégré au Lot 6B.1 :** les métadonnées SEO
 validées, URL canoniques, cartes Open Graph/Twitter, `theme-color`,
 `robots.txt` et `sitemap.xml` couvrent les cinq routes V1. Le visuel Open
 Graph 1200 × 630 est produit depuis le vrai logo et l'identité figée. Six
 dérivés PNG ciblés réduisent le poids des captures rendues en vignette tout en
 conservant les originaux validés, les cadrages et les compositions. L'audit
-détaillé est consigné dans `docs/audits/lot-6b/README.md`. Aucun favicon n'est
-activé tant qu'un symbole existant n'est pas fourni ou qu'une solution n'est
-pas explicitement validée.
+détaillé est consigné dans `docs/audits/lot-6b/README.md`. Le favicon décline
+fonctionnellement le logo validé en isolant ses pixels exacts correspondant à
+la lettre « L » marine sur fond blanc. Les formats SVG, PNG 32 × 32 et Apple
+Touch Icon 180 × 180 sont intégrés, sans fichier ICO supplémentaire nécessaire.
 
 ---
 
@@ -722,13 +724,13 @@ ne pas les combler par une invention.
 
 1. ~~**Planche graphique**~~ — **CLOS.** Le fichier est dans le dépôt à
    `docs/design/labevents-direction-graphique-v1.png` (voir section I).
-2. **Logo LabEvents** — **CLOS au Lot 5B.** Le vrai logo fourni par
+2. ~~**Logo LabEvents, favicon et Open Graph**~~ — **CLOS aux Lots 5B, 6B et
+   6B.1.** Le vrai logo fourni par
    l'utilisateur est conservé dans `public/brand/labevents-logo.png` et rendu
    dans le header et le footer via `MarqueLabEvents.astro`, sans redessin ni
-   interprétation. **L'image Open Graph est close au Lot 6B** et référencée par
-   défaut. **Restent ouverts :** le favicon et les icônes navigateur. Le logo
-   horizontal ne contient pas de symbole autonome exploitable à petite taille ;
-   ne pas inventer de monogramme sans validation explicite.
+   interprétation. L'image Open Graph est référencée par défaut. Le favicon
+   validé utilise exclusivement la lettre « L » exacte du mot-symbole sur fond
+   blanc et existe en SVG, PNG 32 × 32 et Apple Touch Icon 180 × 180.
 3. **Coordonnées** — le téléphone `77 36 47` et l’e-mail
    `contact@labevents.nc` ont été fournis au Lot 4. L’adresse et les horaires
    restent inconnus et valent `null` dans `src/data/contact.ts`.
@@ -757,7 +759,6 @@ ne pas les combler par une invention.
 
 ## P. Prochaines étapes
 
-1. arbitrage du favicon du Lot 6B ;
-2. validation de la PR brouillon du Lot 6B ;
-3. suite du Lot 6 — recette globale ;
-4. préparation de la mise en production.
+1. validation de la PR brouillon du Lot 6B ;
+2. suite du Lot 6 — recette globale ;
+3. préparation de la mise en production.

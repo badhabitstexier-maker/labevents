@@ -85,7 +85,7 @@ métiers.
 
 ### Offre Sites internet
 
-- Promesse : **« Votre site internet. On s'occupe de tout. »**
+- Promesse : **« Votre site internet, on s'occupe de tout. »**
 - Accompagnement : **« Vous connaissez votre métier. Nous nous occupons du web. »**
 - Engagement : **« Votre site professionnel, prêt en une semaine. »**
 
@@ -118,7 +118,8 @@ La page commerciale suit un parcours simple :
 5. cadrage explicite du délai d'une semaine ;
 6. rappel des cibles : artisans, TPE, petits commerces, indépendants ;
 7. projet sur mesure cadré séparément ;
-8. contact humain prioritaire, « Commencer en ligne » secondaire.
+8. contact humain prioritaire, « Décrire mon projet » secondaire et relié
+   directement au formulaire complet de `/contact`.
 
 Le détail éditorial appliqué est consigné dans
 `docs/decisions/2026-08-12-lot2-sites-internet.md` et centralisé dans
@@ -139,8 +140,9 @@ interdite.
 
 - **CTA principal : contact humain.** « Parlons de votre projet » /
   « Appelez-nous ». Téléphone et rencontre restent prioritaires partout.
-- **CTA secondaire : « Commencer en ligne »**, qui mène vers un formulaire de
-  contact simple. Pas de configurateur, pas de cahier des charges automatisé.
+- **CTA secondaire : « Décrire mon projet »**, qui mène directement au
+  formulaire complet via `/contact#formulaire-contact`. Pas de configurateur,
+  pas de cahier des charges automatisé.
 
 ### Interdits d'affichage en V1
 
@@ -613,7 +615,7 @@ La homepage a ensuite été finalisée au Lot 5B avec le vrai logo, les photos e
 les captures Web réelles décrites en section E.
 
 **Lot 2 livré :** page commerciale `/sites-internet`, structurée autour de la
-promesse « Votre site internet. On s'occupe de tout. », du processus en quatre
+promesse « Votre site internet, on s'occupe de tout. », du processus en quatre
 étapes, du cadrage explicite du délai d'une semaine pour un projet standard,
 des cibles retenues, du traitement séparé du sur-mesure et des CTA vers le
 contact. Les textes vivent dans `src/data/messages.ts` et les métadonnées dans

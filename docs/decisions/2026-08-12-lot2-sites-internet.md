@@ -10,7 +10,7 @@ La page doit expliquer simplement l'offre Web de LabEvents et conduire vers un c
 
 ## Structure retenue
 
-1. Hero : « Votre site internet. On s'occupe de tout. »
+1. Hero : « Votre site internet, on s'occupe de tout. »
 2. Accompagnement : « Vous connaissez votre métier. Nous nous occupons du web. »
 3. Problème client : présence internet nécessaire, manque de temps pour s'en occuper.
 4. Prise en charge : conception du site à partir des informations réelles fournies par le client ; amélioration des contenus existants ou accompagnement à leur préparation.
@@ -18,7 +18,7 @@ La page doit expliquer simplement l'offre Web de LabEvents et conduire vers un c
 6. Engagement : « Votre site professionnel, prêt en une semaine. » uniquement pour un projet standard lorsque les informations nécessaires sont disponibles.
 7. Cible : artisans, TPE, petits commerces, indépendants et, plus largement, petites structures calédoniennes.
 8. Projet sur mesure : cadrage séparé ; aucune promesse de délai standard.
-9. CTA : contact humain prioritaire ; « Commencer en ligne » reste secondaire et mène à `/contact` en V1.
+9. CTA : contact humain prioritaire ; « Décrire mon projet » reste secondaire et mène directement au formulaire complet via `/contact#formulaire-contact` en V1.
 
 ## Emplacements visuels réservés
 

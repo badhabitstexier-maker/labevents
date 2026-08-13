@@ -185,12 +185,41 @@ export const pageRealisations = {
   titre: 'Nos réalisations parlent pour nous.',
   introduction:
     'Nous ne montrons pas des maquettes, mais des réalisations réelles, conçues en Nouvelle-Calédonie.',
+  complement:
+    'Chaque projet répond à un besoin concret : organiser un événement, promouvoir une activité, faciliter une mise en relation ou structurer une information.',
+  approche: 'Nous concevons des solutions utiles, claires et durables.',
   projets: {
-    surtitre: 'Sélection de réalisations',
-    titre: 'Quelques projets conçus et réalisés par LabEvents',
+    titre: 'Quelques projets conçus et réalisés par LabEvents.',
   },
+  ecosysteme: {
+    introduction:
+      'LabEvents a conçu, mis en ligne et exploite un écosystème de cinq sites.',
+    bandeau: {
+      texte:
+        'Un même écosystème, cinq sites complémentaires conçus pour répondre à différents besoins du quotidien.',
+      reperes: [
+        'Une identité commune',
+        'Des parcours adaptés à chaque service',
+        'Une conception, une mise en ligne et une exploitation assurées par LabEvents',
+      ],
+    },
+  },
+  principes: [
+    {
+      titre: 'Des réalisations concrètes',
+      texte: 'Des projets réels, montrés à partir de leurs vraies captures.',
+    },
+    {
+      titre: 'Des projets pensés pour être utiles',
+      texte: 'Une conception guidée par l’usage de chaque site.',
+    },
+    {
+      titre: 'Une approche locale',
+      texte: 'Des projets conçus en Nouvelle-Calédonie.',
+    },
+  ],
   contact: {
-    titre: 'Parlons de votre projet.',
+    titre: 'Et si le prochain projet était le vôtre ?',
     texte:
       'Un événement à organiser, un site à créer ? Le plus simple, c’est d’en parler.',
   },

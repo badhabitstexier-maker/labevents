@@ -1,0 +1,24 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: classeSupplementaire = '' } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 260 220"
+  fill="none"
+  aria-hidden="true"
+  class:list={['pointer-events-none text-gold-500', classeSupplementaire]}
+>
+  <g stroke="currentColor" stroke-width="1">
+    <path d="M258 12C152 12 66 98 66 204"/>
+    <path d="M258 30C162 30 84 108 84 204"/>
+    <path d="M258 48C172 48 102 118 102 204"/>
+    <path d="M258 66C182 66 120 128 120 204"/>
+    <path d="M258 84C192 84 138 138 138 204"/>
+    <path d="M258 102C202 102 156 148 156 204"/>
+    <path d="M258 120C212 120 174 158 174 204"/>
+  </g>
+</svg>

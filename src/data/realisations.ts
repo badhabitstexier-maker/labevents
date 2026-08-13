@@ -4,7 +4,7 @@
  * ⚠️ DOCTRINE FACTUELLE ⚠️
  * Ce fichier ne contient QUE des informations vérifiées et validées.
  * Les blocs rédactionnels d'étude de cas (`besoin`, `realise`, `resultat`)
- * valent `null` tant que leur contenu n'a pas été contrôlé sur le vrai site.
+ * ne sont renseignés qu'après validation explicite de leur contenu.
  *
  * Interdits absolus : inventer un client, une fonctionnalité, un résultat,
  * un chiffre, un témoignage, une capture d'écran.
@@ -47,7 +47,7 @@ export interface Realisation {
   publiable: boolean;
   etudeDeCas: EtudeDeCas;
   /**
-   * Captures d'écran RÉELLES du site (chemins sous /captures/).
+   * Captures d'écran RÉELLES ou composites validés (chemins publics).
    * Ne jamais recréer une fausse interface, ne jamais extraire une image
    * de la planche graphique pour la faire passer pour une capture.
    */
@@ -71,27 +71,46 @@ export const ecosystemeNounou = {
   titre: 'nounou.nc',
   formulation: 'un écosystème de cinq sites',
   sites: [
-    { url: 'https://nounou.nc', label: 'nounou.nc', activite: 'Garde d’enfants' },
+    {
+      url: 'https://nounou.nc',
+      label: 'nounou.nc',
+      activite: 'Garde d’enfants',
+      capture: '/images/web/nounou-home.png',
+      largeurCapture: 2742,
+      hauteurCapture: 1662,
+    },
     {
       url: 'https://devoirs.nounou.nc',
       label: 'devoirs.nounou.nc',
       activite: 'Aide aux devoirs',
+      capture: '/images/web/nounou-devoirs.png',
+      largeurCapture: 2744,
+      hauteurCapture: 1648,
     },
     {
       url: 'https://pet.nounou.nc',
       label: 'pet.nounou.nc',
       activite: 'Garde d’animaux',
+      capture: '/images/web/nounou-pet.png',
+      largeurCapture: 2746,
+      hauteurCapture: 1664,
     },
     {
       url: 'https://gardiennage.nounou.nc',
       label: 'gardiennage.nounou.nc',
       activite: 'Gardiennage',
+      capture: '/images/web/nounou-gardiennage.png',
+      largeurCapture: 2734,
+      hauteurCapture: 1662,
     },
     {
       // Ne pas préciser davantage la nature de ce site sans validation factuelle.
       url: 'https://services.nounou.nc',
       label: 'services.nounou.nc',
       activite: 'Services',
+      capture: '/images/web/nounou-services.png',
+      largeurCapture: 2744,
+      hauteurCapture: 1440,
     },
   ],
 } as const;
@@ -103,19 +122,18 @@ export const realisations: readonly Realisation[] = [
     url: 'https://salonemploi.nc',
     nature:
       'Site du Salon de l’Emploi & de la Formation 2026, événement organisé par LabEvents.',
-    statut: 'a-verifier',
-    publiable: false,
+    statut: 'verifie',
+    publiable: true,
     etudeDeCas: {
-      // TODO(verification): rédiger à partir du site RÉELLEMENT EN LIGNE au
-      // moment de la mise en ligne de labevents.nc. Ne jamais reprendre une
-      // fonctionnalité depuis une roadmap, une maquette, un document
-      // commercial, une préproduction ou la planche graphique.
-      besoin: null,
-      realise: null,
-      resultat: null,
+      besoin:
+        'Promouvoir le salon et faciliter l’accès à l’information pour les exposants et les visiteurs.',
+      realise:
+        'Conception du site, arborescence, intégration, design, rédaction des contenus et version responsive.',
+      resultat:
+        'Un site unique pour présenter l’événement, les exposants, les offres, le programme et les informations pratiques.',
     },
-    captures: [], // TODO(assets): vraies captures du site à fournir
-    capturesValidees: false,
+    captures: ['/images/web/mockups/salonemploi-portable-telephone.png'],
+    capturesValidees: true,
   },
   {
     id: 'nounou-nc',
@@ -131,8 +149,14 @@ export const realisations: readonly Realisation[] = [
       realise: null,
       resultat: null,
     },
-    captures: [], // TODO(assets): vraies captures des sites à fournir
-    capturesValidees: false,
+    captures: [
+      '/images/web/nounou-home.png',
+      '/images/web/nounou-devoirs.png',
+      '/images/web/nounou-pet.png',
+      '/images/web/nounou-gardiennage.png',
+      '/images/web/nounou-services.png',
+    ],
+    capturesValidees: true,
   },
 ];
 

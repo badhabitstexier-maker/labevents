@@ -6,13 +6,13 @@ Le site présente deux activités distinctes : l'**événementiel** et la
 **création de sites internet**. Il doit expliquer simplement, orienter
 rapidement, montrer des preuves réelles et faciliter la prise de contact.
 
-> **État du projet : audit technique préalable validé.**
+> **État du projet : Lot 5D terminé, PR #14 en attente de validation.**
 > Les fondations techniques, le design system, l'en-tête, le pied de page,
 > l'accueil `/`, les pages `/sites-internet`, `/realisations`,
 > `/evenementiel` et `/contact` sont en place. Le formulaire de contact
 > statique utilise Web3Forms et requiert une clé publique d'environnement.
-> Le Lot 5 intégrera les assets visuels réels ; le Lot 6 assurera ensuite la
-> recette finale et la préparation de la mise en ligne.
+> Les assets visuels réels sont intégrés ; le Lot 6 assurera la recette finale
+> et la préparation de la mise en ligne après validation du Lot 5D.
 
 ---
 
@@ -149,18 +149,14 @@ Le numéro de téléphone et l'adresse e-mail validés ne doivent jamais être
 
 ## Assets
 
-`public/brand/`, `public/images/` et `public/captures/` sont **vides** : ils
-n'accueillent que de vrais assets LabEvents (vrai logo, vraies photos de
-réalisations, vraies captures des sites réalisés).
+`public/brand/` et `public/images/` accueillent uniquement les assets réels
+fournis et validés : le logo LabEvents, les photos événementielles, les
+captures Web et les deux composites de mockups. La homepage, les pages
+`/evenementiel`, `/sites-internet` et `/realisations` utilisent désormais ces
+visuels. Les chemins et validations exacts sont inventoriés dans `CLAUDE.md`.
 
-En conséquence, l'accueil ne contient **aucune photo ni capture**. Le
-bloc-marque est un wordmark **typographique en HTML/CSS**
-(`MarqueLabEvents.astro`), pas une image. Les emplacements visuels des deux
-portes sont des **panneaux graphiques neutres** (`PanneauVisuel.astro`) :
-un aplat de la palette et un pictogramme, assumés comme éléments graphiques
-du site — jamais une image de démonstration qu'on pourrait prendre pour une
-réalisation. Aucun favicon ni visuel Open Graph n'est produit tant qu'aucun
-asset de marque réel n'existe.
+Le favicon et le visuel Open Graph restent à produire séparément. Aucun asset
+de remplacement n'est généré pour combler leur absence.
 
 Rien n'y est généré, et aucune image ne doit être extraite de la planche
 graphique pour servir de preuve : les visuels de la planche sont des éléments

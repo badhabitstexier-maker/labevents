@@ -1,8 +1,10 @@
 ---
-/** Page Contact — Lot 4. Contact humain prioritaire, formulaire Web3Forms. */
+/** Page Contact — Lot 5E. Refonte visuelle, comportement Web3Forms inchangé. */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Section from '@components/Section.astro';
 import Bouton from '@components/Bouton.astro';
+import IconeContact from '@components/IconeContact.astro';
+import MotifCourbesContact from '@components/MotifCourbesContact.astro';
 import {
   coordonnees,
   emailDisponible,
@@ -16,130 +18,184 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 
 <BaseLayout titreComplet={seoContact.titre} description={seoContact.description}>
   <Section
-    aria-labelledby="titre-contact-page"
-    class="[&>div]:py-16 lg:[&>div]:py-24"
+    as="div"
+    class="relative overflow-hidden [&>div]:relative [&>div]:py-12 sm:[&>div]:py-16 lg:[&>div]:py-20"
   >
-    <div class="max-w-content">
-      <h1 id="titre-contact-page" class="text-4xl">{pageContact.titre}</h1>
-      <p class="mt-8 max-w-texte text-base text-ink-muted">
+    <MotifCourbesContact class="pointer-events-none absolute -right-40 -top-20 hidden h-96 w-3/5 text-gold-500 opacity-15 sm:block lg:-right-24 lg:-top-24 lg:h-full" />
+    <div class="relative max-w-content">
+      <p class="text-2xs font-semibold uppercase text-gold-600">{pageContact.surtitre}</p>
+      <h1 id="titre-contact-page" class="mt-5 max-w-texte text-4xl">{pageContact.titre}</h1>
+      <p class="mt-6 max-w-texte text-base text-ink-muted">
         {pageContact.introduction}
       </p>
     </div>
   </Section>
 
-  <Section fond="navy" aria-labelledby="titre-coordonnees">
-    <div class="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-16">
-      <div class="lg:col-span-6">
-        <h2 id="titre-coordonnees" class="text-2xl text-ink-inverse">
-          {pageContact.coordonnees.titre}
-        </h2>
-        <p class="mt-6 max-w-texte text-base text-ink-inverse-muted">
-          {pageContact.coordonnees.texte}
-        </p>
+  <Section as="div" class="[&>div]:pb-6 [&>div]:pt-0 lg:[&>div]:pb-8">
+    <section aria-labelledby="titre-coordonnees" class="relative overflow-hidden rounded-lg bg-navy-900 shadow-card">
+      <MotifCourbesContact class="pointer-events-none absolute -bottom-24 -left-72 h-96 w-3/5 -scale-x-100 text-gold-500 opacity-10" />
+      <div class="relative grid gap-8 px-6 py-8 sm:px-10 sm:py-10 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-16 lg:py-12">
+        <div class="border-l-2 border-gold-500 pl-5 sm:pl-8 lg:col-span-6">
+          <h2 id="titre-coordonnees" class="text-xl text-ink-inverse">
+            {pageContact.coordonnees.titre}
+          </h2>
+          <p class="mt-4 max-w-texte text-sm text-ink-inverse-muted">
+            {pageContact.coordonnees.texte}
+          </p>
+        </div>
+
+        <address class="grid gap-5 border-t border-navy-600 pt-8 not-italic lg:col-span-6 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
+          {telephoneDisponible && (
+            <div class="flex min-w-0 items-center gap-4 sm:gap-5">
+              <span class="flex size-12 shrink-0 items-center justify-center rounded-full border border-navy-600 text-gold-400">
+                <IconeContact nom="telephone" class="size-6" />
+              </span>
+              <a href={`tel:${coordonnees.telephoneLien}`} class="inline-flex min-h-12 min-w-0 items-center font-display text-xl font-semibold text-ink-inverse underline decoration-gold-500 decoration-2 underline-offset-8 transition-colors hover:text-gold-100">
+                <span class="sr-only">Téléphone : </span>{coordonnees.telephoneAffiche}
+              </a>
+            </div>
+          )}
+          {emailDisponible && (
+            <div class="flex min-w-0 items-center gap-4 sm:gap-5">
+              <span class="flex size-12 shrink-0 items-center justify-center rounded-full border border-navy-600 text-gold-400">
+                <IconeContact nom="email" class="size-6" />
+              </span>
+              <a href={`mailto:${coordonnees.email}`} class="inline-flex min-h-12 min-w-0 items-center break-words text-sm font-medium text-ink-inverse underline decoration-gold-500 decoration-2 underline-offset-8 transition-colors hover:text-gold-100 sm:text-base">
+                <span class="sr-only">E-mail : </span>{coordonnees.email}
+              </a>
+            </div>
+          )}
+        </address>
       </div>
-      <address class="flex flex-col gap-4 not-italic lg:col-span-6 lg:items-end">
-        {telephoneDisponible && (
-          <a href={`tel:${coordonnees.telephoneLien}`} class="text-2xl font-display font-semibold text-ink-inverse underline decoration-gold-500 decoration-2 underline-offset-8">
-            <span class="sr-only">Téléphone : </span>{coordonnees.telephoneAffiche}
-          </a>
-        )}
-        {emailDisponible && (
-          <a href={`mailto:${coordonnees.email}`} class="text-sm font-medium text-ink-inverse underline decoration-gold-500 decoration-2 underline-offset-4">
-            <span class="sr-only">E-mail : </span>{coordonnees.email}
-          </a>
-        )}
-      </address>
-    </div>
+    </section>
   </Section>
 
-  <Section aria-labelledby="titre-formulaire-contact">
-    <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
-      <div class="lg:col-span-4">
-        <h2 id="titre-formulaire-contact" class="text-2xl">
-          {pageContact.formulaire.titre}
-        </h2>
+  <Section as="div" class="[&>div]:py-6 lg:[&>div]:py-8">
+    <section aria-labelledby="titre-formulaire-contact" class="overflow-hidden rounded-lg border border-line bg-paper-cool shadow-card">
+      <div class="grid lg:grid-cols-12">
+        <div class="border-b border-line px-6 py-8 sm:px-10 sm:py-10 lg:col-span-4 lg:border-b-0 lg:border-r lg:px-10 lg:py-12">
+          <h2 id="titre-formulaire-contact" class="text-2xl">
+            {pageContact.formulaire.titre}
+          </h2>
+          <span class="mt-4 block h-0.5 w-10 bg-gold-500" aria-hidden="true"></span>
+          <p class="mt-5 text-sm text-ink-muted">{pageContact.formulaire.introduction}</p>
+
+          <ul class="mt-8 grid gap-7">
+            {pageContact.formulaire.reperes.map((repere) => (
+              <li class="flex gap-4">
+                <span class="flex size-12 shrink-0 items-center justify-center rounded-full bg-paper-warm text-gold-600">
+                  <IconeContact nom={repere.icone} class="size-6" />
+                </span>
+                <div class="pt-1">
+                  <h3 class="text-xs font-semibold">{repere.titre}</h3>
+                  <p class="mt-1 text-xs text-ink-muted">{repere.texte}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <form
+          class="grid gap-6 px-6 py-8 sm:px-10 sm:py-10 lg:col-span-8 lg:px-12 lg:py-12"
+          data-contact-form
+          data-access-key={accessKey}
+          data-submit-label-loading={pageContact.formulaire.boutonEnvoi}
+          action="https://api.web3forms.com/submit"
+          method="post"
+        >
+          <input type="hidden" name="access_key" value={accessKey} />
+          <input type="hidden" name="subject" value="Nouveau contact — Site LabEvents" />
+
+          <div class="hidden" aria-hidden="true">
+            <label for="botcheck">Ne pas remplir ce champ</label>
+            <input id="botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2">
+            <div>
+              <label for="nom" class="text-xs font-medium text-ink-strong">Nom et prénom <span aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span></label>
+              <input id="nom" name="name" type="text" required autocomplete="name" class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink" />
+            </div>
+            <div>
+              <label for="entreprise" class="text-xs font-medium text-ink-strong">Entreprise / organisation <span class="font-normal text-ink-muted">(facultatif)</span></label>
+              <input id="entreprise" name="entreprise" type="text" autocomplete="organization" class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink" />
+            </div>
+            <div>
+              <label for="email" class="text-xs font-medium text-ink-strong">E-mail <span aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span></label>
+              <input id="email" name="email" type="email" required autocomplete="email" class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink" />
+            </div>
+            <div>
+              <label for="telephone" class="text-xs font-medium text-ink-strong">Téléphone <span class="font-normal text-ink-muted">(facultatif)</span></label>
+              <input id="telephone" name="telephone" type="tel" autocomplete="tel" class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink" />
+            </div>
+          </div>
+
+          <div>
+            <label for="projet" class="text-xs font-medium text-ink-strong">Votre projet <span aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span></label>
+            <select id="projet" name="projet" required class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink">
+              <option value="" selected disabled>Sélectionnez une option</option>
+              <option>Organiser un événement</option>
+              <option>Créer un site internet</option>
+              <option>Autre demande</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="text-xs font-medium text-ink-strong">Parlez-nous de votre projet <span aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span></label>
+            <textarea id="message" name="message" required rows="6" class="mt-2 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink"></textarea>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <input id="consentement" name="consentement" type="checkbox" required value="Accepté" class="mt-1 size-5 shrink-0 accent-navy-900" />
+            <label for="consentement" class="min-h-11 text-xs text-ink-muted">
+              {pageContact.formulaire.consentement} <span aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span>
+            </label>
+          </div>
+
+          <div class="flex flex-col items-stretch gap-5 sm:items-start">
+            <Bouton type="submit" data-submit-button class="w-full sm:w-auto">
+              <span data-submit-label>{pageContact.formulaire.bouton}</span>
+            </Bouton>
+
+            <div class="max-w-texte" aria-live="polite" aria-atomic="true">
+              <div data-form-success hidden class="border-l border-gold-500 pl-5">
+                <p class="font-display text-lg font-semibold text-ink-strong">{pageContact.formulaire.succes.titre}</p>
+                <p class="mt-2 text-sm text-ink-muted">{pageContact.formulaire.succes.texte}</p>
+              </div>
+              <div data-form-error hidden class="border-l border-gold-500 pl-5">
+                <p class="font-display text-lg font-semibold text-ink-strong">{pageContact.formulaire.erreur.titre}</p>
+                {(telephoneDisponible || emailDisponible) && (
+                  <p class="mt-2 text-sm text-ink-muted">
+                    {pageContact.formulaire.erreur.texte}{' '}
+                    {telephoneDisponible && <a href={`tel:${coordonnees.telephoneLien}`} class="font-medium text-navy-900 underline decoration-gold-500 decoration-2 underline-offset-4">{coordonnees.telephoneAffiche}</a>}
+                    {telephoneDisponible && emailDisponible && ' ou à '}
+                    {emailDisponible && <a href={`mailto:${coordonnees.email}`} class="font-medium text-navy-900 underline decoration-gold-500 decoration-2 underline-offset-4">{coordonnees.email}</a>}.
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
+    </section>
+  </Section>
 
-      <form
-        class="grid gap-6 lg:col-span-8"
-        data-contact-form
-        data-access-key={accessKey}
-        data-submit-label-loading={pageContact.formulaire.boutonEnvoi}
-        action="https://api.web3forms.com/submit"
-        method="post"
-      >
-        <input type="hidden" name="access_key" value={accessKey} />
-        <input type="hidden" name="subject" value="Nouveau contact — Site LabEvents" />
-
-        <div class="hidden" aria-hidden="true">
-          <label for="botcheck">Ne pas remplir ce champ</label>
-          <input id="botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
-        </div>
-
-        <div class="grid gap-6 md:grid-cols-2">
-          <div>
-            <label for="nom" class="text-xs font-medium text-ink-strong">Nom et prénom <span aria-hidden="true">*</span></label>
-            <input id="nom" name="name" type="text" required autocomplete="name" class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink" />
-          </div>
-          <div>
-            <label for="entreprise" class="text-xs font-medium text-ink-strong">Entreprise / organisation <span class="font-normal text-ink-muted">(facultatif)</span></label>
-            <input id="entreprise" name="entreprise" type="text" autocomplete="organization" class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink" />
-          </div>
-          <div>
-            <label for="email" class="text-xs font-medium text-ink-strong">E-mail <span aria-hidden="true">*</span></label>
-            <input id="email" name="email" type="email" required autocomplete="email" class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink" />
-          </div>
-          <div>
-            <label for="telephone" class="text-xs font-medium text-ink-strong">Téléphone <span class="font-normal text-ink-muted">(facultatif)</span></label>
-            <input id="telephone" name="telephone" type="tel" autocomplete="tel" class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink" />
-          </div>
-        </div>
-
-        <div>
-          <label for="projet" class="text-xs font-medium text-ink-strong">Votre projet <span aria-hidden="true">*</span></label>
-          <select id="projet" name="projet" required class="mt-2 min-h-12 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink">
-            <option value="" selected disabled>Sélectionnez une option</option>
-            <option>Organiser un événement</option>
-            <option>Créer un site internet</option>
-            <option>Autre demande</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="message" class="text-xs font-medium text-ink-strong">Parlez-nous de votre projet <span aria-hidden="true">*</span></label>
-          <textarea id="message" name="message" required rows="7" class="mt-2 w-full rounded-md border border-line-strong bg-paper px-4 py-3 text-sm text-ink"></textarea>
-        </div>
-
-        <div class="flex items-start gap-3">
-          <input id="consentement" name="consentement" type="checkbox" required value="Accepté" class="mt-1 size-5 shrink-0 accent-navy-900" />
-          <label for="consentement" class="text-xs text-ink-muted">
-            {pageContact.formulaire.consentement} <span aria-hidden="true">*</span>
-          </label>
-        </div>
-
-        <div class="flex flex-col items-stretch gap-5 sm:items-start">
-          <Bouton type="submit" data-submit-button>
-            <span data-submit-label>{pageContact.formulaire.bouton}</span>
-          </Bouton>
-
-          <div class="max-w-texte" aria-live="polite" aria-atomic="true">
-            <div data-form-success hidden class="border-l border-gold-500 pl-5">
-              <p class="font-display text-lg font-semibold text-ink-strong">{pageContact.formulaire.succes.titre}</p>
-              <p class="mt-2 text-sm text-ink-muted">{pageContact.formulaire.succes.texte}</p>
+  <Section as="div" class="[&>div]:pb-12 [&>div]:pt-6 lg:[&>div]:pb-20 lg:[&>div]:pt-8">
+    <section aria-label="Repères pour votre demande" class="rounded-lg border border-line bg-paper shadow-subtle">
+      <ul class="grid md:grid-cols-3">
+        {pageContact.reassurance.map((repere, index) => (
+          <li class:list={['flex gap-4 px-6 py-6 sm:px-8', index > 0 && 'border-t border-line md:border-l md:border-t-0']}>
+            <span class="flex size-12 shrink-0 items-center justify-center rounded-full border border-line-strong text-gold-600">
+              <IconeContact nom={repere.icone} class="size-6" />
+            </span>
+            <div>
+              <h2 class="text-xs font-semibold">{repere.titre}</h2>
+              <p class="mt-1 text-xs text-ink-muted">{repere.texte}</p>
             </div>
-            <div data-form-error hidden class="border-l border-gold-500 pl-5">
-              <p class="font-display text-lg font-semibold text-ink-strong">{pageContact.formulaire.erreur.titre}</p>
-              <p class="mt-2 text-sm text-ink-muted">
-                {pageContact.formulaire.erreur.texte}{' '}
-                <a href={`tel:${coordonnees.telephoneLien}`} class="font-medium text-navy-900 underline decoration-gold-500 decoration-2 underline-offset-4">{coordonnees.telephoneAffiche}</a>
-                {' '}ou à{' '}
-                <a href={`mailto:${coordonnees.email}`} class="font-medium text-navy-900 underline decoration-gold-500 decoration-2 underline-offset-4">{coordonnees.email}</a>.
-              </p>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
+          </li>
+        ))}
+      </ul>
+    </section>
   </Section>
 </BaseLayout>
 

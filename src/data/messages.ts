@@ -225,8 +225,9 @@ export const pageRealisations = {
   },
 } as const;
 
-/** Formulations validées de la page de contact — Lot 4. */
+/** Formulations validées de la page de contact — Lots 4 et 5E. */
 export const pageContact = {
+  surtitre: 'Contact',
   titre: 'Parlons de votre projet.',
   introduction:
     'Un événement à organiser, un site à créer ? Le plus simple, c’est d’en parler.',
@@ -236,6 +237,24 @@ export const pageContact = {
   },
   formulaire: {
     titre: 'Ou écrivez-nous',
+    introduction: 'Décrivez-nous votre projet en quelques mots.',
+    reperes: [
+      {
+        titre: 'Un interlocuteur local',
+        texte: 'Un contact unique pour échanger sur votre projet.',
+        icone: 'local',
+      },
+      {
+        titre: 'Deux expertises',
+        texte: 'Événementiel et création de sites internet.',
+        icone: 'expertises',
+      },
+      {
+        titre: 'Un contact direct',
+        texte: 'Par téléphone, par e-mail ou via le formulaire.',
+        icone: 'direct',
+      },
+    ],
     consentement:
       'J’accepte que les informations transmises soient utilisées par LabEvents pour répondre à ma demande.',
     bouton: 'Envoyer ma demande',
@@ -249,4 +268,23 @@ export const pageContact = {
       texte: 'Vous pouvez réessayer ou nous contacter directement au',
     },
   },
+  reassurance: [
+    {
+      titre: 'Un contact direct',
+      texte: 'Échangez avec un interlocuteur local au sujet de votre projet.',
+      icone: 'direct',
+    },
+    {
+      titre: 'Une demande orientée',
+      texte:
+        'Précisez s’il s’agit d’un événement, d’un site internet ou d’une autre demande.',
+      icone: 'orientation',
+    },
+    {
+      titre: 'Vos informations',
+      texte:
+        'Les informations transmises sont utilisées pour répondre à votre demande.',
+      icone: 'informations',
+    },
+  ],
 } as const;

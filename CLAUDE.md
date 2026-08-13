@@ -569,19 +569,21 @@ faite.
 | **Lot 5A.1**                  | Refonte visuelle de `/evenementiel`                | ✅ fait — PR #10 fusionnée |
 | **Lot 5B**                    | Refonte finale de la HP, captures Web et vrai logo | ✅ fait — PR #11 fusionnée |
 | **Lot 5C.3**                  | Correction finale et recette de `/sites-internet`   | ✅ fait — PR #12 fusionnée |
-| **Lot 5D**                    | Finition visuelle de `/realisations`               | ✅ fait — PR #14 à valider |
-| **Lot 5D.1**                  | Rapprochement fidèle de la maquette `/realisations` | ✅ fait — PR #14 à valider |
+| **Lot 5D**                    | Finition visuelle de `/realisations`               | ✅ fait — PR #14 fusionnée |
+| **Lot 5D.1**                  | Rapprochement fidèle de la maquette `/realisations` | ✅ fait — PR #14 fusionnée |
+| **Lot 5E**                    | Refonte visuelle finale de `/contact`              | ✅ implémenté — PR brouillon à valider |
 | **Lot 6**                     | Recette finale et préparation de la mise en ligne  | à venir    |
 
 ### État actuel des pages
 
 - la homepage `/` est terminée ;
 - `/evenementiel` est terminée et validée sur desktop et mobile ;
-- `/contact` est fonctionnelle avec Web3Forms ;
+- `/contact` est fonctionnelle avec Web3Forms et sa refonte visuelle du Lot 5E
+  est implémentée dans une PR brouillon distincte ;
 - `/sites-internet` est finalisée au Lot 5C.3 ;
 - `/realisations` est finalisée au Lot 5D.1 avec l'étude de cas validée de
   `salonemploi.nc`, les vraies captures et les cinq châssis de laptops ; la
-  PR #14 reste à valider.
+  PR #14 est fusionnée.
 
 **Lot −1 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
 design tokens, polices auto-hébergées, couche données, SEO technique,
@@ -651,7 +653,7 @@ mockups PNG définitifs fournis par Philippe. Seules les zones vertes de leurs
 éditorial validé. Le H1 mobile est séparé en deux groupes lisibles et la page
 a été recettée du hero au footer sur mobile et desktop.
 
-**Lot 5D et correctif 5D.1 terminés — PR #14 à valider :** `/realisations` reprend la
+**Lot 5D et correctif 5D.1 terminés — PR #14 fusionnée :** `/realisations` reprend la
 composition éditoriale finale avec son hero en deux colonnes, son bandeau
 chaud, le mockup validé
 `/images/web/mockups/salonemploi-portable-telephone.png`, les cinq captures
@@ -662,6 +664,30 @@ Le correctif 5D.1 rétablit les trois blocs explicatifs validés de
 bandeau factuel de l'écosystème. Les captures restent
 `capturesValidees: true`. `salonemploi.nc` est `publiable: true` ;
 `nounou.nc` reste `publiable: false` avec ses trois champs détaillés à `null`.
+
+**Lot 5E implémenté — PR brouillon à valider :** `/contact` reprend la
+composition finale validée : hero clair avec motif de courbes décoratif,
+bandeau bleu nuit donnant la priorité aux coordonnées, grande carte à deux
+colonnes pour l’accompagnement et le formulaire, puis bandeau de trois repères.
+Le header et le footer globaux restent inchangés. Le téléphone et l’e-mail
+proviennent toujours exclusivement de `src/data/contact.ts` et restent soumis
+aux garde-fous de disponibilité.
+
+Le formulaire conserve Web3Forms, ses champs, ses attributs, sa validation
+native, son consentement, son honeypot, ses retours accessibles et sa logique
+d’envoi. Les trois repères inférieurs retenus sont :
+
+- « Un contact direct » — « Échangez avec un interlocuteur local au sujet de
+  votre projet. » ;
+- « Une demande orientée » — « Précisez s’il s’agit d’un événement,
+  d’un site internet ou d’une autre demande. » ;
+- « Vos informations » — « Les informations transmises sont utilisées
+  pour répondre à votre demande. »
+
+La branche du Lot 5E a été resynchronisée avec le `main` contenant la PR #14.
+Les apports documentaires et éditoriaux des deux lots sont conservés et la
+recette complète a été rejouée. La PR Contact reste en brouillon jusqu’à sa
+validation par Philippe.
 
 ---
 
@@ -706,9 +732,8 @@ ne pas les combler par une invention.
 
 ## P. Prochaines étapes
 
-1. validation de la PR #14 des Lots 5D et 5D.1 ;
-2. recette visuelle finale de `/contact` ;
-3. finition globale du header et du footer ;
-4. favicon et Open Graph ;
-5. Lot 6 — recette globale ;
-6. préparation de la mise en production.
+1. validation de la PR brouillon du Lot 5E ;
+2. finition globale du header et du footer ;
+3. favicon et Open Graph ;
+4. Lot 6 — recette globale ;
+5. préparation de la mise en production.

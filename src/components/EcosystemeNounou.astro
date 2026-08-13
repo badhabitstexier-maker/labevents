@@ -1,98 +1,122 @@
 ---
 /**
- * Écosystème nounou.nc.
- *
- * ⚠️ RÈGLES DE FORMULATION (CLAUDE.md § F) ⚠️
- *   - formulation AUTORISÉE : « un écosystème de cinq sites » ;
- *   - formulation INTERDITE : « cinq domaines » — les quatre verticales
- *     complémentaires sont des SOUS-DOMAINES de nounou.nc ;
- *   - ne PAS préciser davantage la nature de `services.nounou.nc`.
- *
- * Le libellé d'activité de chaque site vient exclusivement de
- * `src/data/realisations.ts`. Aucun n'est reformulé, enrichi ni déduit ici.
- *
- * Aucun chiffre, aucun résultat commercial, aucune capture. Les cinq sites
- * sont listés tels quels : le nom réel du site et son activité, rien d'autre.
+ * Écosystème nounou.nc avec les cinq captures réelles validées.
+ * Les libellés, activités, URLs et chemins d'assets viennent de la source de
+ * données ; la nature de services.nounou.nc n'est pas précisée davantage.
  */
+import IconeRealisation, {
+  type NomIconeRealisation,
+} from '@components/IconeRealisation.astro';
+import { etudeDeCas as trame, pageRealisations } from '@data/messages';
 import { ecosystemeNounou, realisationParId } from '@data/realisations';
-import { etudeDeCas as trame } from '@data/messages';
 
 interface Props {
-  /** Identifiant du titre lorsque le composant nomme une section. */
   idTitre?: string;
-  /** Niveau de titre, pour respecter la hiérarchie de la page hôte. */
   niveauTitre?: 'h2' | 'h3';
 }
 
 const { idTitre, niveauTitre: Titre = 'h3' } = Astro.props;
 const realisation = realisationParId(ecosystemeNounou.id);
+const capturesAffichables = realisation?.capturesValidees ?? false;
+const icones: readonly NomIconeRealisation[] = [
+  'enfant',
+  'livre',
+  'patte',
+  'maison',
+  'mallette',
+];
+const couleursIcones = [
+  'bg-paper-cool text-navy-600',
+  'bg-gold-100 text-gold-600',
+  'bg-paper-warm text-navy-700',
+  'bg-paper-cool text-gold-600',
+  'bg-gold-100 text-navy-700',
+] as const;
 ---
 
-<article class="grid gap-8 lg:grid-cols-12 lg:gap-16">
-  <div class="lg:col-span-4">
-    <p class="text-2xs font-semibold text-ink-muted uppercase">
-      Réalisation digitale
-    </p>
-    <Titre id={idTitre} class="mt-4 text-2xl break-words">{ecosystemeNounou.titre}</Titre>
+<article>
+  <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+      <p class="text-2xs font-semibold tracking-wide text-gold-600 uppercase">
+        Réalisation digitale
+      </p>
+      <Titre id={idTitre} class="mt-4 text-xl break-words">{ecosystemeNounou.titre}</Titre>
+      <p class="mt-4 max-w-texte text-xs text-ink-muted">
+        {pageRealisations.ecosysteme.introduction}
+      </p>
+    </div>
+
+    {
+      realisation?.url && (
+        <a
+          href={realisation.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-h-11 shrink-0 items-center gap-2 text-xs font-medium text-navy-900 underline decoration-gold-500 decoration-2 underline-offset-4 transition-colors hover:text-navy-700"
+        >
+          {trame.lien}
+          <span class="sr-only">— {ecosystemeNounou.titre}, nouvelle fenêtre</span>
+          <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8" />
+          </svg>
+        </a>
+      )
+    }
   </div>
 
-  <div class="lg:col-span-8">
-    <p class="max-w-texte text-base text-ink">
-      LabEvents a conçu, mis en ligne et exploite {ecosystemeNounou.formulation}.
-    </p>
-
-    {/* Les cinq sites, listés sans capture ni commentaire ajouté.
-        Liste en UNE colonne : à cinq éléments, toute grille laisse une
-        cellule vide en dernière ligne, qui se lit comme un visuel manquant.
-        `justify-center` centre verticalement en colonne ; `sm:justify-start`
-        le neutralise en ligne, où il centrerait horizontalement. */}
-    <ul class="mt-bloc divide-y divide-line border-y border-line">
-      {
-        ecosystemeNounou.sites.map((siteVertical) => (
+  {
+    capturesAffichables && (
+      <ul class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {ecosystemeNounou.sites.map((siteVertical, index) => (
           <li>
             <a
               href={siteVertical.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="group flex min-h-16 flex-col justify-center gap-0.5 py-4 sm:flex-row sm:items-baseline sm:justify-start sm:gap-6 sm:py-5"
+              class="group flex h-full flex-col overflow-hidden rounded-md border border-line bg-paper transition-colors hover:border-line-strong"
             >
-              <span class="text-xs font-medium break-words text-ink-strong underline decoration-line decoration-1 underline-offset-4 transition-colors group-hover:decoration-gold-500 sm:w-64 sm:shrink-0">
-                {siteVertical.label}
-                <span class="sr-only"> — nouvelle fenêtre</span>
-              </span>
-              <span class="text-xs text-ink-muted">{siteVertical.activite}</span>
+              <div class="aspect-panneau overflow-hidden border-b border-line bg-paper-warm">
+                <img
+                  src={siteVertical.capture}
+                  alt={`Capture de la page d’accueil de ${siteVertical.label}`}
+                  width={siteVertical.largeurCapture}
+                  height={siteVertical.hauteurCapture}
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover object-top transition-transform group-hover:scale-[1.01]"
+                />
+              </div>
+              <div class="flex flex-1 flex-col items-center px-4 py-6 text-center">
+                <span class="text-2xs font-semibold break-words text-ink-strong underline decoration-line underline-offset-4 group-hover:decoration-gold-500">
+                  {siteVertical.label}
+                  <span class="sr-only"> — nouvelle fenêtre</span>
+                </span>
+                <span class="mt-2 text-2xs text-ink-muted">{siteVertical.activite}</span>
+                <span class:list={['mt-5 flex size-12 items-center justify-center rounded-full', couleursIcones[index]]}>
+                  <IconeRealisation nom={icones[index] ?? 'mallette'} class="size-6" />
+                </span>
+              </div>
             </a>
           </li>
-        ))
-      }
-    </ul>
+        ))}
+      </ul>
+    )
+  }
 
-    {
-      realisation?.url && (
-        <p class="mt-8">
-          <a
-            href={realisation.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex min-h-11 items-center gap-2 text-xs font-medium text-navy-900 underline decoration-gold-500 decoration-2 underline-offset-4 transition-colors hover:text-navy-700"
-          >
-            {trame.lien}
-            <span class="sr-only">— {ecosystemeNounou.titre}, nouvelle fenêtre</span>
-            <svg
-              class="size-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M7 17L17 7M9 7h8v8" />
-            </svg>
-          </a>
-        </p>
-      )
-    }
+  <div class="mt-7 grid gap-6 rounded-md border border-line bg-paper px-5 py-6 lg:grid-cols-12 lg:items-center lg:gap-8 lg:px-8">
+    <div class="flex items-center gap-4 lg:col-span-5">
+      <span class="flex size-12 shrink-0 items-center justify-center text-gold-600">
+        <IconeRealisation nom="groupe" class="size-9" />
+      </span>
+      <p class="text-xs text-ink">{pageRealisations.ecosysteme.introduction}</p>
+    </div>
+    <ul class="grid gap-3 border-t border-line pt-5 sm:grid-cols-3 lg:col-span-7 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+      {pageRealisations.ecosysteme.reperes.map((repere) => (
+        <li class="flex gap-2 text-2xs text-ink-muted">
+          <IconeRealisation nom="validation" class="mt-0.5 size-4 text-gold-600" />
+          <span>{repere}</span>
+        </li>
+      ))}
+    </ul>
   </div>
 </article>

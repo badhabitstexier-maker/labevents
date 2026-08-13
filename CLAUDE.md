@@ -540,7 +540,7 @@ faite.
 | **Lot 5A**                    | Intégration des photos événementielles réelles     | ✅ fait — PR #9 fusionnée  |
 | **Lot 5A.1**                  | Refonte visuelle de `/evenementiel`                | ✅ fait — PR #10 fusionnée |
 | **Lot 5B**                    | Refonte finale de la HP, captures Web et vrai logo | ✅ fait — PR #11 fusionnée |
-| **Lot 5C.2**                  | Remplacement strict des mockups de `/sites-internet` | en cours — PR #12        |
+| **Lot 5C.3**                  | Correction finale et recette de `/sites-internet`   | ✅ fait — PR #12 à valider |
 | **Lot 5D**                    | Finition visuelle de `/realisations`               | à venir    |
 | **Lot 6**                     | Recette finale et préparation de la mise en ligne  | à venir    |
 
@@ -549,7 +549,7 @@ faite.
 - la homepage `/` est terminée ;
 - `/evenementiel` est terminée et validée sur desktop et mobile ;
 - `/contact` est fonctionnelle avec Web3Forms ;
-- `/sites-internet` fait l'objet du Lot 5C.2 ;
+- `/sites-internet` est finalisée au Lot 5C.3 et attend la validation de la PR #12 ;
 - `/realisations` sera finalisée au Lot 5D avec les vraies captures.
 
 **Lot −1 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
@@ -574,9 +574,8 @@ promesse « Votre site internet. On s'occupe de tout. », du processus en quatre
 des cibles retenues, du traitement séparé du sur-mesure et des CTA vers le
 contact. Les textes vivent dans `src/data/messages.ts` et les métadonnées dans
 `src/data/seo.ts`. Aucun prix, configurateur, volume de pages, promesse SEO,
-fonctionnalité métier inventée n'est ajouté. Le Lot 5C en cours complète cette
-base éditoriale par une composition visuelle utilisant les captures Web
-réelles.
+fonctionnalité métier inventée n'est ajouté. Le Lot 5C a complété cette base
+éditoriale par une composition visuelle utilisant les captures Web réelles.
 
 **Lot 3 livré :** page centrale de preuve `/realisations`, avec son hero,
 la présentation factuelle de `salonemploi.nc`, l'écosystème de cinq sites
@@ -614,10 +613,12 @@ validée sur desktop et mobile.
 visuelle, les vraies captures Web, le visuel d'accueil événementiel et le vrai
 logo LabEvents utilisé dans le header et le footer.
 
-**Lot 5C.2 en cours — PR #12 :** `/sites-internet` reçoit les deux mockups PNG
-définitifs fournis par Philippe. Seules les zones vertes de leurs écrans sont
-remplacées par les captures réelles de `salonemploi.nc` et `nounou.nc`, sans
-redessin des appareils ni modification du périmètre éditorial validé.
+**Lot 5C.3 terminé — PR #12 à valider :** `/sites-internet` utilise les deux
+mockups PNG définitifs fournis par Philippe. Seules les zones vertes de leurs
+écrans ont été remplacées par les captures réelles de `salonemploi.nc` et
+`nounou.nc`, sans redessin des appareils ni modification du périmètre
+éditorial validé. Le H1 mobile est séparé en deux groupes lisibles et la page
+a été recettée du hero au footer sur mobile et desktop.
 
 **Lot 5D à venir :** `/realisations` sera finalisée avec les vraies captures
 Web disponibles.
@@ -664,11 +665,10 @@ ne pas les combler par une invention.
 
 ## P. Prochaines étapes
 
-1. terminer le Lot 5C.2 ;
-2. Lot 5D — `/realisations` ;
-3. recette visuelle finale de `/contact` ;
-4. finition globale du header et du footer ;
-5. favicon et Open Graph ;
-6. resynchronisation finale de `README.md` si nécessaire ;
-7. Lot 6 — recette globale ;
-8. préparation de la mise en production.
+1. Lot 5D — `/realisations` ;
+2. recette visuelle finale de `/contact` ;
+3. finition globale du header et du footer ;
+4. favicon et Open Graph ;
+5. resynchronisation finale de `README.md` si nécessaire ;
+6. Lot 6 — recette globale ;
+7. préparation de la mise en production.

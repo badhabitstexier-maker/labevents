@@ -7,6 +7,7 @@
 import IconeRealisation, {
   type NomIconeRealisation,
 } from '@components/IconeRealisation.astro';
+import MockupLaptop from '@components/MockupLaptop.astro';
 import { etudeDeCas as trame, pageRealisations } from '@data/messages';
 import { ecosystemeNounou, realisationParId } from '@data/realisations';
 
@@ -75,15 +76,12 @@ const couleursIcones = [
               rel="noopener noreferrer"
               class="group flex h-full flex-col overflow-hidden rounded-md border border-line bg-paper transition-colors hover:border-line-strong"
             >
-              <div class="aspect-panneau overflow-hidden border-b border-line bg-paper-warm">
-                <img
+              <div class="border-b border-line bg-paper-warm px-3 pt-5 pb-4">
+                <MockupLaptop
                   src={siteVertical.capture}
                   alt={`Capture de la page d’accueil de ${siteVertical.label}`}
-                  width={siteVertical.largeurCapture}
-                  height={siteVertical.hauteurCapture}
-                  loading="lazy"
-                  decoding="async"
-                  class="h-full w-full object-cover object-top transition-transform group-hover:scale-[1.01]"
+                  largeur={siteVertical.largeurCapture}
+                  hauteur={siteVertical.hauteurCapture}
                 />
               </div>
               <div class="flex flex-1 flex-col items-center px-4 py-6 text-center">
@@ -104,16 +102,18 @@ const couleursIcones = [
   }
 
   <div class="mt-7 grid gap-6 rounded-md border border-line bg-paper px-5 py-6 lg:grid-cols-12 lg:items-center lg:gap-8 lg:px-8">
-    <div class="flex items-center gap-4 lg:col-span-5">
-      <span class="flex size-12 shrink-0 items-center justify-center text-gold-600">
-        <IconeRealisation nom="groupe" class="size-9" />
+    <div class="flex items-center gap-5 lg:col-span-5">
+      <span class="flex size-14 shrink-0 items-center justify-center text-gold-600">
+        <IconeRealisation nom="groupe" class="size-11" />
       </span>
-      <p class="text-xs text-ink">{pageRealisations.ecosysteme.introduction}</p>
+      <p class="text-xs text-ink">{pageRealisations.ecosysteme.bandeau.texte}</p>
     </div>
-    <ul class="grid gap-3 border-t border-line pt-5 sm:grid-cols-3 lg:col-span-7 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
-      {pageRealisations.ecosysteme.reperes.map((repere) => (
-        <li class="flex gap-2 text-2xs text-ink-muted">
-          <IconeRealisation nom="validation" class="mt-0.5 size-4 text-gold-600" />
+    <ul class="grid gap-4 border-t border-line pt-5 lg:col-span-7 lg:grid-cols-3 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+      {pageRealisations.ecosysteme.bandeau.reperes.map((repere) => (
+        <li class="flex gap-3 border-t border-line pt-4 text-2xs text-ink-muted first:border-t-0 first:pt-0 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-5 first:lg:border-l-0 first:lg:pl-0">
+          <span class="flex size-6 shrink-0 items-center justify-center rounded-full border border-gold-500 text-gold-600">
+            <IconeRealisation nom="validation" class="size-4" />
+          </span>
           <span>{repere}</span>
         </li>
       ))}

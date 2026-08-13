@@ -40,20 +40,26 @@ if (!salonEmploi) {
   <Section
     rythme="compact"
     aria-labelledby="titre-realisations"
-    class="[&>div]:py-16 lg:[&>div]:py-24"
+    class="[&>div]:py-14 lg:[&>div]:py-20"
   >
-    <div class="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
-      <div class="lg:col-span-7">
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+      <div class="lg:col-span-6">
         <p class="text-2xs font-semibold tracking-widest text-gold-600 uppercase">
           {pageRealisations.surtitre}
         </p>
         <h1 id="titre-realisations" class="mt-5 max-w-texte text-3xl">
           {pageRealisations.titre}
         </h1>
-      </div>
-      <div class="border-l border-gold-500 py-1 pl-6 lg:col-span-5 lg:pl-10">
-        <p class="max-w-texte text-sm text-ink-muted">
+        <p class="mt-6 max-w-texte text-sm text-ink-muted">
           {pageRealisations.introduction}
+        </p>
+      </div>
+      <div class="border-l border-gold-500 py-1 pl-6 lg:col-span-6 lg:pl-10">
+        <p class="max-w-texte text-sm text-ink">
+          {pageRealisations.complement}
+        </p>
+        <p class="mt-4 max-w-texte text-sm text-ink-muted">
+          {pageRealisations.approche}
         </p>
       </div>
     </div>

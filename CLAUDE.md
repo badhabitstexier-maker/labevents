@@ -251,6 +251,11 @@ dans `public/images/web/mockups/` :
 COMPLÉMENTAIRES / UNIVERS 1 / HALL EMPLOI »**. Les fichiers PNG sources sont
 conservés et leur contenu ne doit pas être modifié.
 
+Au Lot 5D.1, les cinq captures réelles de l'écosystème `nounou.nc` sont
+présentées dans un châssis de laptop unique construit en HTML/CSS par
+`src/components/MockupLaptop.astro`. Ce châssis est un élément décoratif de
+présentation : il ne modifie, ne redessine et ne remplace aucune capture.
+
 ---
 
 ## F. Réalisations digitales connues
@@ -266,6 +271,22 @@ de la mise en ligne de `labevents.nc`. Ne jamais reprendre une fonction depuis
 une roadmap, une ancienne maquette, un document commercial, une préproduction
 obsolète ou la planche graphique. La formulation doit être contrôlée à partir
 du vrai site.
+
+Philippe a validé le 13 août 2026 la publication de l'étude de cas suivante :
+
+- **Le besoin :** « Présenter clairement le Salon de l’Emploi & de la
+  Formation 2026 et centraliser les informations utiles aux visiteurs comme
+  aux exposants. »
+- **Ce que LabEvents a réalisé :** « Conception et réalisation du site du
+  salon, avec les rubriques Le salon, Exposants, Offres, Programme, Préparer
+  ma visite et Exposer. »
+- **Le résultat :** « Un site public qui réunit dans une même interface les
+  informations pratiques, les offres, le programme et les contenus destinés
+  aux visiteurs et aux exposants. »
+
+Ces rubriques ont été confirmées comme réellement publiées sur
+`salonemploi.nc`. La réalisation vaut donc `statut: 'verifie'` et
+`publiable: true` dans `src/data/realisations.ts`.
 
 ### Écosystème nounou.nc
 
@@ -285,6 +306,16 @@ sites** :
   complémentaires sont des **sous-domaines** de `nounou.nc`.
 - **Ne pas préciser davantage la nature de `services.nounou.nc`** sans
   validation factuelle.
+
+Philippe a également validé au Lot 5D.1 les formulations du bandeau de
+l'écosystème :
+
+- « Un même écosystème, cinq sites complémentaires conçus pour répondre à
+  différents besoins du quotidien. »
+- « Une identité commune » ;
+- « Des parcours adaptés à chaque service » ;
+- « Une conception, une mise en ligne et une exploitation assurées par
+  LabEvents ».
 
 ---
 
@@ -542,6 +573,7 @@ faite.
 | **Lot 5B**                    | Refonte finale de la HP, captures Web et vrai logo | ✅ fait — PR #11 fusionnée |
 | **Lot 5C.3**                  | Correction finale et recette de `/sites-internet`   | ✅ fait — PR #12 fusionnée |
 | **Lot 5D**                    | Finition visuelle de `/realisations`               | ✅ fait — PR #14 à valider |
+| **Lot 5D.1**                  | Rapprochement fidèle de la maquette `/realisations` | ✅ fait — PR #14 à valider |
 | **Lot 6**                     | Recette finale et préparation de la mise en ligne  | à venir    |
 
 ### État actuel des pages
@@ -550,8 +582,9 @@ faite.
 - `/evenementiel` est terminée et validée sur desktop et mobile ;
 - `/contact` est fonctionnelle avec Web3Forms ;
 - `/sites-internet` est finalisée au Lot 5C.3 ;
-- `/realisations` est finalisée au Lot 5D avec les vraies captures et le
-  mockup validé de `salonemploi.nc` ; la PR #14 reste à valider.
+- `/realisations` est finalisée au Lot 5D.1 avec l'étude de cas validée de
+  `salonemploi.nc`, les vraies captures et les cinq châssis de laptops ; la
+  PR #14 reste à valider.
 
 **Lot −1 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
 design tokens, polices auto-hébergées, couche données, SEO technique,
@@ -621,14 +654,17 @@ mockups PNG définitifs fournis par Philippe. Seules les zones vertes de leurs
 éditorial validé. Le H1 mobile est séparé en deux groupes lisibles et la page
 a été recettée du hero au footer sur mobile et desktop.
 
-**Lot 5D terminé — PR #14 à valider :** `/realisations` reprend la
+**Lot 5D et correctif 5D.1 terminés — PR #14 à valider :** `/realisations` reprend la
 composition éditoriale finale avec son hero en deux colonnes, son bandeau
 chaud, le mockup validé
 `/images/web/mockups/salonemploi-portable-telephone.png`, les cinq captures
 réelles de l'écosystème `nounou.nc`, le bloc de principes et le CTA final.
-Les captures sont désormais `capturesValidees: true`. Les études de cas
-détaillées restent `publiable: false` et leurs champs `besoin`, `realise` et
-`resultat` restent `null` : aucun contenu non vérifié n'est publié.
+Le correctif 5D.1 rétablit les trois blocs explicatifs validés de
+`salonemploi.nc`, rapproche le hero de la maquette, place les cinq captures
+`nounou.nc` dans le composant partagé `MockupLaptop.astro` et recompose le
+bandeau factuel de l'écosystème. Les captures restent
+`capturesValidees: true`. `salonemploi.nc` est `publiable: true` ;
+`nounou.nc` reste `publiable: false` avec ses trois champs détaillés à `null`.
 
 ---
 
@@ -651,8 +687,9 @@ ne pas les combler par une invention.
 4. ~~**Photos événementiel et captures des sites**~~ — **CLOS aux Lots 5A,
    5B et 5D.** Les assets réels disponibles sont inventoriés en section E et
    leur intégration finale dans `/realisations` est terminée.
-5. **Contenu des études de cas** `salonemploi.nc` et `nounou.nc` — à rédiger
-   après vérification sur les sites réels ; `publiable: false` en attendant.
+5. **Contenu de l'étude de cas** `nounou.nc` — à rédiger après vérification
+   sur les sites réels ; `publiable: false` en attendant. Le contenu de
+   `salonemploi.nc` est clos et publiable depuis le Lot 5D.1.
 6. ~~**Formulaire de contact**~~ — **CLOS au Lot 4.** Envoi côté client via
    Web3Forms, sans backend LabEvents. La clé publique n’est jamais versionnée
    et provient de `PUBLIC_WEB3FORMS_ACCESS_KEY`.
@@ -672,7 +709,7 @@ ne pas les combler par une invention.
 
 ## P. Prochaines étapes
 
-1. validation de la PR #14 du Lot 5D ;
+1. validation de la PR #14 des Lots 5D et 5D.1 ;
 2. recette visuelle finale de `/contact` ;
 3. finition globale du header et du footer ;
 4. favicon et Open Graph ;

@@ -1,0 +1,36 @@
+---
+/**
+ * Châssis de laptop commun aux cinq sites nounou.nc.
+ * La capture réelle est seulement cadrée depuis le haut dans l'écran : elle
+ * n'est ni redessinée, ni étirée, ni modifiée.
+ */
+interface Props {
+  src: string;
+  alt: string;
+  largeur: number;
+  hauteur: number;
+}
+
+const { src, alt, largeur, hauteur } = Astro.props;
+---
+
+<div class="w-full">
+  <div class="relative mx-auto w-11/12 rounded-t-md bg-navy-950 p-1.5 shadow-media">
+    <span class="absolute top-0.5 left-1/2 size-1 -translate-x-1/2 rounded-full bg-ink-muted" aria-hidden="true"></span>
+    <div class="aspect-panneau-large overflow-hidden rounded-xs bg-paper">
+      <img
+        src={src}
+        alt={alt}
+        width={largeur}
+        height={hauteur}
+        loading="lazy"
+        decoding="async"
+        class="h-full w-full object-cover object-top"
+      />
+    </div>
+  </div>
+  <div class="relative mx-auto h-3 w-full rounded-b-md border-t border-paper-cool bg-line-strong shadow-subtle" aria-hidden="true">
+    <span class="absolute top-0 left-1/2 h-1 w-12 -translate-x-1/2 rounded-b-sm bg-paper-cool"></span>
+  </div>
+  <div class="mx-auto h-1 w-11/12 rounded-b-full bg-ink-muted opacity-30" aria-hidden="true"></div>
+</div>

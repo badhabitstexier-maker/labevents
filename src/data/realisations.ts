@@ -4,7 +4,7 @@
  * ⚠️ DOCTRINE FACTUELLE ⚠️
  * Ce fichier ne contient QUE des informations vérifiées et validées.
  * Les blocs rédactionnels d'étude de cas (`besoin`, `realise`, `resultat`)
- * valent `null` tant que leur contenu n'a pas été contrôlé sur le vrai site.
+ * ne sont renseignés qu'après validation explicite de leur contenu.
  *
  * Interdits absolus : inventer un client, une fonctionnalité, un résultat,
  * un chiffre, un témoignage, une capture d'écran.
@@ -122,16 +122,15 @@ export const realisations: readonly Realisation[] = [
     url: 'https://salonemploi.nc',
     nature:
       'Site du Salon de l’Emploi & de la Formation 2026, événement organisé par LabEvents.',
-    statut: 'a-verifier',
-    publiable: false,
+    statut: 'verifie',
+    publiable: true,
     etudeDeCas: {
-      // TODO(verification): rédiger à partir du site RÉELLEMENT EN LIGNE au
-      // moment de la mise en ligne de labevents.nc. Ne jamais reprendre une
-      // fonctionnalité depuis une roadmap, une maquette, un document
-      // commercial, une préproduction ou la planche graphique.
-      besoin: null,
-      realise: null,
-      resultat: null,
+      besoin:
+        'Présenter clairement le Salon de l’Emploi & de la Formation 2026 et centraliser les informations utiles aux visiteurs comme aux exposants.',
+      realise:
+        'Conception et réalisation du site du salon, avec les rubriques Le salon, Exposants, Offres, Programme, Préparer ma visite et Exposer.',
+      resultat:
+        'Un site public qui réunit dans une même interface les informations pratiques, les offres, le programme et les contenus destinés aux visiteurs et aux exposants.',
     },
     captures: ['/images/web/mockups/salonemploi-portable-telephone.png'],
     capturesValidees: true,

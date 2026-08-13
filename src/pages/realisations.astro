@@ -144,15 +144,15 @@ if (!salonEmploi) {
             {pageRealisations.contact.texte}
           </p>
         </div>
-        <div class="grid gap-3 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1 xl:grid-cols-2">
-          <Bouton href={ctaPrincipal.href} variante="inverse" class="w-full">
+        <div class="grid items-start gap-3 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1 xl:grid-cols-2">
+          <Bouton href={ctaPrincipal.href} variante="inverse" class="w-full whitespace-nowrap">
             {ctaPrincipal.label}
           </Bouton>
           <Bouton
             href={ctaSecondaire.href}
-            class="w-full border border-ink-inverse-muted bg-transparent text-ink-inverse hover:border-paper hover:bg-navy-800"
+            class="w-full whitespace-nowrap border border-ink-inverse-muted bg-transparent text-ink-inverse hover:border-paper hover:bg-navy-800"
           >
-            <IconeRealisation nom="message" class="size-4" />
+            <IconeRealisation nom="message" class="size-4!" />
             {ctaSecondaire.label}
           </Bouton>
         </div>

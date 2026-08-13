@@ -404,6 +404,12 @@ desktop (40 px pour un titre de section, 72 px pour le hero) ; le minimum est
 la valeur mobile. Un composant écrit donc `text-4xl` **une seule fois**, sans
 empiler `text-2xl md:text-3xl lg:text-4xl`.
 
+**Héros intérieurs (validé au Lot 6A)** : le H1 intérieur standard reprend
+`text-3xl`, comme sur `/sites-internet` et `/realisations`. La homepage reste
+une exception assumée. Chaque hero conserve sa composition propre ; le filet
+vertical doré du bloc éditorial d’`/evenementiel` est un choix validé et ne
+doit pas être déplacé, raccourci ou généralisé aux autres pages.
+
 ⚠️ **Noms de tokens et utilitaires Tailwind en dur.** L'espace de noms
 `--container-*` n'est pas remis à zéro, et certains utilitaires Tailwind sont
 définis **en dur**, sans lire le thème : `max-w-prose` vaut `65ch` quoi qu'on
@@ -571,7 +577,8 @@ faite.
 | **Lot 5C.3**                  | Correction finale et recette de `/sites-internet`   | ✅ fait — PR #12 fusionnée |
 | **Lot 5D**                    | Finition visuelle de `/realisations`               | ✅ fait — PR #14 fusionnée |
 | **Lot 5D.1**                  | Rapprochement fidèle de la maquette `/realisations` | ✅ fait — PR #14 fusionnée |
-| **Lot 5E**                    | Refonte visuelle finale de `/contact`              | ✅ implémenté — PR brouillon à valider |
+| **Lot 5E**                    | Refonte visuelle finale de `/contact`              | ✅ fait — PR #15 fusionnée |
+| **Lot 6A**                    | Harmonisation visuelle transversale                | ✅ implémenté — PR brouillon à valider |
 | **Lot 6**                     | Recette finale et préparation de la mise en ligne  | à venir    |
 
 ### État actuel des pages
@@ -579,7 +586,7 @@ faite.
 - la homepage `/` est terminée ;
 - `/evenementiel` est terminée et validée sur desktop et mobile ;
 - `/contact` est fonctionnelle avec Web3Forms et sa refonte visuelle du Lot 5E
-  est implémentée dans une PR brouillon distincte ;
+  est fusionnée ;
 - `/sites-internet` est finalisée au Lot 5C.3 ;
 - `/realisations` est finalisée au Lot 5D.1 avec l'étude de cas validée de
   `salonemploi.nc`, les vraies captures et les cinq châssis de laptops ; la
@@ -665,7 +672,7 @@ bandeau factuel de l'écosystème. Les captures restent
 `capturesValidees: true`. `salonemploi.nc` est `publiable: true` ;
 `nounou.nc` reste `publiable: false` avec ses trois champs détaillés à `null`.
 
-**Lot 5E implémenté — PR brouillon à valider :** `/contact` reprend la
+**Lot 5E terminé — PR #15 fusionnée :** `/contact` reprend la
 composition finale validée : hero clair avec motif de courbes décoratif,
 bandeau bleu nuit donnant la priorité aux coordonnées, grande carte à deux
 colonnes pour l’accompagnement et le formulaire, puis bandeau de trois repères.
@@ -686,8 +693,12 @@ d’envoi. Les trois repères inférieurs retenus sont :
 
 La branche du Lot 5E a été resynchronisée avec le `main` contenant la PR #14.
 Les apports documentaires et éditoriaux des deux lots sont conservés et la
-recette complète a été rejouée. La PR Contact reste en brouillon jusqu’à sa
-validation par Philippe.
+recette complète a été rejouée avant la fusion de la PR #15.
+
+**Lot 6A implémenté — PR brouillon à valider :** quatre corrections ciblées
+harmonisent les hauteurs des boutons et des héros de `/realisations`,
+`/contact`, `/sites-internet` et `/evenementiel`, sans refonte générale ni
+modification de contenu.
 
 ---
 
@@ -732,8 +743,8 @@ ne pas les combler par une invention.
 
 ## P. Prochaines étapes
 
-1. validation de la PR brouillon du Lot 5E ;
+1. validation de la PR brouillon du Lot 6A ;
 2. finition globale du header et du footer ;
 3. favicon et Open Graph ;
-4. Lot 6 — recette globale ;
+4. suite du Lot 6 — recette globale ;
 5. préparation de la mise en production.

@@ -1,0 +1,30 @@
+---
+/** Motif de lignes topographiques, strictement décoratif pour `/contact`. */
+interface Props {
+  class?: string;
+}
+
+const { class: classeSupplementaire = '' } = Astro.props;
+---
+
+<svg
+  class={classeSupplementaire}
+  viewBox="0 0 640 420"
+  fill="none"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+  focusable="false"
+>
+  <g stroke="currentColor" stroke-width="1">
+    <path d="M665 12C555 47 486 91 438 149c-46 56-62 113-68 176-4 42-23 75-58 102" />
+    <path d="M666 39C563 71 500 111 456 164c-43 52-57 104-64 165-5 43-21 73-51 98" />
+    <path d="M667 67C571 96 514 132 474 180c-39 47-53 95-59 153-5 43-18 70-45 94" />
+    <path d="M668 95C580 121 528 153 492 196c-36 42-48 85-54 141-5 41-15 66-39 90" />
+    <path d="M669 123C588 146 542 174 510 211c-33 38-43 77-49 130-5 39-13 62-33 86" />
+    <path d="M670 151C596 171 556 195 528 227c-29 33-38 67-44 118-5 37-10 58-27 82" />
+    <path d="M671 179C605 196 570 216 546 243c-26 28-33 58-39 106-5 35-8 54-21 78" />
+    <path d="M672 207C613 221 584 237 564 259c-22 23-28 49-34 94-5 33-6 50-15 74" />
+    <path d="M673 235C621 246 598 258 582 274c-19 19-23 40-28 83-4 30-4 46-10 70" />
+    <path d="M674 263C630 271 612 279 600 290c-15 14-18 31-23 71-3 28-2 42-4 66" />
+  </g>
+</svg>

@@ -125,6 +125,16 @@ Le détail éditorial appliqué est consigné dans
 `src/data/messages.ts`. Aucun configurateur, prix, nombre de pages, catalogue
 de modules ou promesse SEO n'est ajouté.
 
+### Page `/sites-internet` — validations complémentaires du Lot 5C
+
+Philippe a explicitement validé le 13 août 2026 l'affichage des quatre
+prestations suivantes et de leurs formulations centralisées dans
+`src/data/messages.ts` : **Design responsive**, **Texte & contenus**,
+**Référencement local** et **Performance**. Le bloc « Ce que vous obtenez » et
+ses trois formulations y sont également validés. « Référencement local » ne
+constitue pas une promesse de position ou de classement Google, qui reste
+interdite.
+
 ### CTA
 
 - **CTA principal : contact humain.** « Parlons de votre projet » /

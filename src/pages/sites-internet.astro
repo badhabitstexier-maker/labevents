@@ -1,165 +1,268 @@
 ---
-/**
- * SITES INTERNET — refonte visuelle Lot 5C.
- *
- * Les textes restent issus des sources centralisées. Les compositions ci-dessous
- * utilisent uniquement les captures réelles et validées du projet.
- */
+/** SITES INTERNET — finition visuelle Lot 5C. */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Section from '@components/Section.astro';
 import Bouton from '@components/Bouton.astro';
 import BarreReassurance from '@components/BarreReassurance.astro';
+import IconeWeb from '@components/IconeWeb.astro';
+import MockupAppareil from '@components/MockupAppareil.astro';
 import { ctaPrincipal, ctaSecondaire } from '@data/navigation';
-import { ecosystemeNounou } from '@data/realisations';
-import { offreWeb, pageSitesInternet, sectionsAccueil } from '@data/messages';
+import { etudeDeCas, offreWeb, pageSitesInternet, sectionsAccueil } from '@data/messages';
+import { ecosystemeNounou, realisationParId } from '@data/realisations';
 import { seoSitesInternet } from '@data/seo';
 
-const capturesNounou = [
-  { src: '/images/web/nounou-home.png', alt: 'Capture du site nounou.nc', largeur: 2742, hauteur: 1662 },
+const salonEmploi = realisationParId('salonemploi-nc');
+
+const capturesNounouSecondaires = [
   { src: '/images/web/nounou-devoirs.png', alt: 'Capture du site devoirs.nounou.nc', largeur: 2744, hauteur: 1648 },
   { src: '/images/web/nounou-pet.png', alt: 'Capture du site pet.nounou.nc', largeur: 2746, hauteur: 1664 },
   { src: '/images/web/nounou-gardiennage.png', alt: 'Capture du site gardiennage.nounou.nc', largeur: 2734, hauteur: 1662 },
   { src: '/images/web/nounou-services.png', alt: 'Capture du site services.nounou.nc', largeur: 2744, hauteur: 1440 },
 ] as const;
+
+const iconesProbleme = ['horloge', 'outil', 'localisation'] as const;
+const iconesPrestations = ['ecrans', 'contenus', 'recherche', 'performance'] as const;
+const iconesCibles = ['marteau', 'mallette', 'boutique', 'personne'] as const;
+const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
 ---
 
 <BaseLayout titreComplet={seoSitesInternet.titre} description={seoSitesInternet.description}>
-  <Section aria-labelledby="titre-sites-internet" class="overflow-hidden">
-    <div class="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10 xl:gap-16">
-      <div class="lg:col-span-6">
-        <p class="text-2xs font-semibold tracking-widest text-gold-600 uppercase">
-          {pageSitesInternet.surtitre}
-        </p>
-        <h1 id="titre-sites-internet" class="mt-5 max-w-texte text-4xl">
-          {offreWeb.promesse}
-        </h1>
-        <p class="mt-6 max-w-texte text-base text-ink-muted">
-          {offreWeb.accompagnement}
-        </p>
-        <div class="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+  <Section
+    rythme="compact"
+    aria-labelledby="titre-sites-internet"
+    class="overflow-hidden [&>div]:py-9 sm:[&>div]:py-12 lg:[&>div]:py-14"
+  >
+    <div class="grid gap-11 lg:grid-cols-12 lg:items-center lg:gap-10 xl:gap-14">
+      <div class="lg:col-span-5">
+        <p class="text-2xs font-semibold tracking-widest text-gold-600 uppercase">{pageSitesInternet.surtitre}</p>
+        <h1 id="titre-sites-internet" class="mt-4 max-w-texte text-3xl">{offreWeb.promesse}</h1>
+        <p class="mt-5 max-w-texte text-sm text-ink-muted">{offreWeb.accompagnement}</p>
+        <div class="mt-7 flex flex-col items-stretch gap-3 sm:flex-row">
           <Bouton href={ctaPrincipal.href}>{ctaPrincipal.label}</Bouton>
           <Bouton href={ctaSecondaire.href} variante="secondaire">{ctaSecondaire.label}</Bouton>
         </div>
-        <BarreReassurance class="mt-8" />
+        <BarreReassurance class="mt-7" />
       </div>
 
-      <div class="lg:col-span-6">
-        <div class="relative mx-auto max-w-texte pb-16 sm:pr-12" aria-label="Captures réelles du site salonemploi.nc">
-          <div class="overflow-hidden rounded-lg border border-navy-700 bg-navy-900 p-2 shadow-media">
-            <div class="mb-2 flex gap-1.5 px-1" aria-hidden="true">
-              <span class="size-2 rounded-full bg-gold-500"></span>
-              <span class="size-2 rounded-full bg-line-strong"></span>
-              <span class="size-2 rounded-full bg-line-strong"></span>
-            </div>
-            <img
-              src="/images/web/salonemploi-desktop.png"
-              width="2736"
-              height="1590"
-              alt="Capture de la page d’accueil du site salonemploi.nc"
-              class="block h-auto w-full rounded-sm"
-              loading="eager"
-              fetchpriority="high"
-            />
-          </div>
-          <div class="absolute right-0 bottom-4 w-28 overflow-hidden rounded-xl border-4 border-navy-900 bg-navy-900 shadow-media sm:w-36">
-            <div class="mx-auto h-2 w-10 rounded-b-md bg-navy-900" aria-hidden="true"></div>
-            <img
-              src="/images/web/salonemploi-mobile.png"
-              width="390"
-              height="849"
-              alt="Capture mobile du site salonemploi.nc montrant les deux univers complémentaires"
-              class="block h-auto w-full rounded-md"
-              loading="eager"
-              fetchpriority="high"
-            />
-          </div>
+      <div class="lg:col-span-7">
+        <div class="relative mx-auto max-w-texte pb-14 pr-9 sm:pb-16 sm:pr-16" aria-label="Captures réelles du site salonemploi.nc sur ordinateur et téléphone">
+          <MockupAppareil
+            variante="ordinateur"
+            src="/images/web/salonemploi-desktop.png"
+            alt="Capture de la page d’accueil du site salonemploi.nc sur ordinateur"
+            largeur={2736}
+            hauteur={1590}
+            loading="eager"
+            fetchpriority="high"
+          />
+          <MockupAppareil
+            variante="telephone"
+            src="/images/web/salonemploi-mobile.png"
+            alt="Capture mobile du site salonemploi.nc montrant les deux univers complémentaires et le Hall Emploi"
+            largeur={390}
+            hauteur={849}
+            loading="eager"
+            fetchpriority="high"
+            class="absolute right-0 bottom-0 w-28 sm:w-36"
+          />
         </div>
-        <aside class="mt-2 border-l border-gold-500 pl-5" aria-label="Délai pour un projet standard">
-          <p class="font-display text-lg font-semibold text-ink-strong">{offreWeb.engagementDelai}</p>
-          <p class="mt-2 max-w-texte text-xs text-ink-muted">{pageSitesInternet.delai.texte}</p>
+        <aside class="mt-3 grid gap-3 border-l border-gold-500 pl-5 sm:grid-cols-5 sm:items-start" aria-label="Délai pour un projet standard">
+          <p class="font-display text-sm font-semibold text-ink-strong sm:col-span-2">{offreWeb.engagementDelai}</p>
+          <p class="max-w-texte text-xs text-ink-muted sm:col-span-3">{pageSitesInternet.delai.texte}</p>
         </aside>
       </div>
     </div>
   </Section>
 
-  <Section fond="warm" rythme="compact" aria-labelledby="titre-probleme-web">
-    <div class="grid gap-8 md:grid-cols-12 md:items-center md:gap-10">
-      <h2 id="titre-probleme-web" class="max-w-content text-2xl md:col-span-7">
-        {pageSitesInternet.probleme.titre}
-      </h2>
-      <div class="border-l border-gold-500 pl-6 md:col-span-5">
-        <svg class="size-7 text-gold-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-          <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
-        </svg>
-        <p class="mt-4 max-w-texte text-base font-medium text-ink-strong">{pageSitesInternet.probleme.texte}</p>
+  <Section
+    fond="warm"
+    rythme="compact"
+    aria-labelledby="titre-probleme-web"
+    class="[&>div]:py-9 lg:[&>div]:py-11"
+  >
+    <div class="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-10">
+      <div class="lg:col-span-5">
+        <h2 id="titre-probleme-web" class="max-w-content text-xl">{pageSitesInternet.probleme.titre}</h2>
+        <span class="mt-4 block h-px w-10 bg-gold-500" aria-hidden="true"></span>
+        <p class="mt-4 max-w-texte text-xs text-ink-muted">{pageSitesInternet.probleme.texte}</p>
       </div>
-    </div>
-  </Section>
-
-  <Section rythme="compact" aria-labelledby="titre-processus-web">
-    <h2 id="titre-processus-web" class="text-2xl">{pageSitesInternet.processus.titre}</h2>
-    <ol class="mt-8 grid border-y border-line md:grid-cols-2 lg:grid-cols-4">
-      {pageSitesInternet.processus.etapes.map((etape, index) => (
-        <li class="border-b border-line py-6 last:border-b-0 md:border-r md:px-6 md:first:pl-0 md:[&:nth-child(2)]:border-r-0 lg:border-b-0 lg:[&:nth-child(2)]:border-r lg:last:border-r-0 lg:last:pr-0">
-          <span class="text-xs font-semibold text-gold-600" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-          <p class="mt-3 max-w-texte text-sm font-semibold text-ink-strong">{etape}</p>
-        </li>
-      ))}
-    </ol>
-  </Section>
-
-  <Section rythme="compact" aria-labelledby="titre-prise-en-charge" class="border-t border-line">
-    <div class="grid gap-8 lg:grid-cols-12 lg:gap-12">
-      <div class="lg:col-span-4">
-        <h2 id="titre-prise-en-charge" class="max-w-content text-2xl">{pageSitesInternet.priseEnCharge.titre}</h2>
-        <span class="mt-6 block h-1 w-8 rounded-full bg-gold-500" aria-hidden="true"></span>
-      </div>
-      <div class="lg:col-span-8">
-        <p class="max-w-texte text-base text-ink-muted">{pageSitesInternet.priseEnCharge.texte}</p>
-        <figure class="mt-8 overflow-hidden rounded-lg border border-line bg-paper-warm p-3 shadow-card sm:p-5">
-          <div class="grid grid-cols-2 gap-3 md:grid-cols-12">
-            <div class="col-span-2 overflow-hidden rounded-md border border-line bg-paper md:col-span-8 md:row-span-2">
-              <img src={capturesNounou[0].src} width={capturesNounou[0].largeur} height={capturesNounou[0].hauteur} alt={capturesNounou[0].alt} class="h-full w-full object-cover object-top" loading="lazy" decoding="async" />
-            </div>
-            {capturesNounou.slice(1).map((capture) => (
-              <div class="overflow-hidden rounded-md border border-line bg-paper md:col-span-2">
-                <img src={capture.src} width={capture.largeur} height={capture.hauteur} alt={capture.alt} class="h-full w-full object-cover object-top" loading="lazy" decoding="async" />
-              </div>
-            ))}
-          </div>
-          <figcaption class="mt-4 flex items-center justify-between gap-4 border-t border-line pt-4">
-            <span class="font-display text-sm font-semibold text-ink-strong">{ecosystemeNounou.titre}</span>
-            <span class="text-xs text-ink-muted">{ecosystemeNounou.formulation}</span>
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-  </Section>
-
-  <Section rythme="compact" aria-labelledby="titre-cible-web" class="border-t border-line">
-    <div class="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
-      <h2 id="titre-cible-web" class="max-w-content text-xl lg:col-span-4">{pageSitesInternet.cible.titre}</h2>
-      <ul class="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:col-span-8">
-        {pageSitesInternet.cible.items.map((item) => (
-          <li class="flex min-h-28 flex-col justify-between rounded-md border border-line bg-paper p-5 shadow-subtle">
-            <span class="block h-1 w-8 rounded-full bg-gold-500" aria-hidden="true"></span>
-            <span class="mt-6 font-display text-sm font-semibold text-ink-strong">{item}</span>
+      <ul class="grid gap-6 sm:grid-cols-3 sm:gap-0 lg:col-span-7">
+        {pageSitesInternet.probleme.reperes.map((repere, index) => (
+          <li class:list={['flex gap-4 sm:block sm:px-6', index > 0 && 'sm:border-l sm:border-line', index === 0 && 'sm:pl-0']}>
+            <IconeWeb nom={iconesProbleme[index]!} />
+            <p class="text-xs font-semibold text-ink-strong sm:mt-4">{repere}</p>
           </li>
         ))}
       </ul>
     </div>
   </Section>
 
-  <Section rythme="compact" aria-labelledby="titre-sur-mesure">
-    <div class="overflow-hidden rounded-lg bg-navy-900 px-6 py-8 text-ink-inverse shadow-card sm:px-10 lg:px-12">
-      <div class="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
-        <div class="border-l border-gold-500 pl-6 lg:col-span-6">
+  <Section
+    rythme="compact"
+    aria-labelledby="titre-processus-web"
+    class="[&>div]:py-9 lg:[&>div]:py-11"
+  >
+    <h2 id="titre-processus-web" class="text-xl">{pageSitesInternet.processus.titre}</h2>
+    <span class="mt-4 block h-px w-10 bg-gold-500" aria-hidden="true"></span>
+    <ol class="mt-6 grid border-y border-line md:grid-cols-2 lg:grid-cols-4">
+      {pageSitesInternet.processus.etapes.map((etape, index) => (
+        <li class="border-b border-line py-5 last:border-b-0 md:border-r md:px-6 md:first:pl-0 md:[&:nth-child(2)]:border-r-0 lg:border-b-0 lg:[&:nth-child(2)]:border-r lg:last:border-r-0 lg:last:pr-0">
+          <span class="text-xs font-semibold text-gold-600" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+          <p class="mt-3 max-w-texte text-xs font-semibold text-ink-strong">{etape}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Section
+    rythme="compact"
+    aria-labelledby="titre-prise-en-charge"
+    class="border-t border-line [&>div]:py-9 lg:[&>div]:py-11"
+  >
+    <div class="grid gap-6 lg:grid-cols-12 lg:gap-10">
+      <h2 id="titre-prise-en-charge" class="max-w-content text-xl lg:col-span-4">{pageSitesInternet.priseEnCharge.titre}</h2>
+      <div class="lg:col-span-8">
+        <p class="max-w-texte text-sm text-ink-muted">{pageSitesInternet.priseEnCharge.texte}</p>
+      </div>
+    </div>
+    <span class="mt-5 block h-px w-10 bg-gold-500" aria-hidden="true"></span>
+
+    <div class="mt-8 overflow-hidden rounded-lg border border-line bg-paper-warm p-4 sm:p-6">
+      <div class="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-9">
+        <figure class="lg:col-span-7">
+          <MockupAppareil
+            variante="ordinateur"
+            src="/images/web/nounou-home.png"
+            alt="Capture de la page d’accueil du site nounou.nc sur ordinateur"
+            largeur={2742}
+            hauteur={1662}
+          />
+          <div class="mt-4 grid grid-cols-4 gap-2" aria-label="Autres captures réelles de l’écosystème nounou.nc">
+            {capturesNounouSecondaires.map((capture) => (
+              <div class="overflow-hidden rounded-sm border border-line bg-paper">
+                <img
+                  src={capture.src}
+                  alt={capture.alt}
+                  width={capture.largeur}
+                  height={capture.hauteur}
+                  loading="lazy"
+                  decoding="async"
+                  class="aspect-panneau-large w-full object-cover object-top"
+                />
+              </div>
+            ))}
+          </div>
+          <figcaption class="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3">
+            <span class="font-display text-sm font-semibold text-ink-strong">{ecosystemeNounou.titre}</span>
+            <span class="text-xs text-ink-muted">{ecosystemeNounou.formulation}</span>
+          </figcaption>
+        </figure>
+
+        <ul class="grid border border-line bg-paper sm:grid-cols-2 lg:col-span-5">
+          {pageSitesInternet.prestations.map((prestation, index) => (
+            <li class:list={[
+              'p-5',
+              index < 2 && 'border-b border-line',
+              index % 2 === 0 && 'sm:border-r sm:border-line',
+              index === 1 && 'sm:border-b',
+            ]}>
+              <IconeWeb nom={iconesPrestations[index]!} class="size-6" />
+              <h3 class="mt-3 text-xs font-semibold">{prestation.titre}</h3>
+              <p class="mt-2 text-2xs text-ink-muted">{prestation.texte}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </Section>
+
+  <Section
+    rythme="compact"
+    aria-labelledby="titre-cible-web"
+    class="border-t border-line [&>div]:py-8 lg:[&>div]:py-10"
+  >
+    <div class="grid gap-7 lg:grid-cols-12 lg:items-center lg:gap-10">
+      <div class="lg:col-span-4">
+        <h2 id="titre-cible-web" class="max-w-content text-xl">{pageSitesInternet.cible.titre}</h2>
+        <span class="mt-4 block h-px w-10 bg-gold-500" aria-hidden="true"></span>
+      </div>
+      <ul class="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:col-span-8">
+        {pageSitesInternet.cible.items.map((item, index) => (
+          <li class="flex min-h-28 flex-col justify-between rounded-md border border-line bg-paper p-5 shadow-subtle">
+            <IconeWeb nom={iconesCibles[index]!} class="size-6" />
+            <span class="mt-5 font-display text-xs font-semibold text-ink-strong">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Section>
+
+  <Section
+    rythme="compact"
+    aria-labelledby="titre-obtention-web"
+    class="border-t border-line [&>div]:py-8 lg:[&>div]:py-10"
+  >
+    <h2 id="titre-obtention-web" class="text-xl">{pageSitesInternet.obtention.titre}</h2>
+    <span class="mt-4 block h-px w-10 bg-gold-500" aria-hidden="true"></span>
+
+    <div class="mt-7 grid gap-5 lg:grid-cols-12">
+      <ul class="grid gap-3 sm:grid-cols-3 lg:col-span-7">
+        {pageSitesInternet.obtention.items.map((item, index) => (
+          <li class="rounded-md border border-line bg-paper p-5 shadow-subtle">
+            <IconeWeb nom={iconesObtention[index]!} class="size-6" />
+            <h3 class="mt-3 text-xs font-semibold">{item.titre}</h3>
+            <p class="mt-2 text-2xs text-ink-muted">{item.texte}</p>
+          </li>
+        ))}
+      </ul>
+
+      {salonEmploi && (
+        <article class="grid overflow-hidden rounded-md border border-line bg-paper sm:grid-cols-5 lg:col-span-5">
+          <div class="bg-paper-warm p-4 sm:col-span-2">
+            <div class="overflow-hidden rounded-sm border border-line bg-paper shadow-subtle">
+              <img
+                src="/images/web/salonemploi-desktop.png"
+                alt="Capture de la page d’accueil du site salonemploi.nc"
+                width="2736"
+                height="1590"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover object-top"
+              />
+            </div>
+          </div>
+          <div class="flex flex-col justify-center p-5 sm:col-span-3">
+            <h3 class="text-sm font-semibold">{salonEmploi.titre}</h3>
+            <p class="mt-2 text-2xs text-ink-muted">{salonEmploi.nature}</p>
+            {salonEmploi.url && (
+              <a href={salonEmploi.url} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gold-600 hover:text-gold-500">
+                {etudeDeCas.lien}<span aria-hidden="true">→</span>
+                <span class="sr-only"> (nouvel onglet)</span>
+              </a>
+            )}
+          </div>
+        </article>
+      )}
+    </div>
+  </Section>
+
+  <Section
+    rythme="compact"
+    aria-labelledby="titre-sur-mesure"
+    class="[&>div]:pt-7 [&>div]:pb-0 lg:[&>div]:pt-9 lg:[&>div]:pb-0"
+  >
+    <div class="relative overflow-hidden rounded-lg bg-navy-900 px-7 py-9 text-ink-inverse shadow-card sm:px-10 lg:px-12">
+      <svg class="pointer-events-none absolute top-0 right-0 h-full w-1/3 text-gold-500 opacity-10" viewBox="0 0 240 160" fill="none" stroke="currentColor" aria-hidden="true">
+        <path d="M240 20c-70 0-100 35-100 100M240 40c-55 0-80 25-80 80M240 60c-40 0-60 20-60 60M240 80c-25 0-40 15-40 40"/>
+      </svg>
+      <div class="relative grid gap-8 border-l border-gold-500 pl-6 lg:grid-cols-12 lg:items-center lg:gap-10 lg:pl-9">
+        <div class="lg:col-span-6">
           <h2 id="titre-sur-mesure" class="text-xl text-ink-inverse">{pageSitesInternet.surMesure.titre}</h2>
-          <p class="mt-4 max-w-texte text-sm text-ink-inverse-muted">{pageSitesInternet.surMesure.texte}</p>
+          <p class="mt-3 max-w-texte text-xs text-ink-inverse-muted">{pageSitesInternet.surMesure.texte}</p>
         </div>
         <div class="lg:col-span-6">
-          <p class="font-display text-sm font-semibold text-ink-inverse">{sectionsAccueil.contact.titre}</p>
-          <div class="mt-5 flex flex-col items-stretch gap-3 sm:flex-row">
+          <p class="font-display text-xs font-semibold text-ink-inverse">{sectionsAccueil.contact.titre}</p>
+          <div class="mt-4 flex flex-col items-stretch gap-3 sm:flex-row">
             <Bouton href={ctaPrincipal.href} variante="inverse">{ctaPrincipal.label}</Bouton>
             <Bouton href={ctaSecondaire.href} variante="inverse">{ctaSecondaire.label}</Bouton>
           </div>

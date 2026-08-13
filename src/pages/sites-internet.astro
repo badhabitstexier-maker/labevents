@@ -47,27 +47,15 @@ const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
       </div>
 
       <div class="lg:col-span-6">
-        <div class="relative mx-auto max-w-texte pb-14 pr-9 sm:pb-16 sm:pr-16" aria-label="Captures réelles du site salonemploi.nc sur ordinateur et téléphone">
-          <MockupAppareil
-            variante="ordinateur"
-            src="/images/web/salonemploi-desktop.png"
-            alt="Capture de la page d’accueil du site salonemploi.nc sur ordinateur"
-            largeur={2736}
-            hauteur={1590}
-            loading="eager"
-            fetchpriority="high"
-          />
-          <MockupAppareil
-            variante="telephone"
-            src="/images/web/salonemploi-mobile.png"
-            alt="Capture mobile du site salonemploi.nc montrant les deux univers complémentaires et le Hall Emploi"
-            largeur={390}
-            hauteur={849}
-            loading="eager"
-            fetchpriority="high"
-            class="absolute right-0 bottom-0 w-28 sm:w-36"
-          />
-        </div>
+        <MockupAppareil
+          src="/images/web/mockups/salonemploi-portable-telephone.png"
+          alt="Le site salonemploi.nc présenté sur l’ordinateur portable noir et le téléphone noir fournis par LabEvents"
+          largeur={1448}
+          hauteur={1086}
+          loading="eager"
+          fetchpriority="high"
+          class="mx-auto max-w-texte"
+        />
         <aside class="mt-3 grid gap-3 border-l border-gold-500 pl-5 sm:grid-cols-5 sm:items-start" aria-label="Délai pour un projet standard">
           <p class="font-display text-sm font-semibold text-ink-strong sm:col-span-2">{offreWeb.engagementDelai}</p>
           <p class="max-w-texte text-xs text-ink-muted sm:col-span-3">{pageSitesInternet.delai.texte}</p>
@@ -135,24 +123,12 @@ const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
     <div class="mt-8 overflow-hidden rounded-lg border border-line bg-paper-warm p-4 sm:p-6">
       <div class="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-9">
         <figure class="lg:col-span-7">
-          <div class="relative pb-14 pr-9 sm:pb-16 sm:pr-14">
-            <MockupAppareil
-              variante="ordinateur"
-              src="/images/web/nounou-home.png"
-              alt="Capture de la page d’accueil du site nounou.nc sur ordinateur"
-              largeur={2742}
-              hauteur={1662}
-            />
-            <MockupAppareil
-              variante="telephone"
-              src="/images/web/nounou-devoirs.png"
-              alt="Capture complémentaire du site devoirs.nounou.nc dans un téléphone"
-              largeur={2744}
-              hauteur={1648}
-              recadrageTelephone={true}
-              class="absolute right-0 bottom-0 w-24 sm:w-28"
-            />
-          </div>
+          <MockupAppareil
+            src="/images/web/mockups/nounou-ecran-bureau-telephone.png"
+            alt="Le site nounou.nc présenté sur l’écran de bureau argenté et le téléphone fournis par LabEvents"
+            largeur={1448}
+            hauteur={1086}
+          />
           <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4" aria-label="Autres captures réelles de l’écosystème nounou.nc">
             {capturesNounouSecondaires.map((capture) => (
               <div class="overflow-hidden rounded-sm border border-line bg-paper p-1">

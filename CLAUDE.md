@@ -235,6 +235,18 @@ Les assets suivants ont été fournis et sont autorisés en production :
   - `public/images/web/nounou-gardiennage.png` ;
   - `public/images/web/nounou-services.png`.
 
+Les mockups définitifs fournis et leurs compositions validées sont conservés
+dans `public/images/web/mockups/` :
+
+- `mockup-portable-telephone-source.png` — source portable noir + téléphone ;
+- `mockup-ecran-bureau-telephone-source.png` — source écran argenté + téléphone ;
+- `salonemploi-portable-telephone.png` — composite avec les captures réelles
+  desktop et mobile de `salonemploi.nc` ;
+- `nounou-ecran-bureau-telephone.png` — composite avec la capture desktop et
+  une capture mobile réelle de `nounou.nc` ;
+- `nounou-mobile-390.png` — capture réelle de `nounou.nc` réalisée dans un
+  viewport mobile de 390 px pour le téléphone du composite.
+
 `salonemploi-mobile.png` est la capture validée montrant : **« DEUX UNIVERS
 COMPLÉMENTAIRES / UNIVERS 1 / HALL EMPLOI »**. Les fichiers PNG sources sont
 conservés et leur contenu ne doit pas être modifié.
@@ -528,7 +540,7 @@ faite.
 | **Lot 5A**                    | Intégration des photos événementielles réelles     | ✅ fait — PR #9 fusionnée  |
 | **Lot 5A.1**                  | Refonte visuelle de `/evenementiel`                | ✅ fait — PR #10 fusionnée |
 | **Lot 5B**                    | Refonte finale de la HP, captures Web et vrai logo | ✅ fait — PR #11 fusionnée |
-| **Lot 5C.1**                  | Corrections visuelles finales de `/sites-internet` | en cours — PR #12          |
+| **Lot 5C.2**                  | Remplacement strict des mockups de `/sites-internet` | en cours — PR #12        |
 | **Lot 5D**                    | Finition visuelle de `/realisations`               | à venir    |
 | **Lot 6**                     | Recette finale et préparation de la mise en ligne  | à venir    |
 
@@ -537,7 +549,7 @@ faite.
 - la homepage `/` est terminée ;
 - `/evenementiel` est terminée et validée sur desktop et mobile ;
 - `/contact` est fonctionnelle avec Web3Forms ;
-- `/sites-internet` fait l'objet du Lot 5C.1 ;
+- `/sites-internet` fait l'objet du Lot 5C.2 ;
 - `/realisations` sera finalisée au Lot 5D avec les vraies captures.
 
 **Lot −1 livré :** projet Astro à la racine, TypeScript strict, Tailwind 4,
@@ -602,9 +614,10 @@ validée sur desktop et mobile.
 visuelle, les vraies captures Web, le visuel d'accueil événementiel et le vrai
 logo LabEvents utilisé dans le header et le footer.
 
-**Lot 5C.1 en cours — PR #12 :** `/sites-internet` reçoit ses corrections visuelles finales
-à partir des captures réelles de `salonemploi.nc` et de l'écosystème
-`nounou.nc`, sans modification de son périmètre éditorial validé.
+**Lot 5C.2 en cours — PR #12 :** `/sites-internet` reçoit les deux mockups PNG
+définitifs fournis par Philippe. Seules les zones vertes de leurs écrans sont
+remplacées par les captures réelles de `salonemploi.nc` et `nounou.nc`, sans
+redessin des appareils ni modification du périmètre éditorial validé.
 
 **Lot 5D à venir :** `/realisations` sera finalisée avec les vraies captures
 Web disponibles.
@@ -651,7 +664,7 @@ ne pas les combler par une invention.
 
 ## P. Prochaines étapes
 
-1. terminer le Lot 5C.1 ;
+1. terminer le Lot 5C.2 ;
 2. Lot 5D — `/realisations` ;
 3. recette visuelle finale de `/contact` ;
 4. finition globale du header et du footer ;

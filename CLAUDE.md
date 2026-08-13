@@ -274,15 +274,12 @@ du vrai site.
 
 Philippe a validé le 13 août 2026 la publication de l'étude de cas suivante :
 
-- **Le besoin :** « Présenter clairement le Salon de l’Emploi & de la
-  Formation 2026 et centraliser les informations utiles aux visiteurs comme
-  aux exposants. »
-- **Ce que LabEvents a réalisé :** « Conception et réalisation du site du
-  salon, avec les rubriques Le salon, Exposants, Offres, Programme, Préparer
-  ma visite et Exposer. »
-- **Le résultat :** « Un site public qui réunit dans une même interface les
-  informations pratiques, les offres, le programme et les contenus destinés
-  aux visiteurs et aux exposants. »
+- **Le besoin :** « Promouvoir le salon et faciliter l’accès à l’information
+  pour les exposants et les visiteurs. »
+- **Ce que LabEvents a réalisé :** « Conception du site, arborescence,
+  intégration, design, rédaction des contenus et version responsive. »
+- **Le résultat :** « Un site unique pour présenter l’événement, les
+  exposants, les offres, le programme et les informations pratiques. »
 
 Ces rubriques ont été confirmées comme réellement publiées sur
 `salonemploi.nc`. La réalisation vaut donc `statut: 'verifie'` et

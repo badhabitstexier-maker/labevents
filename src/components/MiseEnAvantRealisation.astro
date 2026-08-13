@@ -70,11 +70,11 @@ const capture = premiereCaptureAffichable(realisation);
 
 <article
   class:list={[
-    'grid gap-8 lg:grid-cols-12 lg:gap-0',
-    blocs.length > 0 ? 'lg:items-stretch' : 'lg:items-center',
+    'grid gap-8 md:grid-cols-12 md:items-center md:gap-0',
+    blocs.length === 0 && 'lg:items-center',
   ]}
 >
-  <div class="lg:col-span-3 lg:pr-10 xl:pr-12">
+  <div class="md:col-span-12 md:mb-8 lg:col-span-3 lg:mb-0 lg:pr-8 xl:pr-10">
     <p class="text-2xs font-semibold tracking-wide text-gold-600 uppercase">
       {surTitre}
     </p>
@@ -103,15 +103,15 @@ const capture = premiereCaptureAffichable(realisation);
 
   {
     blocs.length > 0 && (
-      <dl class="border-t border-line lg:col-span-3 lg:border-t-0 lg:border-l lg:px-10 xl:px-12">
+      <dl class="border-t border-line pt-5 md:col-span-6 md:border-t-0 md:border-l md:px-6 md:pt-0 lg:col-span-4 lg:px-8 xl:px-10">
         {blocs.map((bloc) => (
-          <div class="flex gap-4 border-b border-line py-6 first:pt-0 last:border-b-0 last:pb-0 lg:first:pt-0">
+          <div class="flex gap-3 border-b border-line py-4 first:pt-0 last:border-b-0 last:pb-0">
             <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-gold-100 text-gold-600">
               <IconeRealisation nom={bloc.icone} class="size-5" />
             </span>
-            <div>
+            <div class="min-w-0 flex-1">
               <dt class="text-2xs font-semibold text-ink-strong uppercase">{bloc.intitule}</dt>
-              <dd class="mt-2 text-xs text-ink-muted">{bloc.texte}</dd>
+              <dd class="mt-1.5 text-xs text-ink-muted">{bloc.texte}</dd>
             </div>
           </div>
         ))}
@@ -123,10 +123,10 @@ const capture = premiereCaptureAffichable(realisation);
     capture && (
       <div
         class:list={[
-          'flex items-center border-t border-line pt-8 lg:border-t-0 lg:border-l lg:pt-0',
+          'flex items-center border-t border-line pt-8 md:col-span-6 md:border-t-0 md:border-l md:pt-0 md:pl-6',
           blocs.length > 0
-            ? 'lg:col-span-6 lg:pl-10 xl:pl-12'
-            : 'lg:col-span-9 lg:pl-10 xl:pl-14',
+            ? 'lg:col-span-5 lg:pl-8 xl:pl-10'
+            : 'md:col-span-12 md:pl-0 lg:col-span-9 lg:border-l lg:pl-10 xl:pl-14',
         ]}
       >
         <MockupAppareil

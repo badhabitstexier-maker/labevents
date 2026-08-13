@@ -126,11 +126,11 @@ export const realisations: readonly Realisation[] = [
     publiable: true,
     etudeDeCas: {
       besoin:
-        'Présenter clairement le Salon de l’Emploi & de la Formation 2026 et centraliser les informations utiles aux visiteurs comme aux exposants.',
+        'Promouvoir le salon et faciliter l’accès à l’information pour les exposants et les visiteurs.',
       realise:
-        'Conception et réalisation du site du salon, avec les rubriques Le salon, Exposants, Offres, Programme, Préparer ma visite et Exposer.',
+        'Conception du site, arborescence, intégration, design, rédaction des contenus et version responsive.',
       resultat:
-        'Un site public qui réunit dans une même interface les informations pratiques, les offres, le programme et les contenus destinés aux visiteurs et aux exposants.',
+        'Un site unique pour présenter l’événement, les exposants, les offres, le programme et les informations pratiques.',
     },
     captures: ['/images/web/mockups/salonemploi-portable-telephone.png'],
     capturesValidees: true,

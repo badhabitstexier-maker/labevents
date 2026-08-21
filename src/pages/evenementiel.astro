@@ -223,7 +223,7 @@ const videosParRealisation: Record<string, { src: string; titre: string }> = {
   >
     <div class="relative w-full max-w-5xl overflow-hidden rounded-md bg-navy-900 shadow-media" data-video-panel>
       <div class="flex items-center justify-between gap-4 border-b border-white/15 px-4 py-3 sm:px-5">
-        <h2 id="video-modal-title" class="text-sm font-medium text-white" data-video-title></h2>
+        <h2 id="video-modal-title" class="text-sm font-medium text-white" data-video-modal-title></h2>
         <button
           type="button"
           class="flex size-11 shrink-0 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
@@ -248,7 +248,7 @@ const videosParRealisation: Record<string, { src: string; titre: string }> = {
       const panel = document.querySelector('[data-video-panel]');
       const player = document.querySelector('[data-video-player]');
       const source = document.querySelector('[data-video-source]');
-      const title = document.querySelector('[data-video-title]');
+      const title = document.querySelector('[data-video-modal-title]');
       const closeButton = document.querySelector('[data-video-close]');
       const openButtons = document.querySelectorAll('[data-video-open]');
 

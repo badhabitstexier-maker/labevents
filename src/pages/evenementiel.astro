@@ -1,5 +1,5 @@
 ---
-/** Page Événementiel — refonte visuelle du Lot 5A.1. */
+/** Page Événementiel — refonte visuelle du Lot 5A.1 + vidéos de réalisations. */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Section from '@components/Section.astro';
 import Bouton from '@components/Bouton.astro';
@@ -37,6 +37,21 @@ function imageOptimisee(image: string) {
     height,
   };
 }
+
+const videosParRealisation: Record<string, { src: string; titre: string }> = {
+  'forum-emploi': {
+    src: '/videos/salon-emploi-2023.mp4',
+    titre: 'Forum de l’Emploi et de la Formation — rétrospective 2023',
+  },
+  acdet: {
+    src: '/videos/acdet-decouverte-metiers-formations.mp4',
+    titre: 'Salon ACDET — Découverte des métiers et des formations',
+  },
+  'reseaux-eau': {
+    src: '/videos/reseau-pro-2023.mp4',
+    titre: 'Salon Réseau Pro 2023',
+  },
+};
 ---
 
 <BaseLayout titreComplet={seoEvenementiel.titre} description={seoEvenementiel.description}>
@@ -129,21 +144,56 @@ function imageOptimisee(image: string) {
     <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {realisationsEvenementielles.map((realisation) => {
         const source = imageOptimisee(realisation.image);
+        const video = videosParRealisation[realisation.id];
         return (
           <article class="overflow-hidden rounded-md border border-line bg-paper">
-            <div class:list={['aspect-panneau overflow-hidden', realisation.modeAffichage === 'contain' && 'bg-paper-warm p-4']}>
-              <img
-                src={source.src}
-                srcset={source.srcset}
-                sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw"
-                width={source.width}
-                height={source.height}
-                alt={realisation.alt}
-                loading="lazy"
-                decoding="async"
-                class:list={['h-full w-full', realisation.modeAffichage === 'contain' ? 'object-contain' : 'object-cover']}
-              />
-            </div>
+            {video ? (
+              <button
+                type="button"
+                class:list={[
+                  'group relative block aspect-panneau w-full overflow-hidden text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-900',
+                  realisation.modeAffichage === 'contain' && 'bg-paper-warm p-4',
+                ]}
+                data-video-open
+                data-video-src={video.src}
+                data-video-title={video.titre}
+                data-video-poster={source.src}
+                aria-label={`Voir la vidéo : ${video.titre}`}
+              >
+                <img
+                  src={source.src}
+                  srcset={source.srcset}
+                  sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw"
+                  width={source.width}
+                  height={source.height}
+                  alt={realisation.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class:list={['h-full w-full transition-transform duration-300 group-hover:scale-[1.02]', realisation.modeAffichage === 'contain' ? 'object-contain' : 'object-cover']}
+                />
+                <span class="absolute inset-0 bg-navy-900/20 transition-colors duration-200 group-hover:bg-navy-900/45" aria-hidden="true"></span>
+                <span class="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 px-4 py-4 text-xs font-semibold text-white sm:opacity-0 sm:transition-opacity sm:duration-200 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100">
+                  <span class="flex size-9 items-center justify-center rounded-full bg-white/95 text-navy-900 shadow-subtle">
+                    <svg viewBox="0 0 24 24" class="ml-0.5 size-4" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
+                  </span>
+                  <span class="rounded-full bg-navy-900/75 px-3 py-2">Voir la vidéo</span>
+                </span>
+              </button>
+            ) : (
+              <div class:list={['aspect-panneau overflow-hidden', realisation.modeAffichage === 'contain' && 'bg-paper-warm p-4']}>
+                <img
+                  src={source.src}
+                  srcset={source.srcset}
+                  sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw"
+                  width={source.width}
+                  height={source.height}
+                  alt={realisation.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class:list={['h-full w-full', realisation.modeAffichage === 'contain' ? 'object-contain' : 'object-cover']}
+                />
+              </div>
+            )}
             <div class="px-5 py-5"><h3 class="text-sm font-medium leading-snug">{realisation.titre}</h3></div>
           </article>
         );
@@ -162,4 +212,94 @@ function imageOptimisee(image: string) {
       </div>
     </div>
   </Section>
+
+  <div
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-navy-950/90 p-4 sm:p-8"
+    data-video-modal
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="video-modal-title"
+    hidden
+  >
+    <div class="relative w-full max-w-5xl overflow-hidden rounded-md bg-navy-900 shadow-media" data-video-panel>
+      <div class="flex items-center justify-between gap-4 border-b border-white/15 px-4 py-3 sm:px-5">
+        <h2 id="video-modal-title" class="text-sm font-medium text-white" data-video-title></h2>
+        <button
+          type="button"
+          class="flex size-11 shrink-0 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          data-video-close
+          aria-label="Fermer la vidéo"
+        >
+          <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <div class="bg-black">
+        <video class="mx-auto max-h-[78vh] w-full bg-black" controls playsinline preload="none" data-video-player>
+          <source data-video-source type="video/mp4" />
+          Votre navigateur ne prend pas en charge la lecture de cette vidéo.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (() => {
+      const modal = document.querySelector('[data-video-modal]');
+      const panel = document.querySelector('[data-video-panel]');
+      const player = document.querySelector('[data-video-player]');
+      const source = document.querySelector('[data-video-source]');
+      const title = document.querySelector('[data-video-title]');
+      const closeButton = document.querySelector('[data-video-close]');
+      const openButtons = document.querySelectorAll('[data-video-open]');
+
+      if (!(modal instanceof HTMLElement) || !(panel instanceof HTMLElement) || !(player instanceof HTMLVideoElement) || !(source instanceof HTMLSourceElement) || !(title instanceof HTMLElement) || !(closeButton instanceof HTMLButtonElement)) return;
+
+      let lastTrigger = null;
+
+      const closeModal = () => {
+        player.pause();
+        player.removeAttribute('poster');
+        source.removeAttribute('src');
+        player.load();
+        modal.hidden = true;
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.documentElement.style.overflow = '';
+        if (lastTrigger instanceof HTMLElement) lastTrigger.focus();
+        lastTrigger = null;
+      };
+
+      const openModal = (trigger) => {
+        if (!(trigger instanceof HTMLElement)) return;
+        const src = trigger.dataset.videoSrc;
+        const videoTitle = trigger.dataset.videoTitle;
+        const poster = trigger.dataset.videoPoster;
+        if (!src || !videoTitle) return;
+
+        lastTrigger = trigger;
+        source.src = src;
+        title.textContent = videoTitle;
+        if (poster) player.poster = poster;
+        player.load();
+        modal.hidden = false;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.documentElement.style.overflow = 'hidden';
+        closeButton.focus();
+      };
+
+      openButtons.forEach((button) => button.addEventListener('click', () => openModal(button)));
+      closeButton.addEventListener('click', closeModal);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeModal();
+      });
+      panel.addEventListener('click', (event) => event.stopPropagation());
+      document.addEventListener('keydown', (event) => {
+        if (!modal.hidden && event.key === 'Escape') {
+          event.preventDefault();
+          closeModal();
+        }
+      });
+    })();
+  </script>
 </BaseLayout>

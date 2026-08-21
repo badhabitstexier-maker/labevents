@@ -1,6 +1,6 @@
 ---
 /**
- * Affiche un mockup composite finalisé à partir d'un châssis PNG fourni.
+ * Affiche un mockup composite finalisé à partir d'un châssis fourni.
  * Le composant ne dessine, ne recadre et ne repositionne aucun appareil.
  */
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
   hauteur: number;
   loading?: 'eager' | 'lazy';
   fetchpriority?: 'high' | 'low' | 'auto';
+  sizes?: string;
   class?: string;
 }
 
@@ -20,12 +21,28 @@ const {
   hauteur,
   loading = 'lazy',
   fetchpriority,
+  sizes = '(min-width: 1024px) 50vw, 90vw',
   class: classeSupplementaire = '',
 } = Astro.props;
+
+const mockupsOptimises: Record<string, { src: string; srcset: string }> = {
+  '/images/web/mockups/nounou-ecran-bureau-telephone.png': {
+    src: '/images/optimized/mockups/nounou-ecran-bureau-telephone-1448.webp',
+    srcset: '/images/optimized/mockups/nounou-ecran-bureau-telephone-724.webp 724w, /images/optimized/mockups/nounou-ecran-bureau-telephone-1448.webp 1448w',
+  },
+  '/images/web/mockups/salonemploi-portable-telephone.png': {
+    src: '/images/optimized/mockups/salonemploi-portable-telephone-1448.webp',
+    srcset: '/images/optimized/mockups/salonemploi-portable-telephone-724.webp 724w, /images/optimized/mockups/salonemploi-portable-telephone-1448.webp 1448w',
+  },
+};
+
+const sourceOptimisee = mockupsOptimises[src];
 ---
 
 <img
-  src={src}
+  src={sourceOptimisee?.src ?? src}
+  srcset={sourceOptimisee?.srcset}
+  sizes={sourceOptimisee ? sizes : undefined}
   alt={alt}
   width={largeur}
   height={hauteur}

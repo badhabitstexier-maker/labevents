@@ -17,11 +17,11 @@ import { seoAccueil } from '@data/seo';
 const salonEmploi = realisationParId('salonemploi-nc');
 
 const sitesNounou = [
-  { ...ecosystemeNounou.sites[0], capture: '/images/web/optimized/nounou-home.png', largeur: 960, hauteur: 582 },
-  { ...ecosystemeNounou.sites[1], capture: '/images/web/optimized/nounou-devoirs.png', largeur: 960, hauteur: 577 },
-  { ...ecosystemeNounou.sites[2], capture: '/images/web/optimized/nounou-pet.png', largeur: 960, hauteur: 582 },
-  { ...ecosystemeNounou.sites[3], capture: '/images/web/optimized/nounou-gardiennage.png', largeur: 960, hauteur: 584 },
-  { ...ecosystemeNounou.sites[4], capture: '/images/web/optimized/nounou-services.png', largeur: 960, hauteur: 504 },
+  { ...ecosystemeNounou.sites[0], nom: 'nounou-home', largeur: 960, hauteur: 582 },
+  { ...ecosystemeNounou.sites[1], nom: 'nounou-devoirs', largeur: 960, hauteur: 577 },
+  { ...ecosystemeNounou.sites[2], nom: 'nounou-pet', largeur: 960, hauteur: 582 },
+  { ...ecosystemeNounou.sites[3], nom: 'nounou-gardiennage', largeur: 960, hauteur: 584 },
+  { ...ecosystemeNounou.sites[4], nom: 'nounou-services', largeur: 960, hauteur: 504 },
 ] as const;
 ---
 
@@ -32,26 +32,20 @@ const sitesNounou = [
     </div>
   </div>
 
-  <Section
-    rythme="compact"
-    aria-labelledby="titre-hero"
-    class="[&>div]:py-6 sm:[&>div]:py-8 lg:[&>div]:py-10"
-  >
+  <Section rythme="compact" aria-labelledby="titre-hero" class="[&>div]:py-6 sm:[&>div]:py-8 lg:[&>div]:py-10">
     <div class="overflow-hidden rounded-md border border-line bg-paper lg:grid lg:min-h-112 lg:grid-cols-12">
       <div class="flex flex-col justify-center px-6 py-9 sm:px-10 sm:py-12 lg:col-span-5 lg:px-12 xl:px-14">
         <h1 id="titre-hero" class="text-2xl font-medium">{accueil.titre}</h1>
         <p class="mt-6 max-w-texte text-sm text-ink-muted">{accueil.sousTitre}</p>
         <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-          <Bouton href={ctaAccueilEvenementiel.href} class="w-full">
-            {ctaAccueilEvenementiel.label}
-          </Bouton>
-          <Bouton href={ctaAccueilSitesInternet.href} class="w-full">
-            {ctaAccueilSitesInternet.label}
-          </Bouton>
+          <Bouton href={ctaAccueilEvenementiel.href} class="w-full">{ctaAccueilEvenementiel.label}</Bouton>
+          <Bouton href={ctaAccueilSitesInternet.href} class="w-full">{ctaAccueilSitesInternet.label}</Bouton>
         </div>
       </div>
       <img
-        src="/images/accueil/accueil-evenementiel.jpg"
+        src="/images/optimized/accueil/accueil-evenementiel-1536.webp"
+        srcset="/images/optimized/accueil/accueil-evenementiel-768.webp 768w, /images/optimized/accueil/accueil-evenementiel-1536.webp 1536w"
+        sizes="(min-width: 1024px) 58vw, 100vw"
         alt="Vue d’ensemble d’un salon professionnel organisé en Nouvelle-Calédonie"
         width="1672"
         height="941"
@@ -62,11 +56,7 @@ const sitesNounou = [
     </div>
   </Section>
 
-  <Section
-    rythme="compact"
-    aria-labelledby="titre-expertises"
-    class="[&>div]:pt-5 [&>div]:pb-6 lg:[&>div]:pt-6 lg:[&>div]:pb-8"
-  >
+  <Section rythme="compact" aria-labelledby="titre-expertises" class="[&>div]:pt-5 [&>div]:pb-6 lg:[&>div]:pt-6 lg:[&>div]:pb-8">
     <h2 id="titre-expertises" class="sr-only">Nos services et une réalisation mise en avant</h2>
     <div class="grid gap-8 lg:grid-cols-12 lg:gap-5">
       <div class="lg:col-span-5">
@@ -74,7 +64,9 @@ const sitesNounou = [
         <div class="grid gap-5 sm:grid-cols-2">
           <a href="/evenementiel" class="group overflow-hidden rounded-md border border-line bg-paper transition-colors hover:border-line-strong">
             <img
-              src="/images/evenementiel/job-dating.jpg"
+              src="/images/optimized/evenementiel/job-dating-1280.webp"
+              srcset="/images/optimized/evenementiel/job-dating-640.webp 640w, /images/optimized/evenementiel/job-dating-1280.webp 1280w"
+              sizes="(min-width: 1024px) 20vw, (min-width: 640px) 45vw, 100vw"
               alt="Participants échangeant lors d’un job dating organisé par LabEvents"
               width="2048"
               height="1536"
@@ -98,6 +90,7 @@ const sitesNounou = [
                 alt="Le site nounou.nc présenté sur un écran de bureau argenté et un téléphone"
                 largeur={1448}
                 hauteur={1086}
+                sizes="(min-width: 1024px) 20vw, (min-width: 640px) 45vw, 100vw"
                 class="h-full object-contain"
               />
             </div>
@@ -120,12 +113,7 @@ const sitesNounou = [
               <h3 class="text-lg whitespace-nowrap">{salonEmploi.titre}</h3>
               <p class="mt-5 text-xs text-ink-muted">{salonEmploi.nature}</p>
               {salonEmploi.url && (
-                <a
-                  href={salonEmploi.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="mt-7 inline-flex min-h-11 items-center gap-2 self-start text-xs font-medium text-navy-900 underline decoration-gold-500 decoration-2 underline-offset-4"
-                >
+                <a href={salonEmploi.url} target="_blank" rel="noopener noreferrer" class="mt-7 inline-flex min-h-11 items-center gap-2 self-start text-xs font-medium text-navy-900 underline decoration-gold-500 decoration-2 underline-offset-4">
                   {etudeDeCas.lien}<span aria-hidden="true">↗</span>
                   <span class="sr-only">— {salonEmploi.titre}, nouvelle fenêtre</span>
                 </a>
@@ -137,6 +125,7 @@ const sitesNounou = [
                 alt="Le site salonemploi.nc présenté sur un ordinateur portable et un téléphone montrant les deux univers complémentaires et le Hall Emploi"
                 largeur={1448}
                 hauteur={1086}
+                sizes="(min-width: 1024px) 28vw, 100vw"
                 class="object-contain"
               />
             </div>
@@ -163,7 +152,17 @@ const sitesNounou = [
                 <span class="flex h-4 items-center gap-1 border-b border-line bg-paper-cool px-2" aria-hidden="true">
                   <span class="size-1 rounded-full bg-line-strong"></span><span class="size-1 rounded-full bg-line-strong"></span><span class="size-1 rounded-full bg-line-strong"></span>
                 </span>
-                <img src={site.capture} alt={`Capture de la page d’accueil de ${site.label}`} width={site.largeur} height={site.hauteur} loading="lazy" decoding="async" class="aspect-panneau-large w-full object-cover object-top" />
+                <img
+                  src={`/images/optimized/web/${site.nom}-960.webp`}
+                  srcset={`/images/optimized/web/${site.nom}-480.webp 480w, /images/optimized/web/${site.nom}-960.webp 960w`}
+                  sizes="(min-width: 1024px) 16vw, (min-width: 640px) 45vw, 100vw"
+                  alt={`Capture de la page d’accueil de ${site.label}`}
+                  width={site.largeur}
+                  height={site.hauteur}
+                  loading="lazy"
+                  decoding="async"
+                  class="aspect-panneau-large w-full object-cover object-top"
+                />
               </div>
               <span class="mt-3 block text-2xs font-medium break-words text-ink-strong underline decoration-line underline-offset-4 transition-colors group-hover:decoration-gold-500">
                 {site.label}<span class="sr-only"> — nouvelle fenêtre</span>

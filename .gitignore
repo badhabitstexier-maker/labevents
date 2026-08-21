@@ -2,6 +2,9 @@
 dist/
 .astro/
 
+# images générées au build
+public/images/optimized/
+
 # dépendances
 node_modules/
 

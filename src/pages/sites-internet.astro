@@ -14,10 +14,10 @@ import { seoSitesInternet } from '@data/seo';
 const salonEmploi = realisationParId('salonemploi-nc');
 
 const capturesNounouSecondaires = [
-  { src: '/images/web/optimized/nounou-devoirs.png', alt: 'Capture du site devoirs.nounou.nc', largeur: 960, hauteur: 577 },
-  { src: '/images/web/optimized/nounou-pet.png', alt: 'Capture du site pet.nounou.nc', largeur: 960, hauteur: 582 },
-  { src: '/images/web/optimized/nounou-gardiennage.png', alt: 'Capture du site gardiennage.nounou.nc', largeur: 960, hauteur: 584 },
-  { src: '/images/web/optimized/nounou-services.png', alt: 'Capture du site services.nounou.nc', largeur: 960, hauteur: 504 },
+  { nom: 'nounou-devoirs', alt: 'Capture du site devoirs.nounou.nc', largeur: 960, hauteur: 577 },
+  { nom: 'nounou-pet', alt: 'Capture du site pet.nounou.nc', largeur: 960, hauteur: 582 },
+  { nom: 'nounou-gardiennage', alt: 'Capture du site gardiennage.nounou.nc', largeur: 960, hauteur: 584 },
+  { nom: 'nounou-services', alt: 'Capture du site services.nounou.nc', largeur: 960, hauteur: 504 },
 ] as const;
 
 const iconesProbleme = ['horloge', 'outil', 'localisation'] as const;
@@ -27,11 +27,7 @@ const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
 ---
 
 <BaseLayout titreComplet={seoSitesInternet.titre} description={seoSitesInternet.description}>
-  <Section
-    rythme="compact"
-    aria-labelledby="titre-sites-internet"
-    class="overflow-hidden [&>div]:py-8 sm:[&>div]:py-9 lg:[&>div]:py-12 xl:[&>div]:py-14"
-  >
+  <Section rythme="compact" aria-labelledby="titre-sites-internet" class="overflow-hidden [&>div]:py-8 sm:[&>div]:py-9 lg:[&>div]:py-12 xl:[&>div]:py-14">
     <div class="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-9 xl:gap-14">
       <div class="lg:col-span-6">
         <p class="text-2xs font-semibold tracking-widest text-gold-600 uppercase">{pageSitesInternet.surtitre}</p>
@@ -55,6 +51,7 @@ const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
           hauteur={1086}
           loading="eager"
           fetchpriority="high"
+          sizes="(min-width: 1024px) 50vw, 90vw"
           class="mx-auto w-11/12 max-w-texte sm:w-5/6 xl:w-full"
         />
         <aside class="mt-2 grid gap-3 border-l border-gold-500 pl-5 sm:grid-cols-5 sm:items-start xl:mt-3" aria-label="Délai pour un projet standard">
@@ -65,12 +62,7 @@ const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
     </div>
   </Section>
 
-  <Section
-    fond="warm"
-    rythme="compact"
-    aria-labelledby="titre-probleme-web"
-    class="[&>div]:py-9 lg:[&>div]:py-11"
-  >
+  <Section fond="warm" rythme="compact" aria-labelledby="titre-probleme-web" class="[&>div]:py-9 lg:[&>div]:py-11">
     <div class="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-10">
       <div class="lg:col-span-5">
         <h2 id="titre-probleme-web" class="max-w-content text-xl">{pageSitesInternet.probleme.titre}</h2>
@@ -91,11 +83,7 @@ const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
     </div>
   </Section>
 
-  <Section
-    rythme="compact"
-    aria-labelledby="titre-processus-web"
-    class="[&>div]:py-9 lg:[&>div]:py-11"
-  >
+  <Section rythme="compact" aria-labelledby="titre-processus-web" class="[&>div]:py-9 lg:[&>div]:py-11">
     <h2 id="titre-processus-web" class="text-xl">{pageSitesInternet.processus.titre}</h2>
     <span class="mt-4 block h-px w-10 bg-gold-500" aria-hidden="true"></span>
     <ol class="mt-6 grid border-y border-line md:grid-cols-2 lg:grid-cols-4">
@@ -108,16 +96,10 @@ const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
     </ol>
   </Section>
 
-  <Section
-    rythme="compact"
-    aria-labelledby="titre-prise-en-charge"
-    class="border-t border-line [&>div]:py-9 lg:[&>div]:py-11"
-  >
+  <Section rythme="compact" aria-labelledby="titre-prise-en-charge" class="border-t border-line [&>div]:py-9 lg:[&>div]:py-11">
     <div class="grid gap-6 lg:grid-cols-12 lg:gap-10">
       <h2 id="titre-prise-en-charge" class="max-w-content text-xl lg:col-span-4">{pageSitesInternet.priseEnCharge.titre}</h2>
-      <div class="lg:col-span-8">
-        <p class="max-w-texte text-sm text-ink-muted">{pageSitesInternet.priseEnCharge.texte}</p>
-      </div>
+      <div class="lg:col-span-8"><p class="max-w-texte text-sm text-ink-muted">{pageSitesInternet.priseEnCharge.texte}</p></div>
     </div>
     <span class="mt-5 block h-px w-10 bg-gold-500" aria-hidden="true"></span>
 
@@ -129,12 +111,15 @@ const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
             alt="Le site nounou.nc présenté sur l’écran de bureau argenté et le téléphone fournis par LabEvents"
             largeur={1448}
             hauteur={1086}
+            sizes="(min-width: 1024px) 50vw, 90vw"
           />
           <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4" aria-label="Autres captures réelles de l’écosystème nounou.nc">
             {capturesNounouSecondaires.map((capture) => (
               <div class="overflow-hidden rounded-sm border border-line bg-paper p-1">
                 <img
-                  src={capture.src}
+                  src={`/images/optimized/web/${capture.nom}-960.webp`}
+                  srcset={`/images/optimized/web/${capture.nom}-480.webp 480w, /images/optimized/web/${capture.nom}-960.webp 960w`}
+                  sizes="(min-width: 1024px) 12vw, (min-width: 640px) 22vw, 45vw"
                   alt={capture.alt}
                   width={capture.largeur}
                   height={capture.hauteur}
@@ -169,11 +154,7 @@ const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
     </div>
   </Section>
 
-  <Section
-    rythme="compact"
-    aria-labelledby="titre-cible-web"
-    class="border-t border-line [&>div]:py-8 lg:[&>div]:py-10"
-  >
+  <Section rythme="compact" aria-labelledby="titre-cible-web" class="border-t border-line [&>div]:py-8 lg:[&>div]:py-10">
     <div class="grid gap-7 lg:grid-cols-12 lg:items-center lg:gap-10">
       <div class="lg:col-span-4">
         <h2 id="titre-cible-web" class="max-w-content text-xl">{pageSitesInternet.cible.titre}</h2>
@@ -190,11 +171,7 @@ const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
     </div>
   </Section>
 
-  <Section
-    rythme="compact"
-    aria-labelledby="titre-obtention-web"
-    class="border-t border-line [&>div]:py-8 lg:[&>div]:py-10"
-  >
+  <Section rythme="compact" aria-labelledby="titre-obtention-web" class="border-t border-line [&>div]:py-8 lg:[&>div]:py-10">
     <h2 id="titre-obtention-web" class="text-xl">{pageSitesInternet.obtention.titre}</h2>
     <span class="mt-4 block h-px w-10 bg-gold-500" aria-hidden="true"></span>
 
@@ -214,7 +191,9 @@ const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
           <div class="bg-paper-warm p-4 sm:col-span-4">
             <div class="overflow-hidden rounded-sm border border-line bg-paper shadow-subtle">
               <img
-                src="/images/web/optimized/salonemploi-desktop.png"
+                src="/images/optimized/web/salonemploi-desktop-1200.webp"
+                srcset="/images/optimized/web/salonemploi-desktop-600.webp 600w, /images/optimized/web/salonemploi-desktop-1200.webp 1200w"
+                sizes="(min-width: 1024px) 30vw, 55vw"
                 alt="Capture de la page d’accueil du site salonemploi.nc"
                 width="1200"
                 height="697"
@@ -239,11 +218,7 @@ const iconesObtention = ['site', 'contenus', 'interlocuteur'] as const;
     </div>
   </Section>
 
-  <Section
-    rythme="compact"
-    aria-labelledby="titre-sur-mesure"
-    class="[&>div]:pt-7 [&>div]:pb-0 lg:[&>div]:pt-9 lg:[&>div]:pb-0"
-  >
+  <Section rythme="compact" aria-labelledby="titre-sur-mesure" class="[&>div]:pt-7 [&>div]:pb-0 lg:[&>div]:pt-9 lg:[&>div]:pb-0">
     <div class="relative overflow-hidden rounded-lg bg-navy-900 px-7 py-9 text-ink-inverse shadow-card sm:px-10 lg:px-12">
       <svg class="pointer-events-none absolute top-0 right-0 h-full w-1/3 text-gold-500 opacity-10" viewBox="0 0 240 160" fill="none" stroke="currentColor" aria-hidden="true">
         <path d="M240 20c-70 0-100 35-100 100M240 40c-55 0-80 25-80 80M240 60c-40 0-60 20-60 60M240 80c-25 0-40 15-40 40"/>

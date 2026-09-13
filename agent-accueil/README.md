@@ -29,6 +29,7 @@ un patron duplicable, c'est un travail à refaire chez chaque client.
 | `PROMPT-SYSTEME.md` | Le **comportement** : identité, périmètre, résistance aux détournements, style, quatre parcours de qualification, escalade, taxonomie fermée, garde-fous | Champ *system message* du nœud Agent |
 | `BASE-CONNAISSANCES.md` | Les **faits**, et eux seuls : coordonnées, activités, références événementielles, offre exposant, et la liste explicite de ce que l'assistant ne sait pas | Base de connaissances / fichier joint à l'agent |
 | `CONTRAT-SORTIE.json` | Le **squelette JSON** de toute réponse, extrait du §12 du prompt système | Schéma de la sortie structurée du nœud Agent |
+| `WORKFLOW.json` | Le **montage** n8n exporté : nœuds, branchements, condition de déclenchement du mail d'escalade | Import dans n8n, puis recréer les credentials et renseigner le destinataire |
 | `README.md` | Ce fichier | — |
 
 **Le comportement et les faits sont séparés volontairement.** C'est cette
@@ -59,6 +60,7 @@ précisément son objet.
 | `PROMPT-SYSTEME.md` | **Rare** | La méthode de qualification change, un garde-fou manque, une recette révèle un comportement à corriger |
 | `BASE-CONNAISSANCES.md` | **Fréquente** | L'actualité change : une date d'événement est arrêtée, une édition est annoncée ou annulée, une coordonnée change, une référence devient citable |
 | `CONTRAT-SORTIE.json` | **Rare**, et toujours avec le §12 du prompt | Un champ est ajouté, retiré ou renommé |
+| `WORKFLOW.json` | **À chaque modification du montage** | Un nœud est ajouté, une condition change, une branche est créée |
 
 **Les faits sont arrêtés par Philippe, et par personne d'autre.** Un fait qui
 n'est pas dans `BASE-CONNAISSANCES.md` ne doit pas être ajouté parce qu'il
@@ -71,10 +73,14 @@ aucune fusion de sa propre initiative.
 
 ## Ce que ce dossier ne contient pas
 
-- **Le workflow n8n exporté** — le montage relève d'un lot d'exécution dédié.
 - **Le widget de chat** et son intégration aux pages du site.
-- **Toute clé, tout identifiant, toute URL de webhook.** Ce dépôt est public :
-  rien de tout cela n'y entrera jamais.
+- **Toute clé, tout identifiant, toute URL de webhook, toute adresse
+  personnelle.** Ce dépôt est public : rien de tout cela n'y entrera jamais.
+
+`WORKFLOW.json` est purgé avant chaque dépôt : identifiants de webhook,
+identifiant d'instance n8n, adresse du destinataire des escalades. Le fichier
+n'est donc **pas réimportable tel quel** — c'est voulu. Après import, il faut
+recréer les deux credentials et renseigner le destinataire du nœud Gmail.
 
 ## Trois corrections dues avant toute mise en ligne
 
@@ -89,6 +95,31 @@ ce qui est pire que pas d'assistant du tout.
    Salon de l'Emploi & de la Formation 2026 »*. L'assistant vivra sur ce site :
    il se contredirait avec la page qui l'héberge, sous les yeux du même
    visiteur.
+
+## État au 13 septembre 2026
+
+L'agent est **monté et éprouvé**, mais **non publié** : il ne tourne que dans
+l'éditeur n8n. Aucune URL n'est exposée.
+
+Ce qui fonctionne, mesuré : les neuf cas de recette passent, dont le refus de
+chiffrer, le maintien du vouvoiement face au tutoiement, le refus de confirmer
+« depuis 2010 », la persistance des champs d'un tour à l'autre, et le
+déclenchement du mail de synthèse en fin de qualification.
+
+Huit corrections ont été portées au prompt au terme de cette recette : verrou
+d'escalade séparé de la fin de qualification, refus de chiffrer explicite,
+vouvoiement inconditionnel, règle de la donnée qualifiante, texte brut imposé,
+valeurs fermées pour `nature_presence_souhaitee`, collecte d'un moyen de
+contact avant toute promesse de rappel, et suppression de la contradiction
+`null` / chaîne vide entre le §10 et le §12.
+
+Coût mesuré : environ 14 000 tokens par tour de conversation, entrée comprise —
+le prompt et la base sont renvoyés au modèle à chaque message.
+
+Reste à traiter avant mise en ligne, en plus des trois corrections publiques
+ci-dessus : le prospect qui déclenche une escalade puis s'en va sans laisser de
+coordonnées ne produit aujourd'hui aucun mail, et la limitation de débit du
+webhook n'est pas posée.
 
 ## Fiche de cadrage
 

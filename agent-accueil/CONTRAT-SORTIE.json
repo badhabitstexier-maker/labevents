@@ -3,23 +3,41 @@
   "classification": "a_preciser",
   "fin_de_qualification": false,
   "contact": {
-    "nom": null, "entreprise": null, "fonction": null,
-    "telephone": null, "email": null, "commune": null
+    "nom": "",
+    "entreprise": "",
+    "fonction": "",
+    "telephone": "",
+    "email": "",
+    "commune": ""
   },
   "projet": {
-    "resume_demande": null, "objectif": null, "perimetre": null,
-    "calendrier": null, "localisation": null, "maturite": null,
-    "elements_disponibles": null, "contraintes": null,
-    "budget_si_communique": null, "besoins_particuliers": null
+    "resume_demande": "",
+    "objectif": "",
+    "perimetre": "",
+    "calendrier": "",
+    "localisation": "",
+    "maturite": "",
+    "elements_disponibles": "",
+    "contraintes": "",
+    "budget_si_communique": "",
+    "besoins_particuliers": ""
   },
   "suite": {
-    "points_a_eclaircir": [], "preference_contact": null,
-    "disponibilites_indiquees": null, "prochaine_etape_souhaitee": null
+    "points_a_eclaircir": [],
+    "preference_contact": "",
+    "disponibilites_indiquees": "",
+    "prochaine_etape_souhaitee": ""
   },
   "salon_emploi": {
-    "profil": null, "objet_demande": null, "edition_visee": null,
-    "nature_presence_souhaitee": null, "option_posee": false
+    "profil": "",
+    "objet_demande": "",
+    "edition_visee": "",
+    "nature_presence_souhaitee": "",
+    "option_posee": false
   },
-  "synthese_pour_philippe": null,
-  "escalade": { "requise": false, "motif": null }
+  "synthese_pour_philippe": "",
+  "escalade": {
+    "requise": false,
+    "motif": ""
+  }
 }

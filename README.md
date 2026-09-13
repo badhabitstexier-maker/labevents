@@ -201,3 +201,19 @@ sous `docs/decisions/` et ne peuvent jamais contredire `CLAUDE.md`.
 Le projet avance par **lots courts, validés séparément** : une branche dédiée,
 des commits propres, une pull request, puis un arrêt en attente de validation.
 Aucune fusion automatique, aucun enchaînement automatique sur le lot suivant.
+
+## Agent d'accueil
+
+Le dossier `agent-accueil/` contient la **définition versionnée de l'assistant
+conversationnel du site** : prompt système, base de connaissances, contrat de
+sortie JSON. Ce n'est pas du code : rien n'y est exécuté au build ni au
+runtime, et le dossier ne participe pas à la génération du site.
+
+L'agent est destiné à tourner sur une plateforme d'automatisation externe.
+La définition vit ici parce que **la plateforme n'est qu'un moteur
+interchangeable** : un agent monté à la souris et jamais exporté n'existe que
+dans la base de données du prestataire, sans historique, sans relecture en
+pull request et sans portabilité.
+
+Voir `agent-accueil/README.md` pour le détail des fichiers, la répartition des
+mises à jour et les corrections dues avant toute mise en ligne.

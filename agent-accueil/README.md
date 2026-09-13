@@ -80,7 +80,38 @@ aucune fusion de sa propre initiative.
 `WORKFLOW.json` est purgé avant chaque dépôt : identifiants de webhook,
 identifiant d'instance n8n, adresse du destinataire des escalades. Le fichier
 n'est donc **pas réimportable tel quel** — c'est voulu. Après import, il faut
-recréer les deux credentials et renseigner le destinataire du nœud Gmail.
+recréer les credentials et renseigner le destinataire des **deux** nœuds Gmail.
+
+## Étape D — la seconde branche du mail *(13 septembre 2026)*
+
+Un prospect qui déclenche une escalade puis s'en va **sans laisser ses
+coordonnées** ne produisait aucune trace : `fin_de_qualification` restait à
+`false`, et rien ne partait. Un DRH identifié pouvait disparaître sans que
+Philippe le sache.
+
+Le champ **`conversation_terminee`** comble ce trou. Il ne dit ni *« un motif
+est apparu »* ni *« le dossier est prêt »*, mais *« le visiteur est en train de
+clore l'échange »*. ⚠️ **Ce n'est pas un verrou** — contrairement à
+`escalade.requise`, il reflète le tour courant et redescend si le visiteur
+reprend la conversation. Sa règle vit au **§8B** du prompt système.
+
+Le nœud `If` est remplacé par un **`Switch` à trois sorties** :
+
+| Sortie | Condition | Mail |
+| --- | --- | --- |
+| **complet** | `fin_de_qualification` est vrai | DOSSIER QUALIFIÉ |
+| **partiel** | `fin_de_qualification` faux **et** `conversation_terminee` vrai **et** `escalade.requise` vrai | ⚠ INJOIGNABLE |
+| **repli** | tout le reste *(fallback)* | aucun |
+
+Les deux règles sont **mutuellement exclusives par construction** : « partiel »
+exige `fin_de_qualification` faux, donc un dossier prêt ne peut jamais y tomber.
+Les trois chemins finissent sur le **même nœud `Edit Fields`** — c'est un
+terminus obligatoire, le Chat Trigger renvoyant la sortie du dernier nœud
+exécuté.
+
+**Ce que la seconde branche ne couvre pas** : le visiteur qui ferme son onglet
+sans un mot ne dit rien, donc ne déclenche rien. Ce cas relève d'un chantier
+« timeout » distinct, qui suppose de persister l'état des sessions.
 
 ## Trois corrections dues avant toute mise en ligne
 

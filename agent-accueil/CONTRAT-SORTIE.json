@@ -2,6 +2,7 @@
   "message_visiteur": "",
   "classification": "a_preciser",
   "fin_de_qualification": false,
+  "conversation_terminee": false,
   "contact": {
     "nom": "",
     "entreprise": "",

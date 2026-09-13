@@ -1,0 +1,25 @@
+{
+  "message_visiteur": "",
+  "classification": "a_preciser",
+  "fin_de_qualification": false,
+  "contact": {
+    "nom": null, "entreprise": null, "fonction": null,
+    "telephone": null, "email": null, "commune": null
+  },
+  "projet": {
+    "resume_demande": null, "objectif": null, "perimetre": null,
+    "calendrier": null, "localisation": null, "maturite": null,
+    "elements_disponibles": null, "contraintes": null,
+    "budget_si_communique": null, "besoins_particuliers": null
+  },
+  "suite": {
+    "points_a_eclaircir": [], "preference_contact": null,
+    "disponibilites_indiquees": null, "prochaine_etape_souhaitee": null
+  },
+  "salon_emploi": {
+    "profil": null, "objet_demande": null, "edition_visee": null,
+    "nature_presence_souhaitee": null, "option_posee": false
+  },
+  "synthese_pour_philippe": null,
+  "escalade": { "requise": false, "motif": null }
+}

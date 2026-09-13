@@ -75,6 +75,25 @@ statique l'injecte ensuite dans le HTML du formulaire : elle est donc visible
 côté client dans les fichiers générés, ce qui est attendu pour cette clé
 publique Web3Forms.
 
+### Tester le widget de l'agent d'accueil
+
+Le widget de chat (`src/components/WidgetAgentAccueil.astro`, rendu par
+`BaseLayout.astro` sur toutes les pages) appelle le Chat Trigger n8n de
+l'agent. Renseignez son URL dans `.env` :
+
+```bash
+# Dans .env : PUBLIC_N8N_CHAT_URL=https://…/webhook/…/chat
+npm run dev
+```
+
+Sans cette variable, **le widget n'est pas rendu**. En local, l'origine
+`http://localhost:4321` doit figurer dans les *Allowed Origins* du Chat
+Trigger le temps du test ; en production, seule `https://labevents.nc` y
+figure. Comme la clé Web3Forms, la vraie valeur se configure dans
+l'hébergement avant le build et ne se commite jamais — elle reste lisible
+côté client dans le HTML généré : la protection vient de la limitation de
+débit et des *Allowed Origins*, pas du secret de l'URL.
+
 ## Architecture
 
 ```

@@ -73,7 +73,9 @@ aucune fusion de sa propre initiative.
 
 ## Ce que ce dossier ne contient pas
 
-- **Le widget de chat** et son intégration aux pages du site.
+- **Le widget de chat** et son intégration aux pages du site : ils vivent dans
+  `src/components/WidgetAgentAccueil.astro`, rendu par `BaseLayout.astro`, et
+  lisent l'URL dans `PUBLIC_N8N_CHAT_URL`.
 - **Toute clé, tout identifiant, toute URL de webhook, toute adresse
   personnelle.** Ce dépôt est public : rien de tout cela n'y entrera jamais.
 

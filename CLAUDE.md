@@ -468,6 +468,14 @@ planche vers les design tokens.
   latin-ext.
 - **`@astrojs/sitemap`** pour le sitemap.
 
+- **Exception au « aucun CDN au runtime » — widget de l'agent d'accueil.**
+  `src/components/WidgetAgentAccueil.astro` charge `@n8n/chat` depuis
+  jsDelivr, **épinglé à une version exacte**, après l'événement `load`
+  (~437 Ko compressés). Il n'est rendu que si `PUBLIC_N8N_CHAT_URL` est
+  définie ; l'URL du webhook n'est **jamais versionnée**. Les libellés par
+  défaut de la bibliothèque (anglais, « 24/7 », « Nathan ») sont intégralement
+  remplacés. La règle sur les polices reste entière.
+
 **Ne pas installer** React, Vue, Svelte, un CMS ou une librairie UI lourde
 sans nécessité technique démontrée. Toute dépendance structurante
 supplémentaire doit être justifiée **avant** installation.

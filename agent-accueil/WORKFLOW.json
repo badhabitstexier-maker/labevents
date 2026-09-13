@@ -124,8 +124,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        1120,
-        -400
+        1024,
+        -272
       ],
       "id": "3f27f309-3a6f-4bbf-8dcc-e1013c697adc",
       "name": "Edit Fields"
@@ -143,8 +143,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        528,
-        -112
+        512,
+        -576
       ],
       "id": "569e85f9-b2a8-4f31-8ae8-dc526d03e399",
       "name": "Send a message",
@@ -218,7 +218,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
       "position": [
-        176,
+        16,
         -432
       ],
       "id": "4159b85f-40f4-433e-8057-26cecec5a2f9",
@@ -238,7 +238,7 @@
       "typeVersion": 2.2,
       "position": [
         512,
-        -416
+        -448
       ],
       "id": "1f210ddd-776c-4737-b937-6ec2bbaa8e3e",
       "name": "Send a message (partiel)",
@@ -322,11 +322,6 @@
         [
           {
             "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Switch",
             "type": "main",
             "index": 0
           }

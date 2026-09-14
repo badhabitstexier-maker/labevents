@@ -279,8 +279,13 @@ de production et ne remplace jamais la configuration serveur qui applique le
 
 ### salonemploi.nc
 
-Site du **Salon de l'Emploi & de la Formation 2026**, événement **organisé par
+Site du **Salon de l'Emploi & de la Formation**, événement **organisé par
 LabEvents**. LabEvents réalise également le site associé.
+
+⚠️ **Aucune année dans la désignation** *(corrigé le 14 septembre 2026)* : le
+site affichait « 2026 », or aucune édition n'a lieu en 2026 — la prochaine est
+en prévision sur avril 2027, sans date ni lieu arrêtés. Ne pas réintroduire
+d'année tant qu'une édition n'est pas datée.
 
 ⚠️ **Règle de description :** lors de la présentation publique, ne décrire que
 les fonctionnalités **réellement publiées ET réellement vérifiées** au moment

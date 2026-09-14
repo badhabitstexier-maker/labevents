@@ -6,15 +6,17 @@ Le site présente deux activités distinctes : l'**événementiel** et la
 **création de sites internet**. Il doit expliquer simplement, orienter
 rapidement, montrer des preuves réelles et faciliter la prise de contact.
 
-> **État du projet : Lot 6A fusionné, Lot 6B implémenté avec favicon validé.**
+> **État du projet : V1 en production, correctif d’optimisation validé en préproduction.**
 > Les fondations techniques, le design system, l'en-tête, le pied de page,
 > l'accueil `/`, les pages `/sites-internet`, `/realisations`,
 > `/evenementiel` et `/contact` sont en place. Le formulaire de contact
 > statique utilise toujours Web3Forms et requiert une clé publique
 > d'environnement. Les assets visuels réels sont intégrés. Le Lot 6B finalise
 > les métadonnées, l'image Open Graph, les liens, l'accessibilité élémentaire
-> et des optimisations d'images ciblées. Le Lot 6B.1 intègre le favicon validé,
-> composé uniquement de la lettre « L » exacte du logo sur fond blanc.
+> et des optimisations d'images ciblées. Le favicon validé reprend uniquement
+> la lettre « L » exacte du logo sur fond blanc. Le 14 août 2026, la version
+> responsive WebP a été recettée sur les cinq pages de préproduction et
+> autorisée pour la production.
 
 ---
 
@@ -176,6 +178,12 @@ captures Web et les deux composites de mockups. La homepage, les pages
 `/evenementiel`, `/sites-internet` et `/realisations` utilisent désormais ces
 visuels. Les chemins et validations exacts sont inventoriés dans `CLAUDE.md`.
 
+Les PNG/JPEG validés restent les sources de référence. Leurs variantes WebP
+responsives destinées au site vivent dans `public/images/optimized/` et sont
+servies avec `srcset` afin d'éviter de télécharger une image desktop complète
+sur mobile. Une optimisation ne doit jamais changer le cadrage, la composition
+ou le contenu d'une preuve visuelle validée.
+
 Le visuel Open Graph par défaut est produit depuis le vrai logo et l'identité
 figée, sans génération IA. Le favicon validé est décliné exclusivement depuis
 la lettre « L » marine exacte du mot-symbole, sur fond blanc, sans redessin ni
@@ -220,6 +228,12 @@ sous `docs/decisions/` et ne peuvent jamais contredire `CLAUDE.md`.
 Le projet avance par **lots courts, validés séparément** : une branche dédiée,
 des commits propres, une pull request, puis un arrêt en attente de validation.
 Aucune fusion automatique, aucun enchaînement automatique sur le lot suivant.
+
+Toute mise en ligne suit obligatoirement le même ordre : build local validé,
+transfert et contrôle sur `preprod.labevents.nc`, validation explicite, puis
+préparation d'un paquet de production distinct. La configuration serveur de
+préproduction (notamment son `noindex`) ne doit pas être remplacée par le
+`.htaccess` de production.
 
 ## Agent d'accueil
 

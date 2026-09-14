@@ -25,14 +25,14 @@ export const activites = [
   {
     id: 'evenementiel',
     label: 'Événementiel',
-    href: '/evenementiel',
+    href: '/evenementiel/',
     /** Libellé de « porte » validé pour l'accueil. */
     porte: 'Organiser un événement',
   },
   {
     id: 'sites-internet',
     label: 'Sites internet',
-    href: '/sites-internet',
+    href: '/sites-internet/',
     porte: 'Créer votre site internet',
   },
 ] as const;

@@ -20,7 +20,7 @@ import { site } from '@data/site';
 
 /** Chemin courant, normalisé sans slash final (sauf la racine). */
 const chemin = Astro.url.pathname.replace(/(.+)\/$/, '$1');
-const estCourant = (href: string) => chemin === href;
+const estCourant = (href: string) => chemin === href.replace(/(.+)\/$/, '$1');
 ---
 
 <header class="sticky top-0 z-50 border-b border-line bg-paper">

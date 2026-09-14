@@ -12,10 +12,10 @@ export interface LienNavigation {
 
 export const navigationPrincipale: readonly LienNavigation[] = [
   { label: 'Accueil', href: '/' },
-  { label: 'Événementiel', href: '/evenementiel' },
-  { label: 'Sites internet', href: '/sites-internet' },
-  { label: 'Réalisations', href: '/realisations' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Événementiel', href: '/evenementiel/' },
+  { label: 'Sites internet', href: '/sites-internet/' },
+  { label: 'Réalisations', href: '/realisations/' },
+  { label: 'Contact', href: '/contact/' },
 ] as const;
 
 /**
@@ -24,7 +24,7 @@ export const navigationPrincipale: readonly LienNavigation[] = [
  */
 export const ctaPrincipal = {
   label: 'Parlons de votre projet',
-  href: '/contact',
+  href: '/contact/',
 } as const;
 
 /**
@@ -33,16 +33,16 @@ export const ctaPrincipal = {
  */
 export const ctaSecondaire = {
   label: 'Décrire mon projet',
-  href: '/contact#formulaire-contact',
+  href: '/contact/#formulaire-contact',
 } as const;
 
 /** Accès directs aux deux activités depuis le hero de l'accueil. */
 export const ctaAccueilEvenementiel = {
   label: 'Organiser un événement',
-  href: '/evenementiel',
+  href: '/evenementiel/',
 } as const;
 
 export const ctaAccueilSitesInternet = {
   label: 'Créer un site internet',
-  href: '/sites-internet',
+  href: '/sites-internet/',
 } as const;

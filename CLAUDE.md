@@ -72,8 +72,9 @@ de la V1.
 ### Accueil — hero retenu
 
 - Titre : **« Que pouvons-nous faire pour vous ? »**
-- Sous-titre : **« Deux expertises pour vos projets professionnels, en
+- Sous-titre : **« Deux expertises pour vos projets professionnels en
   Nouvelle-Calédonie. »**
+- Titre du bloc territoire : **« LabEvents en Nouvelle-Calédonie. »**
 
 Le hero contient deux CTA directs :
 
@@ -253,10 +254,24 @@ dans `public/images/web/mockups/` :
 COMPLÉMENTAIRES / UNIVERS 1 / HALL EMPLOI »**. Les fichiers PNG sources sont
 conservés et leur contenu ne doit pas être modifié.
 
+Les variantes WebP responsives générées à partir de ces sources validées sont
+rangées sous `public/images/optimized/`. Les pages peuvent les servir via
+`srcset`, mais les fichiers sources PNG/JPEG restent conservés sans modification
+et demeurent la référence. L'optimisation ne doit modifier ni le cadrage, ni la
+composition, ni le contenu visible des photos, captures ou mockups validés.
+
 Au Lot 5D.1, les cinq captures réelles de l'écosystème `nounou.nc` sont
 présentées dans un châssis de laptop unique construit en HTML/CSS par
 `src/components/MockupLaptop.astro`. Ce châssis est un élément décoratif de
 présentation : il ne modifie, ne redessine et ne remplace aucune capture.
+
+### Déploiement
+
+Chaque correctif passe d'abord sur `preprod.labevents.nc`. Les cinq routes V1,
+leurs images et leur comportement mobile y sont contrôlés avant toute
+préparation de production. Le paquet de préproduction reste distinct du paquet
+de production et ne remplace jamais la configuration serveur qui applique le
+`noindex` de préproduction.
 
 ---
 
@@ -714,7 +729,7 @@ harmonisent les hauteurs des boutons et des héros de `/realisations`,
 `/contact`, `/sites-internet` et `/evenementiel`, sans refonte générale ni
 modification de contenu.
 
-**Lot 6B implémenté — favicon validé et intégré au Lot 6B.1 :** les métadonnées SEO
+**Lot 6B terminé — favicon validé et intégré au Lot 6B.1 :** les métadonnées SEO
 validées, URL canoniques, cartes Open Graph/Twitter, `theme-color`,
 `robots.txt` et `sitemap.xml` couvrent les cinq routes V1. Le visuel Open
 Graph 1200 × 630 est produit depuis le vrai logo et l'identité figée. Six
@@ -724,6 +739,29 @@ détaillé est consigné dans `docs/audits/lot-6b/README.md`. Le favicon déclin
 fonctionnellement le logo validé en isolant ses pixels exacts correspondant à
 la lettre « L » marine sur fond blanc. Les formats SVG, PNG 32 × 32 et Apple
 Touch Icon 180 × 180 sont intégrés, sans fichier ICO supplémentaire nécessaire.
+
+**Correctif d’optimisation du 14 août 2026 — validé en préproduction :** le
+correctif a été reconstruit depuis la dernière version fonctionnelle de
+`main`, après abandon d’un premier paquet fondé sur une ancienne version des
+pages. Les cinq routes V1 ont été contrôlées sur `preprod.labevents.nc` :
+contenus actuels, galeries, mockups, captures, liens internes et formulaire.
+Les images sont servies en variantes WebP responsives via `srcset` ; les
+sources PNG/JPEG validées restent conservées. Le build contient 34 `srcset`,
+aucune ressource manquante et aucune image vide. Philippe a autorisé le passage
+en production le 14 août 2026.
+
+**Réconciliation production → dépôt — 14 septembre 2026.** Le paquet du
+14 août avait été construit hors dépôt : ses corrections n'étaient sur aucune
+branche. Mesuré ce jour-là : quatre pages en ligne (`/`, `/sites-internet/`,
+`/realisations/`, `/contact/`) sont identiques à l'octet à ce paquet ;
+`/evenementiel/` a été republiée ensuite depuis le dépôt (vidéos, PR #20).
+La réconciliation reporte sur `main` ce que seul le paquet portait : liens
+internes avec barre finale, token `--color-gold-700` pour les petits textes
+dorés, zones tactiles `min-h-11` du pied de page, lien actif tolérant la barre
+finale, deux virgules retirées (sous-titre de l'accueil et bloc territoire),
+`deploy/production/.htaccess` et la décision du 14 août. La mécanique d'images
+de `main` (synchronisée le 21 août, script `optimize:images`) est conservée :
+elle produit les mêmes `srcset`, page par page.
 
 ---
 
@@ -753,8 +791,12 @@ ne pas les combler par une invention.
 6. ~~**Formulaire de contact**~~ — **CLOS au Lot 4.** Envoi côté client via
    Web3Forms, sans backend LabEvents. La clé publique n’est jamais versionnée
    et provient de `PUBLIC_WEB3FORMS_ACCESS_KEY`.
-7. **Hébergement et déploiement** — non décidés. Aucune configuration de
-   plateforme n'a été ajoutée.
+7. ~~**Hébergement et déploiement**~~ — **CLOS.** Le site statique est déployé
+   manuellement sur l’hébergement de LabEvents. Tout correctif passe d’abord
+   par `preprod.labevents.nc`, puis fait l’objet d’un paquet de production
+   distinct après validation explicite. Le `.htaccess` de production est
+   conservé dans `deploy/production/.htaccess` ; celui de préproduction ne doit
+   jamais être remplacé afin de préserver son `noindex`.
 8. ~~**Échelle typographique fluide**~~ — **CLOS au Lot 1.** Arbitrage :
    **fluide pour les grands titres, fixe pour le texte** (voir section H).
    Les quatre plus grandes tailles passent en `clamp()`, centralisées dans
@@ -769,6 +811,9 @@ ne pas les combler par une invention.
 
 ## P. Prochaines étapes
 
-1. validation de la PR brouillon du Lot 6B ;
-2. suite du Lot 6 — recette globale ;
-3. préparation de la mise en production.
+1. mise en ligne du widget de l'agent d'accueil — conditionnée à la limitation
+   de débit du webhook et à la correction de la mention « 2026 » du salon dans
+   `src/data/realisations.ts` ; build avec `PUBLIC_N8N_CHAT_URL` **et**
+   `PUBLIC_WEB3FORMS_ACCESS_KEY` définies ;
+2. conserver le passage préproduction → validation explicite → production
+   pour chaque évolution ultérieure.

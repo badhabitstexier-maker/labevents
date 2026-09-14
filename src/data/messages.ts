@@ -11,7 +11,7 @@
 /** Hero de la page d'accueil. */
 export const accueil = {
   titre: 'Que pouvons-nous faire pour vous ?',
-  sousTitre: 'Deux expertises pour vos projets professionnels, en Nouvelle-Calédonie.',
+  sousTitre: 'Deux expertises pour vos projets professionnels en Nouvelle-Calédonie.',
 } as const;
 
 /**
@@ -50,7 +50,7 @@ export const sectionsAccueil = {
       'Nous ne montrons pas des maquettes, mais des réalisations réelles, conçues en Nouvelle-Calédonie.',
   },
   territoire: {
-    titre: 'LabEvents, en Nouvelle-Calédonie.',
+    titre: 'LabEvents en Nouvelle-Calédonie.',
     texte:
       'Nous accompagnons les entreprises et les organisations du territoire, de la conception à la mise en œuvre.',
   },

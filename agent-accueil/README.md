@@ -82,7 +82,9 @@ aucune fusion de sa propre initiative.
 `WORKFLOW.json` est purgé avant chaque dépôt : identifiants de webhook,
 identifiant d'instance n8n, adresse du destinataire des escalades. Le fichier
 n'est donc **pas réimportable tel quel** — c'est voulu. Après import, il faut
-recréer les credentials et renseigner le destinataire des **deux** nœuds Gmail.
+recréer les credentials, renseigner le destinataire des **deux** nœuds Gmail et
+rattacher la table `rate_limit` aux **deux** nœuds *Data Table* (voir
+*Limitation de débit*).
 
 ## Étape D — la seconde branche du mail *(13 septembre 2026)*
 
@@ -124,10 +126,37 @@ ce qui est pire que pas d'assistant du tout.
 1. **`salonemploi.nc`** affiche encore « octobre 2026 », et le site est indexé.
 2. **La page Facebook du salon** porte une couverture annonçant l'édition 2024
    annulée, et l'ancienne désignation de l'événement.
-3. **`labevents.nc` lui-même** décrit `salonemploi.nc` comme le *« Site du
-   Salon de l'Emploi & de la Formation 2026 »*. L'assistant vivra sur ce site :
-   il se contredirait avec la page qui l'héberge, sous les yeux du même
-   visiteur.
+3. ~~**`labevents.nc` lui-même** décrivait `salonemploi.nc` comme le *« Site du
+   Salon de l'Emploi & de la Formation 2026 »*.~~ **Corrigé dans le dépôt le
+   14 septembre 2026** (PR #27) : l'année est retirée. L'assistant vivra sur ce
+   site : il ne doit pas se contredire avec la page qui l'héberge.
+
+## Limitation de débit *(14 septembre 2026)*
+
+L'URL du Chat Trigger est lisible dans le HTML du site : sans limite, n'importe
+qui peut faire tourner le modèle aux frais de LabEvents. Quatre nœuds sont
+placés **avant** l'agent, directement après le déclencheur :
+
+| Nœud | Rôle |
+| --- | --- |
+| `Get row(s)` | lit la ligne `key = global` de la table n8n `rate_limit` |
+| `Code in JavaScript` | calcule la fenêtre horaire courante (heure **UTC**, ex. `2026-09-14-08`), remet le compteur à 1 si la fenêtre a changé, sinon l'incrémente ; `over` vaut vrai **au-delà de 100** |
+| `Update row(s)` | écrit `window` et `count` dans la même ligne |
+| `If` | `over` vrai → `Message débit` ; faux → `AI Agent` |
+
+`Message débit` répond sans appeler le modèle : *« Je reçois beaucoup de
+sollicitations en ce moment […] Pouvez-vous réessayer dans quelques minutes ? »*
+
+⚠️ **Le seuil est global, pas par visiteur** : 100 messages par heure, **tous
+visiteurs confondus**. Il plafonne le coût, mais un usage abusif épuise aussi
+le quota des visiteurs légitimes pour le reste de l'heure.
+
+**Prérequis à l'import** : la table `rate_limit` (colonnes `key`, `window`,
+`count`) doit exister **avec sa ligne `key = global` déjà créée** — `Get
+row(s)` lit cette ligne et `Update row(s)` ne la crée pas.
+
+Le déclencheur est en outre **public**, en mode `webhook`, et limité aux
+origines `https://labevents.nc` et `https://www.labevents.nc`.
 
 ## État au 13 septembre 2026
 
@@ -149,10 +178,10 @@ contact avant toute promesse de rappel, et suppression de la contradiction
 Coût mesuré : environ 14 000 tokens par tour de conversation, entrée comprise —
 le prompt et la base sont renvoyés au modèle à chaque message.
 
-Reste à traiter avant mise en ligne, en plus des trois corrections publiques
-ci-dessus : le prospect qui déclenche une escalade puis s'en va sans laisser de
-coordonnées ne produit aujourd'hui aucun mail, et la limitation de débit du
-webhook n'est pas posée.
+Depuis : le prospect qui escalade puis s'en va sans coordonnées produit un mail
+« partiel » (étape D), et la limitation de débit est posée (14 septembre). Reste
+à traiter avant mise en ligne : les deux canaux publics périmés hors de ce dépôt
+(`salonemploi.nc`, page Facebook).
 
 ## Fiche de cadrage
 

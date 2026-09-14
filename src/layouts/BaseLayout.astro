@@ -10,6 +10,7 @@ import '@styles/global.css';
 import BaseHead from '@components/BaseHead.astro';
 import EnTeteSite from '@components/EnTeteSite.astro';
 import PiedDePage from '@components/PiedDePage.astro';
+import WidgetAgentAccueil from '@components/WidgetAgentAccueil.astro';
 import { site } from '@data/site';
 
 interface Props {
@@ -51,5 +52,7 @@ const { titre, titreComplet, description, image, noindex } = Astro.props;
     </main>
 
     <PiedDePage />
+
+    <WidgetAgentAccueil />
   </body>
 </html>

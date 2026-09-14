@@ -121,7 +121,7 @@ export const realisations: readonly Realisation[] = [
     titre: 'salonemploi.nc',
     url: 'https://salonemploi.nc',
     nature:
-      'Site du Salon de l’Emploi & de la Formation 2026, événement organisé par LabEvents.',
+      'Site du Salon de l’Emploi & de la Formation, événement organisé par LabEvents.',
     statut: 'verifie',
     publiable: true,
     etudeDeCas: {

@@ -496,6 +496,13 @@ planche vers les design tokens.
   défaut de la bibliothèque (anglais, « 24/7 », « Nathan ») sont intégralement
   remplacés. La règle sur les polices reste entière.
 
+  ⚠️ **Widget en sommeil depuis le 1er octobre 2026 — réversible.** L'instance
+  n8n est en pause : l'import et l'appel du composant sont **commentés** dans
+  `src/layouts/BaseLayout.astro` (lignes 13 et 56). Rien n'est supprimé —
+  `WidgetAgentAccueil.astro`, `PUBLIC_N8N_CHAT_URL` et la documentation
+  associée restent en place. **Réactivation = décommenter ces deux lignes.**
+  Tant que le sommeil dure, un build ne contient ni `@n8n/chat` ni `chatUrl`.
+
 **Ne pas installer** React, Vue, Svelte, un CMS ou une librairie UI lourde
 sans nécessité technique démontrée. Toute dépendance structurante
 supplémentaire doit être justifiée **avant** installation.
@@ -816,9 +823,12 @@ ne pas les combler par une invention.
 
 ## P. Prochaines étapes
 
-1. mise en ligne du widget de l'agent d'accueil — conditionnée à la limitation
-   de débit du webhook et à la correction de la mention « 2026 » du salon dans
-   `src/data/realisations.ts` ; build avec `PUBLIC_N8N_CHAT_URL` **et**
-   `PUBLIC_WEB3FORMS_ACCESS_KEY` définies ;
+1. mise en ligne du widget de l'agent d'accueil — **suspendue depuis le
+   1er octobre 2026 : le widget est en sommeil, l'instance n8n étant en pause**
+   (voir section J). Les deux conditions antérieures sont levées — limitation
+   de débit posée (PR #28) et mention « 2026 » corrigée (PR #27). À la reprise :
+   décommenter les lignes 13 et 56 de `src/layouts/BaseLayout.astro`, puis
+   construire avec `PUBLIC_N8N_CHAT_URL` **et** `PUBLIC_WEB3FORMS_ACCESS_KEY`
+   définies ;
 2. conserver le passage préproduction → validation explicite → production
    pour chaque évolution ultérieure.
